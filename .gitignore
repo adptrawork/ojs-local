@@ -1,0 +1,54 @@
+# OJS 3.3 — local/runtime files that should NOT be pushed
+
+# --- Environment-specific config (contains DB creds / local paths) ---
+/config.inc.php
+
+# --- Uploaded files, site data, temp, logs (runtime) ---
+/ojsData/
+/public/journals/
+/public/site/
+/files/
+/*.log
+
+# --- Cache & compiled templates (regenerated) ---
+/cache/*
+!/cache/.gitkeep
+!/cache/t_compile/
+/cache/t_compile/*
+!/cache/t_compile/.gitkeep
+
+# --- Usage stats processing dirs (runtime) ---
+# (covered by /ojsData/ but kept explicit)
+
+# --- Local downloads / extracted archives (dev artifacts) ---
+/downloads/extracted/
+
+# --- OS / editor / IDE ---
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+*.code-workspace
+
+# --- PHP / tooling ---
+/vendor-bin/
+/node_modules/
+.phpunit.result.cache
+
+# --- Helper scripts created during local setup (optional to push) ---
+/tools/createSampleJournals.php
+/tools/createSampleArticles.php
+/tools/addSampleGalleys.php
+/tools/fixSampleKeywords.php
+/tools/repairSampleArticles.php
+/SIDEBAR-BLOCKS.md
+/PAGE-CONTENT.md
+
+# --- Keep these tracked (core app) ---
+# lib/, plugins/, templates/, locale/, pages/, classes/, api/, controllers/,
+# dbscripts/, docs/, registry/, schemas/, styles/, js/, tools/ (core tools),
+# index.php, composer.*, package.json, etc. are NOT ignored.
