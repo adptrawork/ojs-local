@@ -1,0 +1,864 @@
+/*
+ * JRDC Modern — Journal Stylesheet override for OJS 3.3 (Sanguline / public theme)
+ * Target brand primary: #1E6292 (JRDC/Sanguline-aligned), modernized.
+ *
+ * CARA PAKAI (Appearance → Advanced → Journal style sheet)
+ * 1. Login sebagai Journal Manager / Site Administrator.
+ * 2. Buka: Settings → Website → Appearance → Advanced.
+ * 3. Pada "Journal style sheet", klik Upload dan pilih file ini: jrdc-custom.css.
+ * 4. Simpan. Buka situs publik untuk verifikasi.
+ *
+ * CATATAN CLEAR CACHE (wajib jika tampilan tidak berubah)
+ * - Administration → Clear Data Caches dan Clear Template Cache (jika tersedia).
+ * - Browser: hard refresh (Ctrl+F5) / clear cache.
+ * - Jika memakai server/CDN cache (Varnish/Cloudflare/opcache proxy), purge juga.
+ *
+ * CATATAN OVERRIDE / UJI VISUAL
+ * - Ini CSS override yang diunggah sebagai Journal Stylesheet (bukan modifikasi core/tema).
+ * - Fokus area publik; hindari mengandalkan selector admin. Tetap uji dashboard admin sekilas.
+ * - Halaman yang wajib dicek: beranda, arsip/issue, halaman issue, halaman artikel (abstract/galley),
+ *   pencarian, halaman statis (About/Editorial Team/Submissions), login/register, sidebar blocks,
+ *   tabel, form, pagination, pesan notifikasi.
+ * - Jika tema kustom/Sanguline punya aturan sangat spesifik, tingkatkan spesifisitas selector
+ *   secara lokal (hindari !important kecuali terpaksa).
+ */
+
+/* =========================================================
+   1) Design tokens (CSS variables) — easy brand tuning
+   ========================================================= */
+:root {
+  --jrdc-primary: #1e6292;
+  --jrdc-primary-700: #174e75;
+  --jrdc-primary-800: #123d5c;
+  --jrdc-primary-100: #e8f2f8;
+  --jrdc-primary-050: #f4f9fc;
+  --jrdc-accent: #0f766e;           /* restrained academic accent */
+  --jrdc-accent-100: #e6f4f2;
+  --jrdc-text: #1f2937;
+  --jrdc-text-muted: #4b5563;
+  --jrdc-heading: #0f172a;
+  --jrdc-bg: #f6f8fb;
+  --jrdc-surface: #ffffff;
+  --jrdc-surface-alt: #f8fafc;
+  --jrdc-border: #dbe3ec;
+  --jrdc-border-strong: #c7d4e2;
+  --jrdc-danger: #b42318;
+  --jrdc-warning: #b54708;
+  --jrdc-success: #067647;
+  --jrdc-focus: #1d4ed8;
+  --jrdc-radius-sm: 6px;
+  --jrdc-radius: 10px;
+  --jrdc-radius-lg: 14px;
+  --jrdc-shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
+  --jrdc-shadow: 0 6px 20px rgba(15, 23, 42, 0.08);
+  --jrdc-shadow-hover: 0 10px 28px rgba(15, 23, 42, 0.12);
+  --jrdc-space-1: 0.25rem;
+  --jrdc-space-2: 0.5rem;
+  --jrdc-space-3: 0.75rem;
+  --jrdc-space-4: 1rem;
+  --jrdc-space-5: 1.5rem;
+  --jrdc-space-6: 2rem;
+  --jrdc-space-7: 3rem;
+  --jrdc-content-width: 1200px;
+  --jrdc-reading-width: 72ch;
+  --jrdc-line: 1.65;
+  --jrdc-font-body: "Source Sans 3", "Source Sans Pro", "Noto Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --jrdc-font-heading: "Source Serif 4", "Merriweather", "Noto Serif", Georgia, "Times New Roman", serif;
+  --jrdc-transition: 160ms ease;
+}
+
+/* =========================================================
+   2) Base / typography (scoped to public page structure)
+   ========================================================= */
+.pkp_structure_page {
+  color: var(--jrdc-text);
+  background: var(--jrdc-bg);
+  font-family: var(--jrdc-font-body);
+  font-size: 16px; /* a11y minimum baseline on mobile */
+  line-height: var(--jrdc-line);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.pkp_structure_page *,
+.pkp_structure_page *::before,
+.pkp_structure_page *::after {
+  box-sizing: border-box;
+}
+
+.pkp_structure_page h1,
+.pkp_structure_page h2,
+.pkp_structure_page h3,
+.pkp_structure_page h4,
+.pkp_structure_page .page_title,
+.pkp_structure_page .title {
+  color: var(--jrdc-heading);
+  font-family: var(--jrdc-font-heading);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  margin-top: 0;
+}
+
+.pkp_structure_page h1,
+.pkp_structure_page .page_title { font-size: clamp(1.75rem, 2.4vw, 2.35rem); margin-bottom: var(--jrdc-space-4); }
+.pkp_structure_page h2 { font-size: clamp(1.35rem, 1.8vw, 1.7rem); margin-bottom: var(--jrdc-space-3); }
+.pkp_structure_page h3 { font-size: clamp(1.15rem, 1.4vw, 1.3rem); margin-bottom: var(--jrdc-space-2); }
+.pkp_structure_page h4 { font-size: 1.05rem; margin-bottom: var(--jrdc-space-2); }
+
+.pkp_structure_page p,
+.pkp_structure_page li,
+.pkp_structure_page dd {
+  color: var(--jrdc-text);
+}
+
+.pkp_structure_page .pkp_structure_main p,
+.pkp_structure_page .pkp_structure_main li {
+  max-width: var(--jrdc-reading-width);
+}
+
+.pkp_structure_page a {
+  color: var(--jrdc-primary);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 0.18em;
+  transition: color var(--jrdc-transition), text-decoration-color var(--jrdc-transition);
+}
+
+.pkp_structure_page a:hover {
+  color: var(--jrdc-primary-700);
+}
+
+.pkp_structure_page img {
+  max-width: 100%;
+  height: auto;
+}
+
+.pkp_structure_page hr {
+  border: 0;
+  border-top: 1px solid var(--jrdc-border);
+  margin: var(--jrdc-space-5) 0;
+}
+
+/* =========================================================
+   3) Accessibility — focus, skip link, reduced motion
+   ========================================================= */
+.pkp_structure_page a:focus,
+.pkp_structure_page button:focus,
+.pkp_structure_page input:focus,
+.pkp_structure_page select:focus,
+.pkp_structure_page textarea:focus,
+.pkp_structure_page [tabindex]:focus {
+  outline: 3px solid color-mix(in srgb, var(--jrdc-focus) 55%, white);
+  outline-offset: 2px;
+}
+
+.pkp_structure_page a:focus:not(:focus-visible),
+.pkp_structure_page button:focus:not(:focus-visible),
+.pkp_structure_page input:focus:not(:focus-visible),
+.pkp_structure_page select:focus:not(:focus-visible),
+.pkp_structure_page textarea:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.pkp_structure_page a:focus-visible,
+.pkp_structure_page button:focus-visible,
+.pkp_structure_page input:focus-visible,
+.pkp_structure_page select:focus-visible,
+.pkp_structure_page textarea:focus-visible,
+.pkp_structure_page [tabindex]:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--jrdc-focus) 55%, white);
+  outline-offset: 2px;
+}
+
+.pkp_structure_page .pkp_skip_nav a,
+.pkp_structure_page a.sr-only,
+.pkp_structure_page .skip-to-content {
+  position: absolute;
+  left: 0.5rem;
+  top: -3rem;
+  z-index: 10000;
+  background: var(--jrdc-primary-800);
+  color: #fff;
+  padding: 0.6rem 0.9rem;
+  border-radius: var(--jrdc-radius-sm);
+}
+.pkp_structure_page .pkp_skip_nav a:focus,
+.pkp_structure_page a.sr-only:focus,
+.pkp_structure_page .skip-to-content:focus {
+  top: 0.5rem;
+  color: #fff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pkp_structure_page *,
+  .pkp_structure_page *::before,
+  .pkp_structure_page *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* =========================================================
+   4) Header / site identity / navigation
+   ========================================================= */
+.pkp_structure_head {
+  background: linear-gradient(180deg, var(--jrdc-primary-800) 0%, var(--jrdc-primary) 100%);
+  color: #fff;
+  border-bottom: 0;
+  box-shadow: 0 2px 14px rgba(18, 61, 92, 0.18);
+}
+
+.pkp_structure_head .pkp_site_name_wrapper,
+.pkp_structure_head .pkp_site_name {
+  padding-top: var(--jrdc-space-3);
+  padding-bottom: var(--jrdc-space-3);
+}
+
+.pkp_structure_head .pkp_site_name,
+.pkp_structure_head .pkp_site_name a {
+  color: #fff;
+  font-family: var(--jrdc-font-heading);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+}
+.pkp_structure_head .pkp_site_name a:hover {
+  color: #e8f2f8;
+}
+.pkp_structure_head .pkp_site_name .is_text {
+  font-size: clamp(1.2rem, 2vw, 1.55rem);
+}
+
+.pkp_navigation_primary_wrapper,
+.pkp_navigation_user_wrapper {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.pkp_navigation_primary > li > a,
+.pkp_navigation_user > li > a,
+.pkp_navigation_primary .dropdown-toggle,
+.pkp_navigation_user .dropdown-toggle {
+  color: #fff;
+  font-weight: 600;
+  padding: 0.75rem 0.9rem;
+  min-height: 44px; /* touch target */
+  display: inline-flex;
+  align-items: center;
+  border-radius: var(--jrdc-radius-sm);
+  text-decoration: none;
+  transition: background-color var(--jrdc-transition), color var(--jrdc-transition);
+}
+
+.pkp_navigation_primary > li > a:hover,
+.pkp_navigation_user > li > a:hover,
+.pkp_navigation_primary > li > a:focus-visible,
+.pkp_navigation_user > li > a:focus-visible,
+.pkp_navigation_primary > li:hover > a {
+  background: rgba(255, 255, 255, 0.16);
+  color: #fff;
+}
+
+.pkp_navigation_primary ul,
+.pkp_navigation_user ul {
+  background: var(--jrdc-surface);
+  border: 1px solid var(--jrdc-border);
+  border-radius: var(--jrdc-radius);
+  box-shadow: var(--jrdc-shadow);
+  padding: 0.35rem;
+  min-width: 14rem;
+}
+
+.pkp_navigation_primary ul a,
+.pkp_navigation_user ul a {
+  color: var(--jrdc-text);
+  border-radius: var(--jrdc-radius-sm);
+  padding: 0.55rem 0.75rem;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+.pkp_navigation_primary ul a:hover,
+.pkp_navigation_user ul a:hover,
+.pkp_navigation_primary ul a:focus-visible,
+.pkp_navigation_user ul a:focus-visible {
+  background: var(--jrdc-primary-050);
+  color: var(--jrdc-primary-800);
+}
+
+/* Mobile nav toggle (Sanguline/Bootstrap patterns vary) */
+.pkp_structure_head .pkp_site_nav_toggle,
+.pkp_site_nav_toggle {
+  color: #fff;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+/* Search bar in header */
+.pkp_structure_head .pkp_search input[type="text"],
+.pkp_structure_head .pkp_search input[type="search"],
+.pkp_head_wrapper .search_controls input {
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  padding: 0.55rem 1rem;
+  min-height: 44px;
+}
+.pkp_structure_head .pkp_search input::placeholder { color: rgba(255,255,255,0.8); }
+.pkp_structure_head .pkp_search button,
+.pkp_head_wrapper .search_controls button {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* =========================================================
+   5) Layout — main content, sidebar, containers
+   ========================================================= */
+.pkp_structure_content {
+  max-width: var(--jrdc-content-width);
+  margin: 0 auto;
+  padding: var(--jrdc-space-5) var(--jrdc-space-4) var(--jrdc-space-7);
+  gap: var(--jrdc-space-5);
+}
+
+.pkp_structure_main {
+  background: var(--jrdc-surface);
+  border: 1px solid var(--jrdc-border);
+  border-radius: var(--jrdc-radius-lg);
+  box-shadow: var(--jrdc-shadow-sm);
+  padding: clamp(1rem, 2.5vw, 2rem);
+}
+
+.pkp_structure_main > .page,
+.pkp_structure_main .page {
+  max-width: none;
+}
+
+/* Homepage often has special sections; give them breathing room */
+.pkp_page_index .pkp_structure_main,
+.pkp_op_index .pkp_structure_main {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  padding: 0;
+}
+
+.pkp_page_index .homepage_image,
+.pkp_page_index .additional_content,
+.pkp_page_index .current_issue,
+.pkp_page_index .announcements {
+  background: var(--jrdc-surface);
+  border: 1px solid var(--jrdc-border);
+  border-radius: var(--jrdc-radius-lg);
+  box-shadow: var(--jrdc-shadow-sm);
+  padding: clamp(1rem, 2.5vw, 1.75rem);
+  margin-bottom: var(--jrdc-space-5);
+}
+
+/* =========================================================
+   6) Sidebar & blocks
+   ========================================================= */
+.pkp_structure_sidebar .pkp_block,
+.pkp_block {
+  background: var(--jrdc-surface);
+  border: 1px solid var(--jrdc-border);
+  border-radius: var(--jrdc-radius);
+  box-shadow: var(--jrdc-shadow-sm);
+  padding: var(--jrdc-space-4);
+  margin-bottom: var(--jrdc-space-4);
+}
+
+.pkp_block .title,
+.pkp_block .block_title,
+.pkp_structure_sidebar .pkp_block .title {
+  font-family: var(--jrdc-font-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--jrdc-heading);
+  margin: 0 0 var(--jrdc-space-3);
+  padding-bottom: var(--jrdc-space-2);
+  border-bottom: 2px solid var(--jrdc-primary-100);
+}
+
+.pkp_block ul {
+  margin: 0;
+  padding-left: 1.15rem;
+}
+.pkp_block li { margin: 0.35rem 0; }
+.pkp_block a {
+  display: inline-block;
+  padding: 0.15rem 0;
+}
+
+/* Make language block compact */
+.pkp_block.block_language .content span,
+.pkp_block.block_language a {
+  margin-right: 0.4rem;
+}
+
+/* =========================================================
+   7) Buttons, links-as-buttons, galley links
+   ========================================================= */
+.pkp_structure_page .cmp_button,
+.pkp_structure_page .cmp_button_wire,
+.pkp_structure_page .btn,
+.pkp_structure_page button[type="submit"],
+.pkp_structure_page input[type="submit"],
+.pkp_structure_page .pkp_button,
+.pkp_structure_page a.obj_galley_link,
+.pkp_structure_page .obj_galley_link,
+.pkp_structure_page .galleys_links a,
+.pkp_structure_page .download a,
+.pkp_structure_page a.cmp_button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  min-height: 44px;
+  padding: 0.55rem 1rem;
+  border-radius: 999px;
+  border: 1px solid var(--jrdc-primary);
+  background: var(--jrdc-primary);
+  color: #fff !important;
+  font-family: var(--jrdc-font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.2;
+  text-decoration: none !important;
+  cursor: pointer;
+  transition: background-color var(--jrdc-transition), border-color var(--jrdc-transition),
+              box-shadow var(--jrdc-transition), transform var(--jrdc-transition);
+  box-shadow: 0 1px 0 rgba(15,23,42,0.04);
+}
+
+.pkp_structure_page .cmp_button:hover,
+.pkp_structure_page .btn:hover,
+.pkp_structure_page button[type="submit"]:hover,
+.pkp_structure_page input[type="submit"]:hover,
+.pkp_structure_page .pkp_button:hover,
+.pkp_structure_page a.obj_galley_link:hover,
+.pkp_structure_page .galleys_links a:hover,
+.pkp_structure_page .download a:hover {
+  background: var(--jrdc-primary-700);
+  border-color: var(--jrdc-primary-700);
+  color: #fff !important;
+  box-shadow: var(--jrdc-shadow-sm);
+}
+
+.pkp_structure_page .cmp_button:active,
+.pkp_structure_page .btn:active,
+.pkp_structure_page button[type="submit"]:active,
+.pkp_structure_page input[type="submit"]:active,
+.pkp_structure_page a.obj_galley_link:active {
+  transform: translateY(1px);
+}
+
+.pkp_structure_page .cmp_button_wire,
+.pkp_structure_page .btn-default,
+.pkp_structure_page a.cmp_button_wire {
+  background: transparent;
+  color: var(--jrdc-primary) !important;
+}
+.pkp_structure_page .cmp_button_wire:hover,
+.pkp_structure_page .btn-default:hover {
+  background: var(--jrdc-primary-050);
+  color: var(--jrdc-primary-800) !important;
+}
+
+/* =========================================================
+   8) Forms / inputs
+   ========================================================= */
+.pkp_structure_page label {
+  font-weight: 600;
+  color: var(--jrdc-heading);
+}
+
+.pkp_structure_page input[type="text"],
+.pkp_structure_page input[type="email"],
+.pkp_structure_page input[type="password"],
+.pkp_structure_page input[type="search"],
+.pkp_structure_page input[type="url"],
+.pkp_structure_page input[type="tel"],
+.pkp_structure_page input[type="number"],
+.pkp_structure_page select,
+.pkp_structure_page textarea {
+  width: 100%;
+  max-width: 100%;
+  min-height: 44px;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--jrdc-border-strong);
+  border-radius: var(--jrdc-radius-sm);
+  background: var(--jrdc-surface);
+  color: var(--jrdc-text);
+  font: inherit;
+  line-height: 1.4;
+  transition: border-color var(--jrdc-transition), box-shadow var(--jrdc-transition);
+}
+
+.pkp_structure_page textarea {
+  min-height: 8rem;
+  resize: vertical;
+}
+
+.pkp_structure_page input:hover,
+.pkp_structure_page select:hover,
+.pkp_structure_page textarea:hover {
+  border-color: #9fb4ca;
+}
+
+.pkp_structure_page input:focus,
+.pkp_structure_page select:focus,
+.pkp_structure_page textarea:focus {
+  border-color: var(--jrdc-primary);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--jrdc-primary) 18%, transparent);
+}
+
+.pkp_structure_page .pkp_form .buttons,
+.pkp_structure_page .buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--jrdc-space-3);
+  align-items: center;
+  margin-top: var(--jrdc-space-4);
+}
+
+/* Notifications / alerts */
+.pkp_structure_page .pkp_notification,
+.pkp_structure_page .cmp_notification,
+.pkp_structure_page .alert {
+  border-radius: var(--jrdc-radius-sm);
+  border: 1px solid var(--jrdc-border);
+  padding: 0.75rem 1rem;
+}
+.pkp_structure_page .notifySuccess, .pkp_structure_page .alert-success { background: #ecfdf3; border-color: #abefc6; color: var(--jrdc-success); }
+.pkp_structure_page .notifyWarning, .pkp_structure_page .alert-warning { background: #fffaeb; border-color: #fedf89; color: var(--jrdc-warning); }
+.pkp_structure_page .notifyError, .pkp_structure_page .alert-danger, .pkp_structure_page .pkp_form_error { background: #fef3f2; border-color: #fecdca; color: var(--jrdc-danger); }
+
+/* =========================================================
+   9) Article summaries, issue TOC, cards
+   ========================================================= */
+.obj_article_summary,
+.obj_issue_toc .obj_article_summary,
+.pkp_structure_main .obj_article_summary {
+  background: var(--jrdc-surface);
+  border: 1px solid var(--jrdc-border);
+  border-radius: var(--jrdc-radius);
+  padding: var(--jrdc-space-4);
+  margin: 0 0 var(--jrdc-space-4);
+  box-shadow: var(--jrdc-shadow-sm);
+  transition: box-shadow var(--jrdc-transition), border-color var(--jrdc-transition);
+}
+
+.obj_article_summary:hover {
+  border-color: var(--jrdc-border-strong);
+  box-shadow: var(--jrdc-shadow);
+}
+
+.obj_article_summary .title,
+.obj_article_summary h3.title,
+.obj_article_summary h4.title {
+  font-family: var(--jrdc-font-heading);
+  font-size: 1.15rem;
+  line-height: 1.35;
+  margin: 0 0 0.35rem;
+}
+.obj_article_summary .title a {
+  color: var(--jrdc-heading);
+  text-decoration: none;
+}
+.obj_article_summary .title a:hover {
+  color: var(--jrdc-primary);
+  text-decoration: underline;
+}
+
+.obj_article_summary .meta,
+.obj_article_summary .authors,
+.obj_article_summary .pages {
+  color: var(--jrdc-text-muted);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.obj_article_summary .galleys_links,
+.obj_article_summary .btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: var(--jrdc-space-3);
+}
+
+/* Issue / TOC sections */
+.obj_issue_toc .heading,
+.obj_issue_toc h2,
+.cmp_article_list > .heading {
+  font-family: var(--jrdc-font-heading);
+  color: var(--jrdc-heading);
+  border-bottom: 2px solid var(--jrdc-primary-100);
+  padding-bottom: 0.4rem;
+  margin: var(--jrdc-space-5) 0 var(--jrdc-space-4);
+}
+
+.obj_issue_toc .sections > .section {
+  margin-bottom: var(--jrdc-space-5);
+}
+
+.obj_issue_summary {
+  background: var(--jrdc-surface);
+  border: 1px solid var(--jrdc-border);
+  border-radius: var(--jrdc-radius);
+  padding: var(--jrdc-space-4);
+  margin-bottom: var(--jrdc-space-4);
+  box-shadow: var(--jrdc-shadow-sm);
+}
+.obj_issue_summary .title a { text-decoration: none; font-weight: 700; }
+.obj_issue_summary .series { color: var(--jrdc-text-muted); }
+
+/* =========================================================
+   10) Article details page
+   ========================================================= */
+.page_article .page_title,
+.pkp_page_article .page_title {
+  font-size: clamp(1.5rem, 2.2vw, 2.1rem);
+  max-width: 28ch;
+}
+
+.page_article .item.authors,
+.page_article .authors,
+.article-details .authors {
+  color: var(--jrdc-text-muted);
+  font-size: 1.02rem;
+  margin-bottom: var(--jrdc-space-4);
+}
+
+.page_article .article_abstract,
+.page_article .abstract,
+.article-details .abstract {
+  background: var(--jrdc-surface-alt);
+  border: 1px solid var(--jrdc-border);
+  border-left: 4px solid var(--jrdc-primary);
+  border-radius: 0 var(--jrdc-radius) var(--jrdc-radius) 0;
+  padding: var(--jrdc-space-4) var(--jrdc-space-5);
+  margin: var(--jrdc-space-4) 0;
+}
+
+.page_article .item,
+.article-details .item {
+  margin-bottom: var(--jrdc-space-4);
+  padding-bottom: var(--jrdc-space-4);
+  border-bottom: 1px solid var(--jrdc-border);
+}
+.page_article .item:last-child,
+.article-details .item:last-child { border-bottom: 0; }
+
+.page_article .label,
+.article-details .label,
+.page_article h3.label {
+  display: block;
+  font-family: var(--jrdc-font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--jrdc-heading);
+  margin-bottom: 0.35rem;
+}
+
+.page_article .main_entry .item.doi .value,
+.page_article .doi {
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+/* =========================================================
+   11) Tables (responsive)
+   ========================================================= */
+.pkp_structure_page table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: var(--jrdc-space-4) 0;
+  font-size: 0.96rem;
+  background: var(--jrdc-surface);
+}
+.pkp_structure_page th,
+.pkp_structure_page td {
+  padding: 0.65rem 0.75rem;
+  border: 1px solid var(--jrdc-border);
+  text-align: left;
+  vertical-align: top;
+}
+.pkp_structure_page th {
+  background: var(--jrdc-surface-alt);
+  color: var(--jrdc-heading);
+  font-weight: 700;
+}
+.pkp_structure_page tbody tr:nth-child(even) { background: #fbfcfe; }
+
+/* Allow horizontal scroll on small screens without breaking layout */
+.pkp_structure_main .content table,
+.page .content table,
+.obj_article_details table {
+  display: block;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* =========================================================
+   12) Search, pagination, breadcrumbs, misc
+   ========================================================= */
+.page_search .search_results .obj_article_summary { margin-bottom: var(--jrdc-space-3); }
+
+.cmp_pagination,
+.pkp_pagination {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  align-items: center;
+  margin: var(--jrdc-space-5) 0;
+}
+.cmp_pagination a,
+.cmp_pagination strong,
+.pkp_pagination a,
+.pkp_pagination strong {
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.35rem 0.7rem;
+  border-radius: var(--jrdc-radius-sm);
+  border: 1px solid var(--jrdc-border);
+  background: var(--jrdc-surface);
+  text-decoration: none;
+  color: var(--jrdc-text);
+  font-weight: 600;
+}
+.cmp_pagination strong.is_current,
+.cmp_pagination .current,
+.pkp_pagination .current {
+  background: var(--jrdc-primary);
+  border-color: var(--jrdc-primary);
+  color: #fff;
+}
+.cmp_pagination a:hover { background: var(--jrdc-primary-050); color: var(--jrdc-primary-800); }
+
+.cmp_breadcrumbs,
+.pkp_breadcrumbs,
+.breadcrumbs {
+  color: var(--jrdc-text-muted);
+  font-size: 0.92rem;
+  margin-bottom: var(--jrdc-space-4);
+}
+.cmp_breadcrumbs ol,
+.pkp_breadcrumbs ol { display: flex; flex-wrap: wrap; gap: 0.25rem 0.5rem; list-style: none; padding: 0; margin: 0; }
+.cmp_breadcrumbs li + li::before,
+.pkp_breadcrumbs li + li::before { content: "/"; margin-right: 0.5rem; color: var(--jrdc-border-strong); }
+
+/* Announcements */
+.obj_announcement_summary,
+.cmp_announcements .obj_announcement_summary {
+  background: var(--jrdc-surface);
+  border: 1px solid var(--jrdc-border);
+  border-radius: var(--jrdc-radius);
+  padding: var(--jrdc-space-4);
+  margin-bottom: var(--jrdc-space-4);
+}
+.obj_announcement_summary .date { color: var(--jrdc-text-muted); font-size: 0.92rem; }
+
+/* =========================================================
+   13) Footer
+   ========================================================= */
+.pkp_structure_footer_wrapper,
+.pkp_footer_content {
+  background: #0f2436;
+  color: #d7e3ef;
+  border-top: 0;
+}
+.pkp_structure_footer {
+  max-width: var(--jrdc-content-width);
+  margin: 0 auto;
+  padding: var(--jrdc-space-6) var(--jrdc-space-4);
+}
+.pkp_structure_footer a,
+.pkp_footer_content a {
+  color: #cfe8ff;
+}
+.pkp_structure_footer a:hover,
+.pkp_footer_content a:focus-visible {
+  color: #fff;
+}
+.pkp_brand_footer {
+  margin-top: var(--jrdc-space-4);
+  padding-top: var(--jrdc-space-4);
+  border-top: 1px solid rgba(255,255,255,0.14);
+  font-size: 0.9rem;
+  color: #b8cadb;
+}
+
+/* =========================================================
+   14) Responsive adjustments
+   ========================================================= */
+@media (min-width: 992px) {
+  .pkp_structure_content.has_sidebar {
+    align-items: start;
+  }
+  .pkp_structure_sidebar {
+    position: sticky;
+    top: var(--jrdc-space-4);
+  }
+}
+
+@media (max-width: 991px) {
+  .pkp_structure_content {
+    padding: var(--jrdc-space-4) var(--jrdc-space-3) var(--jrdc-space-6);
+  }
+  .pkp_structure_main {
+    padding: var(--jrdc-space-4);
+  }
+  .pkp_navigation_primary_wrapper,
+  .pkp_navigation_user_wrapper {
+    background: rgba(10, 35, 55, 0.22);
+  }
+  .pkp_structure_page .pkp_structure_main p,
+  .pkp_structure_page .pkp_structure_main li {
+    max-width: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .pkp_structure_page { font-size: 16px; }
+  .obj_article_summary,
+  .obj_issue_summary,
+  .pkp_block { padding: var(--jrdc-space-3); }
+  .page_article .article_abstract,
+  .page_article .abstract { padding: var(--jrdc-space-3) var(--jrdc-space-4); }
+  .pkp_structure_page .cmp_button,
+  .pkp_structure_page a.obj_galley_link,
+  .pkp_structure_page .galleys_links a { width: 100%; }
+  .cmp_pagination a, .cmp_pagination strong { min-width: 40px; min-height: 40px; }
+}
+
+/* =========================================================
+   15) Small utility/safety tweaks
+   ========================================================= */
+.pkp_structure_page .pkp_screen_reader,
+.pkp_structure_page .-screenReader {
+  /* keep theme's screen-reader pattern intact if present; do not override visibility hacks */
+}
+.pkp_structure_page iframe,
+.pkp_structure_page embed,
+.pkp_structure_page object {
+  max-width: 100%;
+}
+.pkp_structure_page pre {
+  overflow-x: auto;
+  padding: var(--jrdc-space-3);
+  background: var(--jrdc-surface-alt);
+  border: 1px solid var(--jrdc-border);
+  border-radius: var(--jrdc-radius-sm);
+}
+.pkp_structure_page blockquote {
+  margin: var(--jrdc-space-4) 0;
+  padding: var(--jrdc-space-3) var(--jrdc-space-4);
+  border-left: 4px solid var(--jrdc-border-strong);
+  background: var(--jrdc-surface-alt);
+  color: var(--jrdc-text-muted);
+}

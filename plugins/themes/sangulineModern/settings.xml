@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plugin_settings SYSTEM "../../../lib/pkp/dtd/pluginSettings.dtd">
+
+<!--
+  * plugins/themes/sangulineModern/settings.xml
+  *
+  * Default plugin settings.
+  -->
+<plugin_settings>
+	<setting type="string">
+		<name>modernAccent</name>
+		<value></value>
+	</setting>
+</plugin_settings>

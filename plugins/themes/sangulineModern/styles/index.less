@@ -1,0 +1,29 @@
+/**
+ * Sanguline Modern (OJS 3.3 child of Sanguline) — conservative refinements.
+ * Parent Sanguline provides the base; this file adds small, safe overrides.
+ */
+@modern-accent: inherit;
+
+body {
+  line-height: 1.65;
+}
+
+/* Visible keyboard focus (do not remove outlines globally) */
+:where(a, button, input, select, textarea, [role="button"], [tabindex]):focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+.obj_article_summary,
+.obj_issue_summary,
+.cmp_announcement {
+  border-radius: 8px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
