@@ -46,10 +46,24 @@
 							<img src="{$publicFilesDir}/{$displayPageHeaderLogo.uploadName|escape:"url"}" width="{$displayPageHeaderLogo.width|escape}" height="{$displayPageHeaderLogo.height|escape}" {if $displayPageHeaderLogo.altText != ''}alt="{$displayPageHeaderLogo.altText|escape}"{else}alt="{$displayPageHeaderTitle|escape|default:$siteTitle|escape}"{/if} />
 						</a>
 					{elseif $displayPageHeaderTitle}
-						<a href="{$homeUrl}" class="is_text jrdc-brand__link jrdc-brand__title">{$displayPageHeaderTitle|escape}</a>
+						<a href="{$homeUrl}" class="jrdc-brand__link" style="display:flex; align-items:center; gap:0.75rem; text-decoration:none;">
+							<div style="width:40px; height:40px; border-radius:10px; background:#0b2038; border:1.5px solid #d4af37; display:flex; align-items:center; justify-content:center; color:#d4af37; font-weight:800; font-size:0.85rem; box-shadow:0 1px 3px rgba(0,0,0,0.1); shrink-0;">
+								JRDC
+							</div>
+							<div style="display:flex; flex-direction:column; text-align:left;">
+								<span style="font-size:0.875rem; font-weight:700; color:#0f172a; line-height:1.2;">Jurnal Ratu Dirgantara</span>
+								<span style="font-size:0.7rem; font-weight:500; color:#64748b; line-height:1;">Cendekiawan</span>
+							</div>
+						</a>
 					{else}
-						<a href="{$homeUrl}" class="is_img jrdc-brand__link">
-							<img src="{$baseUrl}/templates/images/structure/logo.png" alt="{$applicationName|escape}" title="{$applicationName|escape}" width="180" height="90" />
+						<a href="{$homeUrl}" class="jrdc-brand__link" style="display:flex; align-items:center; gap:0.75rem; text-decoration:none;">
+							<div style="width:40px; height:40px; border-radius:10px; background:#0b2038; border:1.5px solid #d4af37; display:flex; align-items:center; justify-content:center; color:#d4af37; font-weight:800; font-size:0.85rem; box-shadow:0 1px 3px rgba(0,0,0,0.1); shrink-0;">
+								JRDC
+							</div>
+							<div style="display:flex; flex-direction:column; text-align:left;">
+								<span style="font-size:0.875rem; font-weight:700; color:#0f172a; line-height:1.2;">Jurnal Ratu Dirgantara</span>
+								<span style="font-size:0.7rem; font-weight:500; color:#64748b; line-height:1;">Cendekiawan</span>
+							</div>
 						</a>
 					{/if}
 					</div>

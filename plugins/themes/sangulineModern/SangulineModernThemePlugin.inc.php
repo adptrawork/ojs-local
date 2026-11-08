@@ -31,20 +31,33 @@ class SangulineModernThemePlugin extends ThemePlugin {
 	public function init() {
 		$this->setParent('sanguline');
 
+		// External fonts from prototype: Geist & Material Symbols
+		$this->addStyle(
+			'fontGeist',
+			'https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Satoshi:wght@400;500;700&display=swap',
+			['baseUrl' => '']
+		);
+		$this->addStyle(
+			'fontMaterialSymbols',
+			'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200',
+			['baseUrl' => '']
+		);
+
 		$this->addOption('modernAccent', 'FieldColor', [
 			'label' => 'Modern accent color',
-			'description' => 'Optional accent color for Sanguline Modern highlights (hex, e.g. #2563eb). Leave empty to use the parent theme primary color.',
-			'default' => '',
+			'description' => 'Optional accent color for Sanguline Modern highlights (hex, e.g. #c2410c). Default is prototype burnt orange.',
+			'default' => '#c2410c',
 		]);
 
 		$this->addStyle('stylesheetModern', 'styles/index.less');
 
 		$accent = $this->getOption('modernAccent');
-		if ($accent && preg_match('/^#[0-9a-fA-F]{3,6}$/', $accent)) {
-			$this->modifyStyle('stylesheetModern', [
-				'addLessVariables' => '@modern-accent: ' . $accent . ';',
-			]);
+		if (!$accent || !preg_match('/^#[0-9a-fA-F]{3,6}$/', $accent)) {
+			$accent = '#c2410c';
 		}
+		$this->modifyStyle('stylesheetModern', [
+			'addLessVariables' => "@modern-primary: {$accent};\n@modern-navy: #0b2038;\n",
+		]);
 	}
 
 	/**
@@ -75,6 +88,15 @@ class SangulineModernThemePlugin extends ThemePlugin {
 			}
 		}
 		parent::saveOption($name, $value, $contextId);
+	}
+
+	/**
+	 * Usage statistics chart rendering compatibility on OJS 3.3.
+	 *
+	 * @return bool
+	 */
+	public function supportsUsageStats() {
+		return false;
 	}
 
 	/**
