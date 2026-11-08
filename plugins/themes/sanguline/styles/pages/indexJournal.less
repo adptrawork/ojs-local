@@ -1,0 +1,233 @@
+/**
+ * @file  plugins/themes/default/styles/pages/indexJournal.less
+ *
+ * Copyright (c) 2014-2021 Simon Fraser University
+ * Copyright (c) 2003-2021 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
+ *
+ * @brief Styles applying to the front page of the journal
+ * @link templates/frontend/pages/indexJournal.tpl
+ */
+.pkp_page_index {
+
+	// Sanguline - Removed negative margins for boxed layout
+	.homepage_image {
+		margin-left: 0;
+		margin-right: 0;
+	}
+
+	// Homepage hero section - Sanguline Card Style
+	.homepage_hero {
+		display: flex;
+		flex-direction: column;
+		gap: @triple;
+		padding: @triple @double;
+		margin-bottom: @triple;
+		background: @bg;
+		border: @border-card;
+		border-left: @border-accent;
+		box-shadow: @shadow-card;
+
+		@media (min-width: @screen-tablet) {
+			flex-direction: row;
+			align-items: flex-start;
+			gap: @quadruple;
+			padding: @triple;
+		}
+
+		@media (min-width: @screen-desktop) {
+			padding: @quadruple;
+		}
+	}
+
+	// Homepage Image - Sanguline with shadow and effect
+	.homepage_image {
+		flex-shrink: 0;
+
+		img {
+			display: block;
+			width: 100%;
+			height: auto;
+			border: @border-card;
+			box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+			transition: all 0.3s ease-in-out;
+
+			&:hover {
+				box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+				transform: translateY(-3px);
+			}
+		}
+
+		// Default width, can be overridden via theme option
+		@media (min-width: @screen-tablet) {
+			width: var(--homepage-image-width, 40%);
+		}
+	}
+
+	.homepage_about {
+		flex: 1;
+		padding-top: @base;
+		padding-bottom: @base;
+
+		// Justify text alignment
+		p {
+			text-align: justify;
+		}
+
+		h2 {
+			margin-top: 0;
+		}
+	}
+
+	// Announcements - Sanguline Card Style
+	.cmp_announcements {
+		.pkp_helpers_clear();
+		background: @bg;
+		border: @border-card;
+		box-shadow: @shadow-card;
+		margin-bottom: @double;
+		padding: @double;
+
+		// Sanguline - Remove border and padding for slider variant
+		&.sanguline_announcement_slider {
+			// border-left: none;
+			padding: 0;
+		}
+
+		h2 {
+			&:extend(.pkp_screen_reader all);
+		}
+
+		>.obj_announcement_summary {
+			position: relative;
+			padding: @triple @base;
+		}
+
+		.more {
+			position: relative;
+
+			.obj_announcement_summary {
+				padding: @base;
+			}
+
+			h4 {
+				font-size: @font-sml;
+			}
+		}
+
+		@media(min-width: @screen-phone) {
+
+			>.obj_announcement_summary,
+			.more .obj_announcement_summary {
+				padding-left: @double;
+				padding-right: @double;
+			}
+		}
+
+		@media(min-width: @screen-tablet) {
+
+			>.obj_announcement_summary {
+				float: left;
+				width: 65%;
+
+				// Right border
+				&:before {
+					content: ' ';
+					position: absolute;
+					top: 0;
+					right: -1px;
+					width: 1px;
+					height: 100%;
+					border-left: @bg-border;
+				}
+			}
+
+			.more {
+				float: right;
+				width: 35%;
+				padding-top: @double;
+				padding-bottom: @double;
+
+				// Left border
+				&:before {
+					content: ' ';
+					position: absolute;
+					top: 0;
+					left: 0;
+					width: 1px;
+					height: 100%;
+					border-left: @bg-border;
+				}
+			}
+		}
+
+		@media(min-width: @screen-desktop) {
+
+			>.obj_announcement_summary,
+			.more .obj_announcement_summary {
+				padding-left: @triple;
+				padding-right: @triple;
+			}
+		}
+	}
+
+	// Current Issue - Sanguline Card Style
+	.current_issue {
+		background: @bg;
+		border: @border-card;
+		border-left: @border-accent;
+		box-shadow: @shadow-card;
+		padding: @double;
+		margin-bottom: @double;
+
+		h2 {
+			margin-top: 0;
+		}
+
+		.current_issue_title {
+			margin: 0 0 @double 0;
+			font-weight: @bold;
+			padding-bottom: @base;
+			border-bottom: @border-subtle;
+		}
+
+		.read_more {
+			.cmp_button_text(@fa-var-chevron-right);
+			margin-bottom: @double;
+		}
+
+		@media(min-width: @screen-tablet) {
+
+			.section:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+
+	// Additional Content - Sanguline Card Style
+	.additional_content {
+		background: @bg;
+		border: @border-card;
+		border-left: @border-accent;
+		box-shadow: @shadow-card;
+		padding: @double;
+		margin-top: @double;
+		margin-left: 0;
+		margin-right: 0;
+
+		>p:first-child {
+			margin-top: 0;
+		}
+
+		>p:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	@media(min-width: @screen-tablet) {
+
+		.cmp_announcements+.additional_content {
+			border-top: none;
+		}
+	}
+}

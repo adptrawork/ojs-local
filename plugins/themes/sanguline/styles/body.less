@@ -1,0 +1,186 @@
+/**
+ * @file plugins/themes/default/styles/body.less
+ *
+ * Copyright (c) 2014-2021 Simon Fraser University
+ * Copyright (c) 2003-2021 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
+ *
+ * @brief Classes for site-wide elements and layout scaffolding
+ */
+
+html,
+body {
+	font-family: @font;
+	font-size: @rem;
+	line-height: @line-base;
+	color: @text;
+	// Sanguline - Boxed layout background
+	background: fade(@primary, 5%);
+}
+
+// Sanguline - Boxed Layout Container with subtle stripe pattern
+.pkp_structure_page {
+	max-width: @screen-lg-desktop;
+	margin: 0 auto;
+	// Subtle diagonal stripe pattern on white background
+	background:
+		repeating-linear-gradient(45deg,
+			@bg,
+			@bg 10px,
+			fade(@primary, 2%) 10px,
+			fade(@primary, 2%) 11px);
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
+
+	@media(min-width: @screen-lg-desktop) {
+		margin-top: @double;
+		margin-bottom: @double;
+	}
+}
+
+a {
+	color: @primary;
+
+	&:hover,
+	&:focus {
+		color: @primary-lift;
+	}
+}
+
+
+// Page container widths - Sanguline: removed pkp_navigation_primary_wrapper to allow full width
+.pkp_site_name_wrapper,
+.pkp_navigation_user,
+.pkp_search_mobile,
+.pkp_structure_content,
+.pkp_structure_footer {
+	.pkp_helpers_clear;
+	position: relative;
+	width: 100%;
+	margin: 0 auto;
+	padding-left: @base;
+	padding-right: @base;
+
+	@media(min-width: @screen-tablet ) {
+		width: @screen-tablet-container;
+		padding: 0;
+	}
+
+	@media(min-width: @screen-desktop ) {
+		width: @screen-desktop-container;
+	}
+
+	@media(min-width: @screen-lg-desktop ) {
+		width: @screen-lg-desktop-container;
+	}
+}
+
+.has_site_logo {
+
+	.pkp_site_name,
+	.pkp_navigation_primary_wrapper {
+		width: auto;
+	}
+
+	// Sanguline - Full width head wrapper for boxed layout
+	.pkp_head_wrapper {
+		.pkp_helpers_clear;
+		position: relative;
+		width: 100%;
+		max-width: 100%;
+		margin: 0;
+		padding-left: 0;
+		padding-right: 0;
+	}
+}
+
+// Layout scaffold for content and sidebars
+.pkp_structure_main {
+	padding: @base;
+}
+
+// Sanguline - Card style for main content on non-homepage pages
+body:not(.pkp_page_index) .pkp_structure_main {
+	background: @bg;
+	border: @border-card;
+	border-left: @border-accent;
+	box-shadow: @shadow-card;
+	margin-bottom: @double;
+	padding: @double;
+
+	@media (min-width: @screen-tablet) {
+		margin-bottom: @triple;
+		padding: @triple;
+	}
+}
+
+@media(min-width: @screen-phone ) {
+
+	.pkp_structure_main {
+		padding: @double;
+	}
+}
+
+// Sanguline - Removed tablet border media query for cleaner look
+
+@media(min-width: @screen-desktop ) {
+
+	.pkp_structure_content {
+		padding-top: @triple;
+	}
+
+	.pkp_structure_sidebar {
+		float: right;
+		width: @sidebar-width;
+		padding-left: @double; // Sanguline - Gap from main content
+	}
+
+	.pkp_structure_main {
+		float: left;
+		padding: 0 @double (@triple * 3) 0; // Sanguline - Reduced right padding
+		width: @screen-desktop-container - @sidebar-width;
+	}
+
+	// Sanguline - Homepage: no right padding on main content
+	.pkp_page_index .pkp_structure_main {
+		padding-right: 0;
+	}
+}
+
+@media(min-width: @screen-lg-desktop ) {
+
+	.pkp_structure_main {
+		width: @screen-lg-desktop-container - @sidebar-width;
+	}
+}
+
+// Sanguline - Article view: hide sidebar and use entry_details instead
+.pkp_page_article,
+.pkp_op_view {
+	.pkp_structure_sidebar {
+		display: none;
+	}
+
+	.pkp_structure_main {
+		width: 100%;
+		float: none;
+		padding-right: 0;
+	}
+}
+
+// Center the content panel when no sidebar is present
+.pkp_structure_main:first-child:last-child {
+
+	@media(min-width: @screen-desktop) {
+		float: none;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: @quadruple;
+	}
+}
+
+// Lock in images so they don't run outside their container
+img {
+	max-width: 100%;
+	width: auto;
+	height: auto;
+}

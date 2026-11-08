@@ -14,5 +14,5 @@
     'en_US' => 'Information for Reviewer',
   ),
   'enabled' => true,
-  'showName' => NULL,
+  'showName' => '1',
 );

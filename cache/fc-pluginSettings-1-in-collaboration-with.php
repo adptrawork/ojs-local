@@ -9,5 +9,5 @@
     'en_US' => 'In Collaboration With',
   ),
   'enabled' => true,
-  'showName' => NULL,
+  'showName' => '1',
 );

@@ -1,0 +1,185 @@
+/**
+ * @file styles/objects/issue_toc.less
+ *
+ * Copyright (c) 2014-2021 Simon Fraser University
+ * Copyright (c) 2003-2021 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
+ *
+ * @brief Styles applying to an issue table of contents view
+ * @link templates/frontend/objects/issue_toc.tpl
+ */
+.obj_issue_toc {
+
+	// Sanguline - Issue heading card style
+	.heading {
+		background: fade(@primary, 3%);
+		border-radius: 4px;
+		padding: @double;
+		margin-bottom: @double;
+	}
+
+	.cover {
+		display: block;
+		margin-bottom: @double;
+
+		img {
+			display: block;
+			max-height: 250px;
+			width: auto;
+			border-radius: 4px;
+			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+			transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+			&:hover {
+				transform: translateY(-3px);
+				box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+			}
+		}
+	}
+
+	.description {
+		color: @text-light;
+		font-size: @font-base;
+		line-height: @line-base;
+		padding: @base 0;
+		border-left: 3px solid fade(@primary, 30%);
+		padding-left: @base;
+
+		>*:first-child {
+			margin-top: 0;
+		}
+
+		>*:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	.pub_id {
+		margin: @double 0;
+
+		.type {
+			font-weight: @bold;
+		}
+	}
+
+	// Sanguline - Styled published date
+	.published {
+		display: inline-flex;
+		align-items: center;
+		gap: @half;
+		margin: @base 0;
+		padding: @half @base;
+		background: @primary;
+		color: @text-bg-base;
+		border-radius: 4px;
+		font-size: @font-sml;
+
+		.label {
+			font-weight: @normal;
+			opacity: 0.9;
+		}
+
+		.value {
+			font-weight: @bold;
+		}
+	}
+
+	.articles {
+		&:extend(.pkp_unstyled_list);
+
+		// Prevent articles from moving up into section divider
+		// if the title of a section is omitted from the table of contents
+		margin-top: calc(~"@{triple} + @{double}");
+	}
+
+	h2+.articles,
+	h3+.articles {
+		margin-top: 0;
+	}
+
+	.sections:not(:first-child) {
+		margin-top: @triple * 2;
+	}
+
+	.section:last-child .articles>li:last-child {
+		margin-bottom: 0;
+	}
+
+	.galleys_links {
+		&:extend(.pkp_unstyled_list);
+		margin-top: @base;
+		display: flex;
+		flex-flow: row nowrap;
+		justify-content: start;
+
+		li {
+			margin-inline-end: 1rem;
+
+			&:last-child {
+				margin-inline-end: 0;
+			}
+		}
+	}
+
+	@media(min-width: @screen-tablet) {
+
+		.heading {
+			.pkp_helpers_clear;
+		}
+
+		.cover {
+			float: left;
+			width: 25%;
+			height: auto;
+			max-height: none;
+			margin-right: @double;
+		}
+
+		.galleys,
+		.section {
+			position: relative;
+			margin: @triple -@double;
+			padding: @triple;
+
+			&:before {
+				content: '';
+				position: absolute;
+				top: 45px;
+				left: 0;
+				width: 100%;
+				border-top: @bg-border;
+			}
+
+			>h2,
+			>h3 {
+				display: inline-block;
+				position: relative;
+				left: -15px;
+				margin-top: 0;
+				padding: 0 (@triple / 2);
+				background: @lift;
+				font-size: @font-bump;
+				font-weight: @normal;
+				line-height: @triple;
+				color: @text-light;
+			}
+		}
+	}
+
+	@media(min-width: @screen-desktop) {
+
+		.galleys,
+		.section {
+			margin: @triple -@triple;
+		}
+
+		.cover {
+			margin-right: @triple;
+			margin-bottom: @triple;
+
+			img {
+				max-height: none;
+			}
+		}
+	}
+}

@@ -1,0 +1,70 @@
+/**
+ * @file plugins/themes/default/styles/footer.less
+ *
+ * Copyright (c) 2014-2021 Simon Fraser University
+ * Copyright (c) 2003-2021 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
+ *
+ * @brief Classes for the page footer elements
+ */
+
+// Sanguline - Footer with solid primary background
+.pkp_structure_footer_wrapper {
+	background: @primary;
+	border-top: none;
+}
+
+.pkp_structure_footer {
+	text-align: center;
+	// Sanguline - Light text on dark primary background
+	color: @text-bg-base;
+
+	a {
+		color: @text-bg-base;
+		text-decoration: underline;
+		transition: opacity 0.2s ease;
+
+		&:hover,
+		&:focus {
+			opacity: 0.8;
+		}
+	}
+
+	p {
+		color: @text-bg-base;
+	}
+}
+
+.pkp_footer_content {
+	padding: @triple;
+	text-align: left;
+	color: @text-bg-base;
+
+	a {
+		color: @text-bg-base;
+	}
+}
+
+// Sanguline Theme Credit - Protected
+.sanguline_theme_credit {
+	text-align: center;
+	padding: @base @double;
+	font-size: @font-sml;
+	color: @text-bg-base;
+	border-top: 1px solid fade(@text-bg-base, 15%);
+
+	.theme_credit_text {
+		margin-right: 0.25em;
+	}
+
+	.theme_credit_link {
+		color: @text-bg-base;
+		text-decoration: underline;
+		font-weight: @bold;
+		transition: opacity 0.2s ease;
+
+		&:hover {
+			opacity: 0.8;
+		}
+	}
+}

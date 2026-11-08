@@ -1,0 +1,342 @@
+/**
+ * @file plugins/themes/default/styles/sidebar.less
+ *
+ * Copyright (c) 2014-2021 Simon Fraser University
+ * Copyright (c) 2003-2021 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
+ *
+ * @brief Styles for the sidebar blocks
+ *
+ */
+
+// Sanguline - Elegant Sidebar Card Style
+.pkp_block {
+	padding: 0;
+	font-size: @font-base;
+	line-height: @line-base;
+	margin-bottom: @double;
+	background: @bg;
+	border: @border-card;
+	border-left: @border-accent;
+	box-shadow: @shadow-card;
+	overflow: hidden;
+
+	.title {
+		display: block;
+		margin: 0;
+		padding: @base @double;
+		background: fade(@primary, 5%);
+		border-bottom: @border-subtle;
+		font-family: @font-heading;
+		font-size: @font-sml;
+		font-weight: @bold;
+		line-height: @line-bump;
+		color: @text;
+		text-transform: uppercase;
+		letter-spacing: 0.5px;
+	}
+
+	.content {
+		padding: @double;
+
+		ul {
+			&:extend(.pkp_unstyled_list);
+			margin: 0;
+			padding: 0;
+
+			li {
+				line-height: @line-base;
+				padding: @half 0;
+				border-bottom: 1px solid fade(@primary, 8%);
+				transition: all 0.15s ease-in-out;
+
+				&:last-child {
+					border-bottom: none;
+				}
+
+				&:hover {
+					padding-left: @half;
+
+					a {
+						color: @primary;
+					}
+				}
+			}
+		}
+
+		p {
+			line-height: @line-base-large;
+
+			&:first-child {
+				margin-top: 0;
+			}
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+
+	a {
+		text-decoration: none;
+		color: @text;
+		transition: color 0.15s ease-in-out;
+
+		&:hover {
+			color: @primary;
+		}
+	}
+
+	@media(min-width: @screen-desktop) {
+		.content {
+			padding: @double @triple;
+		}
+	}
+}
+
+// Browse sidebar block
+.block_browse {
+	font-size: @font-sml;
+
+	.content {
+		padding: @base @double;
+	}
+
+	.has_submenu {
+		margin-top: @base;
+		font-size: @font-sml;
+		font-weight: @bold;
+		color: @text-light;
+
+		ul {
+			margin-top: @half;
+			padding-top: @half;
+			font-weight: @normal;
+		}
+	}
+
+	.is_sub {
+		margin-left: @base;
+	}
+
+	.current a {
+		padding-left: 0.5em;
+		border-left: 3px solid @primary;
+		color: @primary;
+		font-weight: @bold;
+	}
+}
+
+.block_information,
+.block_language_toggle {
+
+	a {
+		font-size: @font-sml;
+	}
+}
+
+// Make Submission - Sanguline styled button
+.block_make_submission {
+
+	.content {
+		padding: @double;
+		text-align: center;
+	}
+
+	a {
+		display: block;
+		padding: @base @double;
+		background: @primary;
+		color: #fff;
+		border: none;
+		font-weight: @bold;
+		text-align: center;
+		transition: all 0.2s ease-in-out;
+
+		&:hover {
+			background: @primary-lift;
+			color: #fff;
+		}
+	}
+}
+
+.block_subscription {
+
+	.subscription_name {
+		margin-bottom: 0;
+		font-weight: @bold;
+	}
+
+	.subscription_membership {
+		margin-top: 0;
+	}
+}
+
+// Sidebar Navigation Menu Block - Sanguline Elegant Style
+.block_sidebar_nav {
+	padding: 0;
+	font-size: @font-base;
+	line-height: @line-base;
+	background: @bg;
+	border: @border-card;
+	border-radius: @radius;
+	overflow: hidden;
+	box-shadow: @shadow-card;
+
+	// Block title styling
+	.pkp_block_title {
+		margin: 0;
+		padding: @base @double;
+		background: fade(@primary, 8%);
+		border-bottom: @border-subtle;
+		font-family: @font-heading;
+		font-size: @font-sml;
+		font-weight: @bold;
+		color: @text;
+		text-transform: uppercase;
+		letter-spacing: 0.5px;
+		position: relative;
+
+		// Left accent bar
+		&:before {
+			content: '';
+			position: absolute;
+			left: 0;
+			top: 0;
+			bottom: 0;
+			width: 3px;
+			background: @primary;
+		}
+	}
+
+	.pkp_nav_list {
+		&:extend(.pkp_unstyled_list);
+		margin: 0;
+		padding: @half 0;
+
+		li {
+			padding: 0;
+			margin: 0;
+			line-height: @line-base;
+			border-left: 3px solid transparent;
+			transition: all 0.2s ease-in-out;
+
+			a {
+				display: block;
+				padding: @base @double;
+				padding-left: calc(~"@{double} - 3px"); // Account for border
+				text-decoration: none;
+				color: @text;
+				font-size: @font-sml;
+				position: relative;
+				transition: all 0.2s ease-in-out;
+
+				// Icon arrow (optional visual)
+				&:before {
+					content: '';
+					display: inline-block;
+					width: 0;
+					height: 0;
+					margin-right: 0;
+					border-top: 4px solid transparent;
+					border-bottom: 4px solid transparent;
+					border-left: 0 solid @primary;
+					transition: all 0.2s ease-in-out;
+					opacity: 0;
+				}
+			}
+
+			// Hover state
+			&:hover {
+				background: fade(@primary, 5%);
+				border-left-color: fade(@primary, 50%);
+
+				a {
+					color: @primary;
+					padding-left: calc(~"@{double} + 5px");
+
+					&:before {
+						border-left-width: 5px;
+						margin-right: 8px;
+						opacity: 1;
+					}
+				}
+			}
+
+			// Focus state
+			a:focus {
+				outline: none;
+				background: fade(@primary, 8%);
+				color: @primary;
+			}
+
+			// Current/Active state
+			&.current {
+				background: fade(@primary, 10%);
+				border-left-color: @primary;
+
+				a {
+					font-weight: @bold;
+					color: @primary;
+					padding-left: calc(~"@{double} + 5px");
+
+					&:before {
+						border-left-width: 5px;
+						margin-right: 8px;
+						opacity: 1;
+					}
+				}
+			}
+
+			// Separator between items (subtle)
+			&:not(:last-child) {
+				border-bottom: 1px solid fade(@bg-border-color, 50%);
+			}
+		}
+	}
+
+	@media(min-width: @screen-desktop) {
+		.pkp_block_title {
+			padding: @base @triple;
+		}
+
+		.pkp_nav_list li a {
+			padding-left: calc(~"@{triple} - 3px");
+		}
+
+		.pkp_nav_list li:hover a,
+		.pkp_nav_list li.current a {
+			padding-left: calc(~"@{triple} + 5px");
+		}
+	}
+}
+
+// Sanguline - Attractive hover effect for linked images in sidebar
+.pkp_structure_sidebar {
+	a img {
+		display: block;
+		max-width: 100%;
+		height: auto;
+		border-radius: 4px;
+		transition: all 0.3s ease-in-out;
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+	}
+
+	a:hover img {
+		transform: scale(1.03) translateY(-3px);
+		box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+		filter: brightness(1.05);
+	}
+
+	// Container for linked images
+	a:has(img) {
+		display: inline-block;
+		overflow: hidden;
+		border-radius: 4px;
+		transition: all 0.3s ease-in-out;
+
+		&:hover {
+			box-shadow: 0 0 0 3px fade(@primary, 30%);
+		}
+	}
+}

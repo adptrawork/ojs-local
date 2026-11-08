@@ -14,5 +14,5 @@
     'en_US' => 'Citations Analysis',
   ),
   'enabled' => true,
-  'showName' => NULL,
+  'showName' => '1',
 );

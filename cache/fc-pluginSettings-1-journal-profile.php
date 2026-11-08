@@ -17,5 +17,5 @@
     'en_US' => 'Journal Profile',
   ),
   'enabled' => true,
-  'showName' => NULL,
+  'showName' => '1',
 );

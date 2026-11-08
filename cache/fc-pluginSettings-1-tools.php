@@ -14,5 +14,5 @@
     'en_US' => 'Tools',
   ),
   'enabled' => true,
-  'showName' => NULL,
+  'showName' => '1',
 );

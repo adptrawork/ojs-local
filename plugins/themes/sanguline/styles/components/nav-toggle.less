@@ -1,0 +1,128 @@
+// Toggle button - Sanguline: Elegant mobile hamburger
+.pkp_site_nav_toggle {
+	@thickness: 2px;
+	@line-width: 22px;
+	@line-gap: 6px;
+
+	position: absolute;
+	top: 50%;
+	left: @half;
+	transform: translateY(-50%);
+	width: 40px;
+	height: 36px;
+	border: 1px solid fade(@primary, 20%);
+	border-radius: 4px;
+	background: fade(@primary, 5%);
+	box-shadow: none;
+	z-index: 999;
+	cursor: pointer;
+	transition: all 0.2s ease-in-out;
+
+	&:hover {
+		background: fade(@primary, 10%);
+		border-color: fade(@primary, 40%);
+	}
+
+	&:focus {
+		outline: none;
+		background: fade(@primary, 15%);
+		border-color: @primary;
+	}
+
+	>span {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: @line-width;
+		height: (@thickness * 3) + (@line-gap * 2);
+		border-bottom: @thickness solid @primary;
+		text-indent: -9999px;
+		overflow: hidden;
+
+		&:before,
+		&:after {
+			content: "";
+			position: absolute;
+			left: 0;
+			width: 100%;
+			height: @thickness;
+			background: @primary;
+			border-radius: 1px;
+			transition: all 0.2s ease-in-out;
+		}
+
+		&:before {
+			top: 0;
+		}
+
+		&:after {
+			top: @line-gap + @thickness;
+		}
+	}
+}
+
+.pkp_site_nav_toggle--transform {
+	>span {
+
+		border-bottom: 0;
+		overflow: visible;
+
+		&:before {
+			top: 7px;
+			transform: rotate(-405deg) translateY(1px) translateX(-2px);
+			-webkit-transform: rotate(-405deg) translateY(1px) translateX(-2px);
+		}
+
+		&:after {
+			top: 14px;
+			transform: rotate(405deg) translateY(-3px) translateX(-4px);
+			-webkit-transform: rotate(405deg) translateY(-3px) translateX(-4px);
+		}
+	}
+}
+
+// Show/hide the nav  menu
+.pkp_site_nav_menu {
+	display: none;
+}
+
+.pkp_site_nav_menu--isOpen {
+	display: block;
+}
+
+body.navIsOpen {
+	.siteHeader__details {
+		right: 0;
+	}
+
+	.siteHeader__screen {
+		display: block;
+		opacity: 0.5;
+	}
+
+	.siteHeader__navToggleIcon {
+		>span {
+			&:first-child {
+				transform: rotate(45deg);
+				top: 18px;
+			}
+
+			&:nth-child(2) {
+				opacity: 0;
+			}
+
+			&:last-child {
+				transform: rotate(-45deg);
+				top: 18px;
+			}
+		}
+	}
+}
+
+@media (min-width: @screen-desktop) {
+
+	.pkp_site_nav_menu {
+		display: block;
+	}
+}

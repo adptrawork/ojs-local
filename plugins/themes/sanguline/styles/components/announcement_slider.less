@@ -1,0 +1,226 @@
+/**
+ * @file styles/components/announcement_slider.less
+ *
+ * Sanguline Theme - Announcement Slider Styles
+ * Elegant slider for homepage announcements
+ */
+
+// Announcement Slider Container
+.sanguline_announcement_slider {
+    background: @bg;
+    border: @border-card;
+    box-shadow: @shadow-card;
+    margin-bottom: @triple;
+    overflow: hidden;
+
+    // Slider Header
+    .slider_header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: @base @double;
+        background: fade(@primary, 5%);
+        border-bottom: 1px solid fade(@primary, 10%);
+    }
+
+    .slider_title {
+        margin: 0;
+        font-size: @font-bump;
+        font-weight: @bold;
+        color: @primary;
+        display: flex;
+        align-items: center;
+        gap: @half;
+
+        .fa {
+            font-size: 1.1em;
+        }
+    }
+
+    .slider_controls {
+        display: flex;
+        gap: @half;
+    }
+
+    .slider_prev,
+    .slider_next {
+        width: 32px;
+        height: 32px;
+        border: 1px solid fade(@primary, 20%);
+        border-radius: 50%;
+        background: @bg;
+        color: @primary;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+
+        &:hover {
+            background: @primary;
+            color: @text-bg-base;
+            border-color: @primary;
+        }
+
+        .fa {
+            font-size: @font-sml;
+        }
+    }
+
+    // Slider Container & Track
+    .slider_container {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .slider_track {
+        display: flex;
+        transition: transform 0.4s ease-in-out;
+    }
+
+    .slider_slide {
+        min-width: 100%;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+
+        &.active {
+            opacity: 1;
+        }
+    }
+
+    // Announcement Card
+    .announcement_card {
+        display: flex;
+        padding: @double;
+        gap: @double;
+
+        @media (max-width: @screen-phone) {
+            flex-direction: column;
+            gap: @base;
+        }
+    }
+
+    .announcement_date {
+        flex-shrink: 0;
+        width: 70px;
+        text-align: center;
+        padding: @base;
+        background: @primary;
+        color: @text-bg-base;
+        border-radius: 4px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        @media (max-width: @screen-phone) {
+            width: auto;
+            flex-direction: row;
+            gap: @half;
+            padding: @half @base;
+        }
+
+        .date_day {
+            font-size: 1.8rem;
+            font-weight: @bold;
+            line-height: 1;
+        }
+
+        .date_month {
+            font-size: @font-sml;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .date_year {
+            font-size: @font-tiny;
+            opacity: 0.8;
+        }
+    }
+
+    .announcement_content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .announcement_title {
+        margin: 0 0 @base;
+        font-size: @font-lead;
+        font-weight: @bold;
+        line-height: @line-lead;
+
+        a {
+            color: @text;
+            text-decoration: none;
+            transition: color 0.2s ease;
+
+            &:hover {
+                color: @primary;
+            }
+        }
+    }
+
+    .announcement_summary {
+        flex: 1;
+        color: @text-light;
+        font-size: @font-base;
+        line-height: @line-base;
+        margin-bottom: @base;
+
+        p {
+            margin: 0;
+        }
+    }
+
+    .announcement_read_more {
+        display: inline-flex;
+        align-items: center;
+        gap: @half;
+        color: @primary;
+        font-size: @font-sml;
+        font-weight: @bold;
+        text-decoration: none;
+        transition: all 0.2s ease;
+
+        .fa {
+            font-size: 0.8em;
+            transition: transform 0.2s ease;
+        }
+
+        &:hover {
+            color: @primary-lift;
+
+            .fa {
+                transform: translateX(3px);
+            }
+        }
+    }
+
+    // Slider Dots
+    .slider_dots {
+        display: flex;
+        justify-content: center;
+        gap: @half;
+        padding: @base @double @double;
+    }
+
+    .slider_dot {
+        width: 10px;
+        height: 10px;
+        border: none;
+        border-radius: 50%;
+        background: fade(@primary, 20%);
+        cursor: pointer;
+        padding: 0;
+        transition: all 0.2s ease;
+
+        &:hover {
+            background: fade(@primary, 40%);
+        }
+
+        &.active {
+            background: @primary;
+            transform: scale(1.2);
+        }
+    }
+}
