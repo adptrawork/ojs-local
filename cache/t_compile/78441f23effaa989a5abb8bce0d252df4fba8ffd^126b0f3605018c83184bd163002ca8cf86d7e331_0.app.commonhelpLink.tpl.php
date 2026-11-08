@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 4.3.1, created on 2026-11-08 14:10:55
+/* Smarty version 4.3.1, created on 2026-11-08 15:23:32
   from 'app:commonhelpLink.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.1',
-  'unifunc' => 'content_6af082ef732402_31467946',
+  'unifunc' => 'content_6af093f4c7e371_74323376',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6af082ef732402_31467946 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6af093f4c7e371_74323376 (Smarty_Internal_Template $_smarty_tpl) {
 ?><button class="requestHelpPanel pkp_help_link <?php echo call_user_func_array($_smarty_tpl->registered_plugins[ 'modifier' ][ 'escape' ][ 0 ], array( $_smarty_tpl->tpl_vars['helpClass']->value ));?>
 " data-topic="<?php echo call_user_func_array($_smarty_tpl->registered_plugins[ 'modifier' ][ 'escape' ][ 0 ], array( $_smarty_tpl->tpl_vars['helpFile']->value ));?>
 "<?php if ($_smarty_tpl->tpl_vars['helpSection']->value) {?> data-section="<?php echo call_user_func_array($_smarty_tpl->registered_plugins[ 'modifier' ][ 'escape' ][ 0 ], array( $_smarty_tpl->tpl_vars['helpSection']->value ));?>

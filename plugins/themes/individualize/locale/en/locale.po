@@ -1,0 +1,398 @@
+msgid "plugins.themes.individualizeTheme.name"
+msgstr "Individualize Theme by Publia - SLUB Open Publishing"
+
+msgid "plugins.themes.individualizeTheme.description"
+msgstr "A custom theme with many options to allow editors to customize the design and layout of their journals."
+
+msgid "plugins.themes.individualizeTheme.backToTop"
+msgstr "Back to Top"
+
+msgid "plugins.themes.individualizeTheme.backToTitle"
+msgstr "Back to {$title}"
+
+msgid "plugins.themes.individualizeTheme.accessibility"
+msgstr "Accessibility"
+
+msgid "plugins.themes.individualizeTheme.privacyPolicy"
+msgstr "Privacy Policy"
+
+msgid "plugins.themes.individualizeTheme.changeLanguage"
+msgstr "Change Language"
+
+msgid "plugins.themes.individualizeTheme.account"
+msgstr "Account"
+
+msgid "plugins.themes.individualizeTheme.loggedInAs"
+msgstr "Logged in as <strong>{$username}</strong>."
+
+msgid "plugins.themes.individualizeTheme.menu"
+msgstr "Menu"
+
+msgid "plugins.themes.individualizeTheme.latestArticles"
+msgstr "Latest Articles"
+
+msgid "plugins.themes.individualizeTheme.latestArticles.description"
+msgstr "Read our most recent publications or browse every article in our <a href=\"{$url}\" class=\"link\">full archive</a>."
+
+msgid "plugins.themes.individualizeTheme.latestArticlesWithImages"
+msgstr "Latest Articles (with Cover Images)"
+
+msgid "plugins.themes.individualizeTheme.partners"
+msgstr "Partners"
+
+msgid "plugins.themes.individualizeTheme.partners.description"
+msgstr "This journal is published with support from the following partners."
+
+msgid "plugins.themes.individualizeTheme.browseByCategory"
+msgstr "Browse by Category"
+
+msgid "plugins.themes.individualizeTheme.browseByCategory.description"
+msgstr "Find articles across our main areas of coverage. Or browse every article in our <a href=\"{$url}\">back issues</a>."
+
+msgid "plugins.themes.individualizeTheme.viewCategory"
+msgstr "View Category"
+
+msgid "plugins.themes.individualizeTheme.parenthesis"
+msgstr "({$text})"
+
+msgid "plugins.themes.individualizeTheme.publishedInIssue"
+msgstr "Published in <a class='link' href='{$issueUrl}'>{$issue}</a> of <a class='link' href='{$journalUrl}'>{$journal}</a>."
+
+msgid "plugins.themes.individualizeTheme.allIssues"
+msgstr "All Issues"
+
+msgid "plugins.themes.individualizeTheme.pagination.prompt"
+msgstr "Goto other pages"
+
+msgid "plugins.themes.individualizeTheme.pagination.goToPage"
+msgstr "Goto {$page}"
+
+msgid "plugins.themes.individualizeTheme.pagination.nextPage"
+msgstr "Goto next page"
+
+msgid "plugins.themes.individualizeTheme.pagination.previousPage"
+msgstr "Goto previous page"
+
+msgid "plugins.themes.individualizeTheme.pagination.issueArchive"
+msgstr "Showing {$start}-{$end} of {$total} issues of <strong>{$journal}</strong>."
+
+msgid "plugins.themes.individualizeTheme.search.description"
+msgstr "Search all articles or browse every article in our <a href='{$url}' class='link'>back issues</a>."
+
+msgid "plugins.themes.individualizeTheme.search.countResults"
+msgstr "{$number} Results"
+
+msgid "plugins.themes.individualizeTheme.search.showing"
+msgstr "Showing {$start}-{$end} matching the phrase <strong>{$phrase}</strong>."
+
+msgid "plugins.themes.individualizeTheme.search.noMatches"
+msgstr "No matches were found for the phrase <strong>{$phrase}</strong>."
+
+msgid "plugins.themes.individualizeTheme.search.placeholder"
+msgstr "Search articles..."
+
+msgid "plugins.themes.individualizeTheme.search.pageTitle"
+msgstr "\"{$phrase}\" Search Results"
+
+msgid "plugins.themes.individualizeTheme.announcements.none"
+msgstr "There are no announcements at this time."
+
+msgid "plugins.themes.individualizeTheme.highlightedArticleDetails"
+msgstr "Key Information"
+
+msgid "plugins.themes.individualizeTheme.site.unsupported"
+msgstr "Unsupported"
+
+msgid "plugins.themes.individualizeTheme.site.unsupported.description"
+msgstr "This page is not supported by this theme. Please select another theme to use for a site hosting multiple journals."
+
+msgid "plugins.themes.individualizeTheme.skip.language"
+msgstr "Skip to language selection"
+
+msgid "plugins.themes.individualizeTheme.skip.userNav"
+msgstr "Skip to login and user account menu"
+
+msgid "plugins.themes.individualizeTheme.nextSlide"
+msgstr "Next slide"
+
+msgid "plugins.themes.individualizeTheme.prevSlide"
+msgstr "Previous slide"
+
+msgid "plugins.themes.individualizeTheme.usesOjs"
+msgstr "Hosted using the <a href=\"{$urlOJS}\">Open Journal Systems</a> software by <a href=\"{$urlPKP}\">Public Knowledge Project</a>."
+
+msgid "plugins.themes.individualizeTheme.option.header.label"
+msgstr "Header"
+
+msgid "plugins.themes.individualizeTheme.option.header.description"
+msgstr "Choose the layout of the logo and navigation menus in the header of your site. The default layouts work for most sites. Only use the One Line option if you have a small number of items in your navigation menu."
+
+msgid "plugins.themes.individualizeTheme.option.header.default"
+msgstr "Default"
+
+msgid "plugins.themes.individualizeTheme.option.header.default-center"
+msgstr "Default (Centered)"
+
+msgid "plugins.themes.individualizeTheme.option.header.line"
+msgstr "One Line (logo and navigation menu on one line)"
+
+msgid "plugins.themes.individualizeTheme.option.tagline.label"
+msgstr "Tagline"
+
+msgid "plugins.themes.individualizeTheme.option.tagline.description"
+msgstr "A short description, motto or title to display beside the journal's logo. This will not be displayed if no logo is uploaded."
+
+msgid "plugins.themes.individualizeTheme.option.homepageImagePosition.label"
+msgstr "Homepage Image Position"
+
+msgid "plugins.themes.individualizeTheme.option.homepageImagePosition.description"
+msgstr "Choose how to display the Homepage Image on the header of your website. The Homepage Image can be uploaded in the <a href='#appearance/appearance-setup'>Appearance > Setup</a> settings."
+
+msgid "plugins.themes.individualizeTheme.option.homepageImagePosition.above"
+msgstr "Above Header"
+
+msgid "plugins.themes.individualizeTheme.option.homepageImagePosition.above-center"
+msgstr "Above Header (Center)"
+
+msgid "plugins.themes.individualizeTheme.option.homepageImagePosition.behind"
+msgstr "Behind Header"
+
+msgid "plugins.themes.individualizeTheme.option.homepageImagePosition.behind-right-top"
+msgstr "Behind Header (Top Right)"
+
+msgid "plugins.themes.individualizeTheme.option.homepageImagePosition.behind-right-center"
+msgstr "Behind Header (Center Right)"
+
+msgid "plugins.themes.individualizeTheme.option.homepageImagePosition.behind-right-bottom"
+msgstr "Behind Header (Bottom Right)"
+
+msgid "plugins.themes.individualizeTheme.option.homepageImagePosition.behind-pattern"
+msgstr "Behind Header (Repeating Pattern)"
+
+msgid "plugins.themes.individualizeTheme.option.homepageImagePosition.below"
+msgstr "Below Header"
+
+msgid "plugins.themes.individualizeTheme.option.homepageImagePosition.below-center"
+msgstr "Below Header (Center)"
+
+msgid "plugins.themes.individualizeTheme.option.homepageBlocks.label"
+msgstr "Homepage Blocks"
+
+msgid "plugins.themes.individualizeTheme.option.homepageBlocks.description"
+msgstr "Select which blocks to show on your homepage."
+
+msgid "plugins.themes.individualizeTheme.option.homepageBlocks.announcement"
+msgstr "Latest Announcement"
+
+msgid "plugins.themes.individualizeTheme.option.homepageBlocks.about"
+msgstr "About the Journal with Homepage Menu"
+
+msgid "plugins.themes.individualizeTheme.option.homepageBlocks.issue-summary"
+msgstr "Current Issue (Summary)"
+
+msgid "plugins.themes.individualizeTheme.option.homepageBlocks.issue-toc"
+msgstr "Current Issue (Table of Contents)"
+
+msgid "plugins.themes.individualizeTheme.option.homepageBlocks.how-to-submit"
+msgstr "How to Submit"
+
+msgid "plugins.themes.individualizeTheme.option.homepageBlocks.browse-by-category"
+msgstr "Browse By Category"
+
+msgid "plugins.themes.individualizeTheme.option.homepageBlocks.partners"
+msgstr "Partners / Sponsors"
+
+msgid "plugins.themes.individualizeTheme.option.homepageBlocks.pluginHook"
+msgstr "Plugin Content"
+
+msgid "plugins.themes.individualizeTheme.option.howToSubmitTitle.label"
+msgstr "How to Submit - Title"
+
+msgid "plugins.themes.individualizeTheme.option.howToSubmitTitle.description"
+msgstr "Change the title for the How to Submit block on the homepage."
+
+msgid "plugins.themes.individualizeTheme.option.howToSubmitText.label"
+msgstr "How to Submit - Text"
+
+msgid "plugins.themes.individualizeTheme.option.howToSubmitText.description"
+msgstr "Change the short prompt about making a submission to this journal."
+
+msgid "plugins.themes.individualizeTheme.option.howToSubmitText.default"
+msgstr "Read our author guidelines and learn how to submit to {$journalName}."
+
+msgid "plugins.themes.individualizeTheme.option.howToSubmitAction.label"
+msgstr "How to Submit - Button"
+
+msgid "plugins.themes.individualizeTheme.option.howToSubmitAction.description"
+msgstr "Change the text on the button to view the submissions page."
+
+msgid "plugins.themes.individualizeTheme.option.howToSubmitAction.default"
+msgstr "How to Submit"
+
+msgid "plugins.themes.individualizeTheme.option.partnersTitle.label"
+msgstr "Partners / Sponsors - Title"
+
+msgid "plugins.themes.individualizeTheme.option.partnersTitle.description"
+msgstr "Change the title for the Partners / Sponsors block on the homepage."
+
+msgid "plugins.themes.individualizeTheme.option.partnersDescription.label"
+msgstr "Partners / Sponsors - Description"
+
+msgid "plugins.themes.individualizeTheme.option.partnersDescription.description"
+msgstr "Change the description of the Partners / Sponsors block on the homepage."
+
+msgid "plugins.themes.individualizeTheme.option.categoriesTitle.label"
+msgstr "Browse by Category - Title"
+
+msgid "plugins.themes.individualizeTheme.option.categoriesTitle.description"
+msgstr "Change the title for the Browse by Category block on the homepage."
+
+msgid "plugins.themes.individualizeTheme.option.categoriesDescription.label"
+msgstr "Browse by Category - Description"
+
+msgid "plugins.themes.individualizeTheme.option.categoriesDescription.description"
+msgstr "Change the description of the Browse by Category block on the homepage."
+
+msgid "plugins.themes.individualizeTheme.option.latestArticlesTitle.label"
+msgstr "Latest Articles - Title"
+
+msgid "plugins.themes.individualizeTheme.option.latestArticlesTitle.description"
+msgstr "Change the title for the Latest Articles block on the homepage."
+
+msgid "plugins.themes.individualizeTheme.option.latestArticlesDescription.label"
+msgstr "Latest Articles - Description"
+
+msgid "plugins.themes.individualizeTheme.option.latestArticlesDescription.description"
+msgstr "Change the description of the Latest Articles block on the homepage."
+
+msgid "plugins.themes.individualizeTheme.option.showAuthors.label"
+msgstr "Author Details"
+
+msgid "plugins.themes.individualizeTheme.option.showAuthors.description"
+msgstr "Select how to display author information on the article landing page. If you choose Automatic, the system will try to use the best display mode depending on the number of authors and what author details have been provided."
+
+msgid "plugins.themes.individualizeTheme.option.showAuthors.auto"
+msgstr "Automatic"
+
+msgid "plugins.themes.individualizeTheme.option.showAuthors.simple"
+msgstr "Always show author names with a button to view full details"
+
+msgid "plugins.themes.individualizeTheme.option.showAuthors.detailed"
+msgstr "Always show full author details"
+
+msgid "plugins.themes.individualizeTheme.option.highlightArticleMetadata.label"
+msgstr "Highlight Article Metadata"
+
+msgid "plugins.themes.individualizeTheme.option.highlightArticleMetadata.description"
+msgstr "Select the article metadata that you want to show at the top of the article landing page."
+
+msgid "plugins.themes.individualizeTheme.option.highlightArticleMetadata.published-by"
+msgstr "Published In Issue/Journal"
+
+msgid "plugins.themes.individualizeTheme.option.issueArchives.label"
+msgstr "Issue Archives"
+
+msgid "plugins.themes.individualizeTheme.option.issueArchives.description"
+msgstr "Select how to display the list of published issues in the archive."
+
+msgid "plugins.themes.individualizeTheme.option.issueArchives.default"
+msgstr "List of issue summaries"
+
+msgid "plugins.themes.individualizeTheme.option.issueArchives.covers"
+msgstr "Gallery of issue cover images"
+
+msgid "plugins.themes.individualizeTheme.option.issueArchives.no-covers"
+msgstr "List of issue summaries without cover images. (Choose this option if your journal never publishes issue cover images.)"
+
+msgid "plugins.themes.individualizeTheme.option.font.label"
+msgstr "Base Font"
+
+msgid "plugins.themes.individualizeTheme.option.font.description"
+msgstr "Select the font to use for the main body text, such as paragraphs and long blocks of text."
+
+msgid "plugins.themes.individualizeTheme.option.titlesFont.label"
+msgstr "Headings and Titles Font"
+
+msgid "plugins.themes.individualizeTheme.option.titlesFont.description"
+msgstr "Select the font to use for titles, headings and other large text."
+
+msgid "plugins.themes.individualizeTheme.option.actionsFont.label"
+msgstr "Buttons, Menus and Forms Font"
+
+msgid "plugins.themes.individualizeTheme.option.actionsFont.description"
+msgstr "Select the font to use for interactive elements, such as buttons, navigation menus, and forms."
+
+msgid "plugins.themes.individualizeTheme.option.colorMode.label"
+msgstr "Color Options Mode"
+
+msgid "plugins.themes.individualizeTheme.option.colorMode.description"
+msgstr "Most journals should use the simple mode. The advanced mode provides designers with more control, but misuse may cause some text on your site to be inaccessible."
+
+msgid "plugins.themes.individualizeTheme.option.colorMode.default"
+msgstr "Simple Mode: Choose one or two colors for your site."
+
+msgid "plugins.themes.individualizeTheme.option.colorMode.advanced"
+msgstr "Advanced Mode: Set different colors for headers, footers, buttons, text, links and more. "
+
+msgid "plugins.themes.individualizeTheme.option.primaryColor.label"
+msgstr "Primary Color"
+
+msgid "plugins.themes.individualizeTheme.option.primaryColor.description"
+msgstr "The dominant color of your website used for the header background."
+
+msgid "plugins.themes.individualizeTheme.option.accentColor.label"
+msgstr "Accent Color"
+
+msgid "plugins.themes.individualizeTheme.option.accentColor.description"
+msgstr "The color used for links and buttons. Choose a dark color that is easy to read against a white background."
+
+msgid "plugins.themes.individualizeTheme.option.pageBackgroundColor.label"
+msgstr "Page Background Color"
+
+msgid "plugins.themes.individualizeTheme.option.pageTextColor.label"
+msgstr "Page Text Color"
+
+msgid "plugins.themes.individualizeTheme.option.pageLinkColor.label"
+msgstr "Page Link Color"
+
+msgid "plugins.themes.individualizeTheme.option.headerBackgroundColor.label"
+msgstr "Header Background Color"
+
+msgid "plugins.themes.individualizeTheme.option.headerTextColor.label"
+msgstr "Header Text Color"
+
+msgid "plugins.themes.individualizeTheme.option.buttonBackgroundColor.label"
+msgstr "Button Background Color"
+
+msgid "plugins.themes.individualizeTheme.option.buttonTextColor.label"
+msgstr "Button Text Color"
+
+msgid "plugins.themes.individualizeTheme.option.blockBackgroundColor.label"
+msgstr "Block Background Color"
+
+msgid "plugins.themes.individualizeTheme.option.blockTextColor.label"
+msgstr "Block Text Color"
+
+msgid "plugins.themes.individualizeTheme.option.footerBackgroundColor.label"
+msgstr "Footer Background Color"
+
+msgid "plugins.themes.individualizeTheme.option.footerTextColor.label"
+msgstr "Footer Text Color"
+
+msgid "plugins.themes.individualizeTheme.option.footerMenu.label"
+msgstr "Show Menus in Footer"
+
+msgid "plugins.themes.individualizeTheme.option.footerMenu.checkbox"
+msgstr "Yes, show the navigation menus in the footer at the bottom of every page."
+
+msgid "plugins.themes.individualizeTheme.option.articleFullText.label"
+msgstr "Article HTML Full Text"
+
+msgid "plugins.themes.individualizeTheme.option.articleFullText.description"
+msgstr "Whether or not to show the full text of an article on the landing page when an HTML galley exists. The HTML galley must conform to specific standards. Please consult your publisher before changing this setting."
+
+msgid "plugins.themes.individualizeTheme.option.articleFullText.show"
+msgstr "Yes, show the full text on the article landing page"
+
+msgid "plugins.themes.individualizeTheme.option.articleFullText.hide"
+msgstr "No, only show the full text when someone views the HTML galley"

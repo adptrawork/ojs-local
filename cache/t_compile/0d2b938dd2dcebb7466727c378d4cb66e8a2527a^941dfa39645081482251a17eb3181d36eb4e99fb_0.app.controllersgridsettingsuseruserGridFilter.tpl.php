@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 4.3.1, created on 2026-11-08 14:11:16
+/* Smarty version 4.3.1, created on 2026-11-08 15:23:26
   from 'app:controllersgridsettingsuseruserGridFilter.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.1',
-  'unifunc' => 'content_6af08304ac4cc9_48255999',
+  'unifunc' => 'content_6af093eef185a6_37090826',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6af08304ac4cc9_48255999 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6af093eef185a6_37090826 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_assignInScope('filterId', "userSearchForm");
 if ($_smarty_tpl->tpl_vars['filterData']->value['oldUserId']) {?>
 	<?php $_smarty_tpl->_assignInScope('filterId', call_user_func_array($_smarty_tpl->registered_plugins[ 'modifier' ][ 'concat' ][ 0 ], array( $_smarty_tpl->tpl_vars['filterId']->value,"-userMerge" )));

@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 4.3.1, created on 2026-11-08 14:11:16
+/* Smarty version 4.3.1, created on 2026-11-08 15:23:28
   from 'app:controllersgridfeaturegridPaging.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.1',
-  'unifunc' => 'content_6af08304e62fb2_43805760',
+  'unifunc' => 'content_6af093f0521e09_21101806',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6af08304e62fb2_43805760 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6af093f0521e09_21101806 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <div class="gridPaging">
 	<div class="gridItemsPerPage">

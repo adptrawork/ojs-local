@@ -1,0 +1,44 @@
+:root {
+  --color-background: white;
+  --color-primary: #c00;
+  --color-secondary: #078078;
+  --color-text: rgba(0, 0, 0, 0.85);
+  --color-text-on-primary: white;
+  --color-error: #c00;
+
+  --color-header-background: var(--color-primary);
+  --color-header-text: var(--color-text-on-primary);
+  --color-page-background: var(--color-background);
+  --color-page-text: var(--color-text);
+  --color-page-links: var(--color-secondary);
+  --color-button-background: var(--color-background);
+  --color-button-text: var(--color-secondary);
+  --color-block-background: var(--color-primary);
+  --color-block-text: var(--color-text-on-primary);
+  --color-overlay-background: var(--color-background);
+  --color-overlay-text: var(--color-text);
+  --color-footer-background: var(--color-primary);
+  --color-footer-text: var(--color-secondary);
+
+  --font-base: Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-titles: var(--font-base);
+  --font-actions: var(--font-base);
+
+  --radius: 0.5rem;
+  --border-width: 1px;
+
+  --overlay-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.25);
+  --overlay-radius: var(--radius);
+
+  --button-radius: 9999px;
+  --search-radius: 9999px;
+  --input-radius: var(--radius);
+  --input-border-width: var(--border-width);
+}
+
+@custom-media --tablets (min-width: 768px);
+@custom-media --tablets-landscape (min-width: 1024px);
+@custom-media --laptops-sm (min-width: 1280px);
+@custom-media --laptops (min-width: 1536px);
+@custom-media --laptops-lg (min-width: 1920px);
+@custom-media --desktops (min-width: 2560px);

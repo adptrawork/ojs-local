@@ -1,0 +1,443 @@
+{assign var="pageTitleTranslated" value=$publication->getLocalizedFullTitle()|escape}
+
+{foreach from=$pubIdPlugins item="pubIdPlugin"}
+  {if $pubIdPlugin->getPubIdType() != 'doi'}
+    {continue}
+  {/if}
+  {if !$article->getStoredPubId($pubIdPlugin->getPubIdType())}
+    {continue}
+  {/if}
+  {assign var="doiUrl" value=$pubIdPlugin->getResolvingURL($currentJournal->getId(), $article->getStoredPubId($pubIdPlugin->getPubIdType()))}
+  {capture assign="doiLink"}{strip}
+    <a class="arrow-link tab-focus" href="{$doiUrl|escape}">
+      {$doiUrl|escape}
+      {include file="frontend/icons/arrow-right.svg"}
+    </a>
+  {/capture}
+  {break}
+{/foreach}
+
+{extends file="frontend/layout.tpl"}
+
+{block name="content"}
+
+  <div class="
+    max-w-screen-xl mx-auto flex flex-col gap-8 my-8 xl:gap-16 xl:my-0
+  ">
+    <div class="breadcrumb">
+      <span class="sr-only">
+        {translate key="navigation.breadcrumbLabel"}
+      </span>
+      <a
+        class="breadcrumb-item tab-focus"
+        href="{url page="issue" op="archive"}"
+      >
+        {include file="frontend/icons/arrow-left.svg"}
+        {translate key="navigation.archives"}
+      </a>
+      <span class="breadcrumb-separator">/</span>
+      {if $section}
+        <span class="breadcrumb-item{if !$issue} breadcrumb-item-last{/if}">
+          {$section->getLocalizedTitle()}
+        </span>
+        <span class="breadcrumb-separator">/</span>
+      {/if}
+      {if $issue}
+        <a
+          class="breadcrumb-item breadcrumb-item-last tab-focus"
+          href="{url page="issue" op="view" path=$issue->getBestIssueId()}"
+        >
+          {$issue->getIssueIdentification(['showTitle' => false, 'showYear' => false])}
+        </a>
+      {/if}
+    </div>
+    <main class="article" id="skip-to-main">
+
+      {* Preview and old version notices *}
+      {if $publication->getData('status') !== $smarty.const.STATUS_PUBLISHED}
+        {capture assign="submissionUrl"}{url page="workflow" op="access" path=$article->getId()}{/capture}
+        {capture assign="notice"}
+          <p>{translate key="submission.viewingPreview" url=$submissionUrl}</p>
+        {/capture}
+        {include
+          file="frontend/components/notice.tpl"
+          title="{translate key="common.preview"}"
+          content=$notice
+        }
+	    {elseif $currentPublication->getId() !== $publication->getId()}
+  			{capture assign="latestVersionUrl"}{url page="article" op="view" path=$article->getBestId()}{/capture}
+        {capture assign="notice"}{strip}
+          <p>
+            {translate key="submission.outdatedVersion"
+              datePublished=$publication->getData('datePublished')|date_format:$dateFormatShort
+              urlRecentVersion=$latestVersionUrl|escape
+            }
+          </p>
+        {/strip}{/capture}
+        {include
+          file="frontend/components/notice.tpl"
+          title=""
+          content=$notice
+        }
+      {/if}
+
+      {* Title and Authors *}
+      <div class="article-header">
+        <h1 class="article-title">
+          {$publication->getLocalizedFullTitle()|strip_unsafe_html}
+        </h1>
+        {if $publication->getData('authors')}
+          <h2 class="sr-only">
+            {translate key="article.authors"}
+          </h2>
+          {assign var="hasAffiliations" value=false}
+          {foreach from=$publication->getData('authors') item="author"}
+            {if count($author->getAffiliations()) > 0 || $author->getData('orcid')}
+              {assign var="hasAffiliations" value=true}
+            {/if}
+          {/foreach}
+          {assign var="showAuthors" value=$activeTheme->getOption('showAuthors')}
+          {if !$showAuthors}
+            {if $hasAffiliations && $publication->getData('authors')|count < 5}
+              {assign var="showAuthors" value="detailed"}
+            {else}
+              {assign var="showAuthors" value="simple"}
+            {/if}
+          {/if}
+          {if $showAuthors === 'detailed'}
+            {include file="frontend/components/author-details.tpl"}
+          {else}
+            <address class="article-authors">
+              {if $userGroupsById}
+                {strip}
+                  <span class="article-author-list">
+                    {foreach from=$publication->getData('authors') item="author" name="articleAuthors"}
+                      {if !$smarty.foreach.articleAuthors.first}{translate key="common.commaListSeparator"}{/if}
+                      <span class="article-author">
+                        <span class="article-author-name">{$author->getFullName()|escape}</span>
+                        {assign var="authorUserGroup" value=$userGroupsById[$author->getData('userGroupId')]}
+                        {if $authorUserGroup && $authorUserGroup->showTitle}
+                          {' '}<span class="article-author-userGroup">({$authorUserGroup->getLocalizedData('name')|escape})</span>
+                        {/if}
+                      </span>
+                    {/foreach}
+                  </span>
+                {/strip}
+              {else}
+                {$publication->getShortAuthorString()|escape}
+              {/if}
+              {if $hasAffiliations}
+                {assign var="authorDetailsId" value="author-details"}
+                <div
+                  class="collapse article-author-details"
+                  id="{$authorDetailsId}"
+                >
+                  {include file="frontend/components/author-details.tpl"}
+                </div>
+                <button
+                  class="arrow-link article-authors-more-details"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#{$authorDetailsId}"
+                  aria-expanded="false"
+                  aria-controls="{$authorDetailsId}"
+                >
+                  <span class="article-author-details-expand" aria-hidden="true">
+                    {include file="frontend/icons/plus.svg"}
+                  </span>
+                  <span class="article-author-details-collapse" aria-hidden="true">
+                    {include file="frontend/icons/minus.svg"}
+                  </span>
+                  {translate key="search.authorDetails"}
+                </button>
+              {/if}
+            </address>
+          {/if}
+        {/if}
+      </div>
+
+      <div class="article-details">
+
+        {* Galleys and Cover Image *}
+        <div class="article-media">
+          <div class="article-galleys">
+            <h2 class="sr-only">
+              {translate key="submission.files"}
+            </h2>
+            {if $primaryGalleys|count || $supplementaryGalleys|count}
+              <div class="article-galleys-list">
+                {foreach from=$primaryGalleys item="galley"}
+                  {include
+                    file="frontend/components/galley-link.tpl"
+                    galley=$galley
+                    publication=$publication
+                    submission=$submission
+                    label=$galley->getGalleyLabel()|escape
+                  }
+                {/foreach}
+                {foreach from=$supplementaryGalleys item="galley"}
+                  {include
+                    file="frontend/components/galley-link.tpl"
+                    galley=$galley
+                    publication=$publication
+                    submission=$submission
+                    label=$galley->getGalleyLabel()|escape
+                    isSupplementary=true
+                  }
+                {/foreach}
+              </div>
+            {/if}
+          </div>
+          {if $publication->getLocalizedData('coverImage')}
+            {assign var="coverImage" value=$publication->getLocalizedData('coverImage')}
+            <img
+              class="article-cover-image"
+              src="{$publication->getLocalizedCoverImageUrl($article->getData('contextId'))|escape}"
+              alt="{$coverImage.altText|escape|default:''}"
+            >
+          {/if}
+        </div>
+
+        {* Optional metadata table (DOI, Published Date, etc *}
+        <div class="article-metadata">
+          {if $activeTheme->getOption('highlightArticleMetadata')|count}
+            <h2 class="sr-only">
+              {translate key="plugins.themes.individualizeTheme.highlightedArticleDetails"}
+            </h2>
+            <div class="article-metadata-table">
+              {foreach from=$activeTheme->getOption('highlightArticleMetadata') item="type"}
+                {if $type === 'doi' && $doiLink}
+                  {include
+                    file="frontend/components/metadata-tr-html.tpl"
+                    title=$pubIdPlugin->getPubIdDisplayType()
+                    html=$doiLink
+                  }
+                {/if}
+                {if $type === 'keywords'}
+                  {include
+                    file="frontend/components/metadata-tr-keywords.tpl"
+                    keywords=$publication->getLocalizedData('keywords')
+                  }
+                {/if}
+                {if $type === 'published'}
+                  {include
+                    file="frontend/components/metadata-tr-published.tpl"
+                    article=$article
+                    publication=$publication
+                    firstPublication=$firstPublication
+                    currentPublication=$currentPublication
+                  }
+                {/if}
+                {if $type === 'published-by'}
+                  {include
+                    file="frontend/components/metadata-tr-published-by.tpl"
+                    issue=$issue
+                  }
+                {/if}
+                {if $type === 'how-to-cite'}
+                  {include
+                    file="frontend/components/metadata-tr-how-to-cite.tpl"
+                    id="how-to-cite-header"
+                    citation=$citation
+                    citationStyles=$citationStyles
+                    citationDownloads=$citationDownloads
+                    citationArgs=$citationArgs
+                    citationArgsJson=$citationArgsJson
+                  }
+                {/if}
+              {/foreach}
+            </div>
+          {/if}
+        </div>
+
+        <div class="article-sections">
+
+          {* Abstract *}
+          {if $publication->getLocalizedData('abstract')}
+            <section class="article-section article-section-abstract">
+              <h2 class="article-section-title">
+                {translate key="article.abstract"}
+              </h2>
+              <div class="html-text">
+                {$publication->getLocalizedData('abstract')|strip_unsafe_html}
+              </div>
+              <div class="article-abstract-galleys">
+                {foreach from=$primaryGalleys item="galley"}
+                  {include
+                    file="frontend/components/galley-link.tpl"
+                    galley=$galley
+                    publication=$publication
+                    submission=$submission
+                    label=$galley->getGalleyLabel()|escape
+                  }
+                {/foreach}
+              </div>
+            </section>
+          {/if}
+
+          {**
+           * Full text of the article
+           *
+           * Use this hook in a plugin or child theme to display full
+           * article text on the landing page.
+           *}
+          {capture assign="individualizeFullTextHtml"}{strip}
+            {call_hook name="IndividualizeTheme::FullText"}
+          {/strip}{/capture}
+
+          {if $individualizeFullTextHtml}
+            {$individualizeFullTextHtml}
+
+          {* References from publication data *}
+          {elseif $parsedCitations || $publication->getData('citationsRaw')}
+            <section class="article-section article-section-references">
+              <h2 class="article-section-title">
+                {translate key="submission.citations"}
+              </h2>
+              <div class="html-text" data-reveal data-height="40">
+                {if $parsedCitations}
+                  {foreach from=$parsedCitations item="parsedCitation"}
+                    <p>{$parsedCitation->getCitationWithLinks()|strip_unsafe_html} {call_hook name="Templates::Article::Details::Reference" citation=$parsedCitation}</p>
+                  {/foreach}
+                {else}
+                  {$publication->getData('citationsRaw')|escape|nl2br}
+                {/if}
+              </div>
+            </section>
+          {/if}
+
+          {* Usage stats *}
+          {if $activeTheme->getOption('displayStats') && $activeTheme->getOption('displayStats') !== 'none'}
+            <section class="article-section article-section-chart">
+              <h2 class="article-section-title">
+						    {translate key="plugins.themes.default.displayStats.downloads"}
+              </h2>
+              <canvas class="usageStatsGraph" data-object-type="Submission" data-object-id="{$article->getId()|escape}"></canvas>
+              <div class="html-text usageStatsUnavailable" data-object-type="Submission" data-object-id="{$article->getId()|escape}">
+                {translate key="plugins.themes.default.displayStats.noStats"}
+              </div>
+            </section>
+          {/if}
+
+          {* Common hook used by plugins *}
+          {capture assign="articleMainContent"}{strip}
+            {call_hook name="Templates::Article::Main"}
+          {/strip}{/capture}
+          {if $articleMainContent}
+            <section class="article-section article-section-hook-main html-text">
+              {$articleMainContent}
+            </section>
+          {/if}
+
+
+          {* Metadata table (DOI, Issue, Section, etc.) *}
+          <section class="article-section">
+            <h2 class="article-section-title" id="article-metadata-title">
+              {translate key="article.details"}
+            </h2>
+            {call_hook name="Templates::Article::Details"}
+            <div class="article-metadata-table">
+              {foreach from=$pubIdPlugins item="pubIdPlugin"}
+                {if !$article->getStoredPubId($pubIdPlugin->getPubIdType())}
+                  {continue}
+                {/if}
+                {assign var="pubIdUrl" value=$pubIdPlugin->getResolvingURL($currentJournal->getId(), $article->getStoredPubId($pubIdPlugin->getPubIdType()))}
+                {capture assign="pubIdLink"}{strip}
+                  <a class="arrow-link tab-focus" href="{$doiUrl|escape}">
+                    {$doiUrl|escape}
+                    {include file="frontend/icons/arrow-right.svg"}
+                  </a>
+                {/capture}
+                {include
+                  file="frontend/components/metadata-tr-html.tpl"
+                  title=$pubIdPlugin->getPubIdDisplayType()
+                  html=$pubIdLink
+                }
+              {/foreach}
+              {include
+                file="frontend/components/metadata-tr-published.tpl"
+                article=$article
+                publication=$publication
+                firstPublication=$firstPublication
+                currentPublication=$currentPublication
+              }
+              {include
+                file="frontend/components/metadata-tr-issue.tpl"
+                issue=$issue
+              }
+              {if $section}
+                {include
+                  file="frontend/components/metadata-tr-html.tpl"
+                  title={translate key="section.section"}
+                  html={$section->getLocalizedTitle()|strip_unsafe_html}
+                }
+              {/if}
+              {include
+                file="frontend/components/metadata-tr-categories.tpl"
+                categories=$categories
+              }
+              {include
+                file="frontend/components/metadata-tr-keywords.tpl"
+                keywords=$publication->getLocalizedData('keywords')
+              }
+              {include
+                file="frontend/components/metadata-tr-how-to-cite.tpl"
+                id="how-to-cite"
+                citation=$citation
+                citationStyles=$citationStyles
+                citationDownloads=$citationDownloads
+                citationArgs=$citationArgs
+                citationArgsJson=$citationArgsJson
+              }
+              {if $openScienceBadges}
+                {include
+                  file="frontend/components/metadata-tr-html.tpl"
+                  title={translate key="plugins.generic.openScienceBadges.displayName"}
+                  html=$openScienceBadges
+                }
+              {/if}
+              {if $publication->getLocalizedData('dataAvailability')}
+                {include
+                  file="frontend/components/metadata-tr-html.tpl"
+                  title={translate key="submission.dataAvailability"}
+                  html={$publication->getLocalizedData('dataAvailability')|strip_unsafe_html}
+                }
+              {/if}
+              {if $publication->getData('pages')}
+                {include
+                  file="frontend/components/metadata-tr-html.tpl"
+                  title={translate key="editor.issues.pages"}
+                  html=$publication->getData('pages')
+                }
+              {/if}
+              {if $publication->getData('pub-id::publisher-id')}
+                {include
+                  file="frontend/components/metadata-tr-html.tpl"
+                  title={translate key="submission.publisherId"}
+                  html=$publication->getData('pub-id::publisher-id')
+                }
+              {/if}
+              {include
+                file="frontend/components/metadata-tr-license.tpl"
+                publication=$publication
+                ccLicenseBadge=$ccLicenseBadge
+              }
+            </div>
+          </section>
+
+          {* Common hook used by plugins *}
+          {capture assign="articleFooterContent"}{strip}
+            {call_hook name="Templates::Article::Footer::PageFooter"}
+          {/strip}{/capture}
+          {if $articleFooterContent}
+            <section class="article-section article-section-hook-footer html-text">
+              {$articleFooterContent}
+            </section>
+          {/if}
+
+        </div>
+      </div>
+    </main>
+  </div>
+
+{/block}

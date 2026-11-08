@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 4.3.1, created on 2026-11-08 14:09:36
+/* Smarty version 4.3.1, created on 2026-11-08 15:23:28
   from 'app:formbutton.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.1',
-  'unifunc' => 'content_6af082a012d3c7_64662056',
+  'unifunc' => 'content_6af093f0018d04_96364256',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6af082a012d3c7_64662056 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6af093f0018d04_96364256 (Smarty_Internal_Template $_smarty_tpl) {
 ?><button class="pkp_button <?php echo $_smarty_tpl->tpl_vars['FBV_class']->value;?>
 " type="<?php echo $_smarty_tpl->tpl_vars['FBV_type']->value;?>
 " <?php if ($_smarty_tpl->tpl_vars['FBV_disabled']->value) {?> disabled="disabled"<?php }?> <?php echo $_smarty_tpl->tpl_vars['FBV_buttonParams']->value;?>

@@ -1,0 +1,12 @@
+.git
+.gitignore
+.tarignore
+.vite.server.json
+package-lock.json
+package.json
+postcss.config.js
+tailwind.config.js
+node_modules
+docs
+src
+vite.config.js

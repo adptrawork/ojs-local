@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 4.3.1, created on 2026-11-08 14:10:21
+/* Smarty version 4.3.1, created on 2026-11-08 15:23:27
   from 'app:controllersgridgridRow.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.1',
-  'unifunc' => 'content_6af082cd328223_71178778',
+  'unifunc' => 'content_6af093ef42cd84_92242236',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'app:linkAction/linkAction.tpl' => 2,
   ),
 ),false)) {
-function content_6af082cd328223_71178778 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6af093ef42cd84_92242236 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'D:\\Projects\\ojs-3.3.0-24\\lib\\pkp\\lib\\vendor\\smarty\\smarty\\libs\\plugins\\modifier.replace.php','function'=>'smarty_modifier_replace',),));
 if (!is_null($_smarty_tpl->tpl_vars['row']->value->getId())) {?>
 	<?php $_smarty_tpl->_assignInScope('rowIdPrefix', call_user_func_array($_smarty_tpl->registered_plugins[ 'modifier' ][ 'concat' ][ 0 ], array( "component-",$_smarty_tpl->tpl_vars['row']->value->getGridId() )));?>

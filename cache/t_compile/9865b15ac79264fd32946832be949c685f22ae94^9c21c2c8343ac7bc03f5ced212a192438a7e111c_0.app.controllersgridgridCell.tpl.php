@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 4.3.1, created on 2026-11-08 14:10:21
+/* Smarty version 4.3.1, created on 2026-11-08 15:23:28
   from 'app:controllersgridgridCell.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.1',
-  'unifunc' => 'content_6af082cd0ba2a5_77006675',
+  'unifunc' => 'content_6af093f02014c2_76912597',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'app:controllers/grid/gridCellContents.tpl' => 1,
   ),
 ),false)) {
-function content_6af082cd0ba2a5_77006675 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6af093f02014c2_76912597 (Smarty_Internal_Template $_smarty_tpl) {
 if ($_smarty_tpl->tpl_vars['id']->value) {?>
 	<?php $_smarty_tpl->_assignInScope('cellId', call_user_func_array($_smarty_tpl->registered_plugins[ 'modifier' ][ 'concat' ][ 0 ], array( "cell-",$_smarty_tpl->tpl_vars['id']->value )));
 } else { ?>
