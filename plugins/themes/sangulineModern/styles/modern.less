@@ -1768,6 +1768,11 @@ html.dark {
 	flex-direction: column !important;
 	gap: 1.5rem !important;
 	min-width: 0 !important;
+
+	/* Primary galley download already shown above the fold in the main column */
+	.item.galleys:has(.galleys_links) {
+		display: none !important;
+	}
 }
 
 /* ==========================================================================

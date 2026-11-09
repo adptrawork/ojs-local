@@ -11,6 +11,7 @@ All notable changes to this project will be documented in this file.
 - **Mobile Panel 7px Gap:** `#jrdcSiteNav` used hardcoded `top:80px` while the mobile header is 73px. Changed to `top:calc(100% + 1px)`; measured gap is now 0.
 - **Search Page Button:** Parent `button.submit::before/::after` icon overlay covered the "Search" label. Both pseudo-elements are now disabled.
 - **Dark Toggle Double Border:** Global `.jrdc-theme-toggle` border overrode the mobile rule. Border is now `none` inside the bordered controls box ≤1199px.
+- **Duplicate PDF CTA:** The primary galley block in the article sidebar is hidden because the same download is already shown above the fold in the main column; supplementary galleys remain visible.
 
 ### Changed
 - **Sidebar Blocks Cleaned:** Removed `sinta`, `in-collaboration-with`, and `template` from the Custom Block Manager list (duplicate "Sejarah Jurnal" link, partner placeholders, missing template URL). `journal-profile` now shows only verified data (name, abbreviation, publisher); dummy "Visitor counter" label and mailing-address bracket placeholders removed.
