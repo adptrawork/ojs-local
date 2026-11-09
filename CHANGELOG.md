@@ -19,3 +19,27 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 - **Article Summary Hierarchy:** PDF primary, Detail secondary, Abstract ghost; title uses `clamp()` for fluid type.
+- **Announcement Slider:** Renders as vertical list on ≤640px; `prefers-reduced-motion` disables smooth scroll and reading-progress bar.
+
+## [1.3.0] - 2026-11-09
+
+### Changed
+- **Mobile Header Layout:** First row on screens ≤1199px now contains only brand (left) and bordered toggle box (hamburger + light/dark, right). Search form, navigation, and user/admin menu (Daftar/Masuk) moved into the dropdown panel (`#jrdcSiteNav`) so the first row stays clean and overflow-free.
+- **Desktop Header Order:** `brand → search (flexible, ≤170px, ≥1360px 240px) → primary nav → actions`. Brand text hidden ≤1360px (logo only) to fit the 1280px container without overflow; nav link padding tightened to 0.65rem.
+
+### Fixed
+- **Hamburger Position:** Parent Sanguline sets `.pkp_site_nav_toggle { position: absolute }` which threw the toggle out of the controls box on mobile — neutralized with `position: static !important`.
+- **User Menu Visibility:** Mobile hide rule for `.jrdc-nav__user` moved after the base rule with higher specificity so Daftar/Masuk no longer shows in the first row on phones.
+- **Panel Block Cascade:** Mobile search/user blocks inside the nav panel now override the desktop `display: none` via EOF media rule, so the panel actually shows Search → Navigation → Daftar/Masuk.
+
+### Added
+- **Mobile Panel Blocks:** Second search form (`#jrdc-search-query-mobile`) and second user menu (`#navigationUserMobile`) inside `#jrdcSiteNav` for mobile only; desktop keeps the original header search/user menu. All Smarty `{load_menu}`, `{url}`, and `{translate}` logic preserved; no core/parent files modified.
+
+## [1.2.0] - 2026-11-09
+
+### Added
+- **Page-level Styling (CSS-only, no template overrides):** `.page_about` (editorial sections), `.page_issue` / `.obj_issue_toc` (cover + section headings), `.page_announcement` / `.obj_announcement`, and `.page_login` / `.page_register` (minimal modern forms) in `modern.less`.
+- **QA (Tahap 7):** All 9 public routes return 200; desktop 1440px and mobile 390px show no horizontal overflow.
+
+### Notes
+- About/issue/archive/search/announcement/login/register templates remain core OJS (verified by sub-agent audit: hooks, routing, galley/TOC/pagination includes intact). They are styled via the shared `.pkp_structure_main > .page` card + new page sections, so OJS workflow and plugins are untouched.

@@ -25,14 +25,6 @@
 			<div class="pkp_head_wrapper jrdc-header__inner">
 
 				<div class="pkp_site_name_wrapper jrdc-brand">
-					<button class="pkp_site_nav_toggle jrdc-nav-toggle" type="button" aria-expanded="false" aria-controls="jrdcSiteNav" aria-label="{translate|escape key="common.navigation"}">
-						<span class="jrdc-nav-toggle__icon" aria-hidden="true">
-							<span></span>
-							<span></span>
-							<span></span>
-						</span>
-						<span class="jrdc-nav-toggle__label">Menu</span>
-					</button>
 					{if !$requestedPage || $requestedPage === 'index'}
 						<h1 class="pkp_screen_reader">
 							{if $currentContext}
@@ -99,6 +91,19 @@
 					{/if}
 				</div>
 
+				{* Center: Search (flexible, shrinks on small screens) *}
+				{if $currentContext}
+					<div class="pkp_navigation_search_wrapper jrdc-header__search jrdc-nav__search">
+						<form action="{url page="search" op="search"}" method="get" class="pkp_search_form jrdc-search" role="search">
+							<label class="pkp_screen_reader" for="jrdc-search-query">{translate key="common.search"}</label>
+							<input id="jrdc-search-query" type="search" name="query" placeholder="Cari artikel..." class="pkp_search_input jrdc-search__input" aria-label="{translate key="common.search"}" autocomplete="off" />
+							<button type="submit" class="pkp_search_button jrdc-search__button" aria-label="{translate|escape key="common.search"}">
+								<svg class="jrdc-search__icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-4.35-4.35"></path></svg>
+							</button>
+						</form>
+					</div>
+				{/if}
+
 				{capture assign="primaryMenu"}
 					{load_menu name="primary" id="navigationPrimary" ulClass="pkp_navigation_primary"}
 				{/capture}
@@ -106,6 +111,20 @@
 				{* Middle Navigation Menu *}
 				<nav id="jrdcSiteNav" class="pkp_site_nav_menu jrdc-nav" aria-label="{translate|escape key="common.navigation.site"}">
 					<a id="siteNav"></a>
+
+					{* Mobile-only: search form inside dropdown panel *}
+					{if $currentContext}
+						<div class="jrdc-mobile-search" aria-hidden="false">
+							<form action="{url page="search" op="search"}" method="get" class="pkp_search_form jrdc-search" role="search">
+								<label class="pkp_screen_reader" for="jrdc-search-query-mobile">{translate key="common.search"}</label>
+								<input id="jrdc-search-query-mobile" type="search" name="query" placeholder="Cari artikel..." class="pkp_search_input jrdc-search__input" aria-label="{translate key="common.search"}" autocomplete="off" />
+								<button type="submit" class="pkp_search_button jrdc-search__button" aria-label="{translate|escape key="common.search"}">
+									<svg class="jrdc-search__icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-4.35-4.35"></path></svg>
+								</button>
+							</form>
+						</div>
+					{/if}
+
 					<div class="jrdc-nav__wrapper">
 						<div class="pkp_navigation_home jrdc-nav__home">
 							<a href="{$homeUrl}" class="pkp_nav_home jrdc-nav__home-link{if !$requestedPage || $requestedPage === 'index'} active{/if}">
@@ -114,31 +133,35 @@
 						</div>
 						{$primaryMenu}
 					</div>
+
+					{* Mobile-only: user/admin menu inside dropdown panel *}
+					<div class="jrdc-mobile-user" aria-label="{translate|escape key="common.navigation.user"}">
+						{load_menu name="user" id="navigationUserMobile" ulClass="pkp_navigation_user" liClass="profile"}
+					</div>
 				</nav>
 
-				{* Right-side Actions: Search + Masuk + Dark Toggle *}
+				{* Right: User menu + controls (hamburger + dark toggle) *}
 				<div class="jrdc-header__actions">
-					{if $currentContext}
-						<div class="pkp_navigation_search_wrapper jrdc-nav__search">
-							<form action="{url page="search" op="search"}" method="get" class="pkp_search_form jrdc-search" role="search">
-								<label class="pkp_screen_reader" for="jrdc-search-query">{translate key="common.search"}</label>
-								<input id="jrdc-search-query" type="search" name="query" placeholder="Cari artikel..." class="pkp_search_input jrdc-search__input" aria-label="{translate key="common.search"}" autocomplete="off" />
-								<button type="submit" class="pkp_search_button jrdc-search__button" aria-label="{translate|escape key="common.search"}">
-									<svg class="jrdc-search__icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-4.35-4.35"></path></svg>
-								</button>
-							</form>
-						</div>
-					{/if}
-
 					<div class="pkp_navigation_user_wrapper jrdc-nav__user" id="navigationUserWrapper">
 						{load_menu name="user" id="navigationUser" ulClass="pkp_navigation_user" liClass="profile"}
 					</div>
 
-					<button type="button" class="jrdc-theme-toggle" onclick="document.documentElement.classList.toggle('dark')" title="Ganti Mode" aria-label="Ganti Mode">
-						<svg class="jrdc-theme-toggle__icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-							<path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
-						</svg>
-					</button>
+					<div class="jrdc-header__controls">
+						<button class="pkp_site_nav_toggle jrdc-nav-toggle" type="button" aria-expanded="false" aria-controls="jrdcSiteNav" aria-label="{translate|escape key="common.navigation"}">
+							<span class="jrdc-nav-toggle__icon" aria-hidden="true">
+								<span></span>
+								<span></span>
+								<span></span>
+							</span>
+							<span class="jrdc-nav-toggle__label">Menu</span>
+						</button>
+
+						<button type="button" class="jrdc-theme-toggle" onclick="document.documentElement.classList.toggle('dark')" title="Ganti Mode" aria-label="Ganti Mode">
+							<svg class="jrdc-theme-toggle__icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+							</svg>
+						</button>
+					</div>
 				</div>
 			</div><!-- .pkp_head_wrapper -->
 		</header><!-- .pkp_structure_head -->

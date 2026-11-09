@@ -225,8 +225,12 @@ a {
 	flex-direction: column !important;
 	text-align: left !important;
 
-	@media (max-width: 479px) {
+	@media (max-width: 1360px) {
 		display: none !important;
+	}
+
+	@media (min-width: 1361px) {
+		display: flex !important;
 	}
 }
 
@@ -333,7 +337,7 @@ a {
 	font-size: 0.75rem !important; /* 12px text-xs */
 	font-weight: 500 !important;
 	color: @slate-600 !important;
-	padding: 0 0.875rem !important;
+	padding: 0 0.65rem !important;
 	height: 40px !important;
 	display: inline-flex !important;
 	align-items: center !important;
@@ -416,7 +420,7 @@ ul#navigationPrimary {
 			font-size: 0.75rem !important; /* 12px */
 			font-weight: 500 !important;
 			color: @slate-600 !important;
-			padding: 0 0.875rem !important;
+			padding: 0 0.65rem !important;
 			height: 40px !important;
 			display: inline-flex !important;
 			align-items: center !important;
@@ -537,6 +541,178 @@ ul#navigationPrimary {
 	gap: 0.625rem !important; /* gap-2.5 */
 	flex-shrink: 0 !important;
 }
+
+/* Center: flexible search between brand and actions */
+.jrdc-header__search {
+	flex: 0 1 170px !important;
+	min-width: 0 !important;
+	max-width: 170px !important;
+	justify-content: center !important;
+	order: 0 !important;
+
+	@media (min-width: 1360px) {
+		flex-basis: 240px !important;
+		max-width: 240px !important;
+	}
+
+	.pkp_search_input.jrdc-search__input,
+	.pkp_search_input {
+		width: auto !important;
+		flex: 1 1 auto !important;
+		min-width: 0 !important;
+	}
+
+	.pkp_search_form {
+		width: 100% !important;
+		min-width: 0 !important;
+	}
+
+	@media (min-width: 1280px) {
+		.pkp_search_input.jrdc-search__input,
+		.pkp_search_input {
+			width: auto !important;
+			flex: 1 1 auto !important;
+		}
+	}
+}
+
+/* Right controls: hamburger + dark toggle in one bordered box */
+.jrdc-header__controls {
+	display: inline-flex !important;
+	align-items: center !important;
+	gap: 0.25rem !important;
+	flex-shrink: 0 !important;
+
+	@media (max-width: 1199px) {
+		padding: 0.25rem !important;
+		border: 1px solid @slate-300 !important;
+		border-radius: 8px !important;
+		background-color: @bg-white !important;
+	}
+}
+
+@media (max-width: 1199px) {
+	.pkp_head_wrapper.jrdc-header__inner,
+	.pkp_head_wrapper {
+		flex-wrap: wrap !important;
+		row-gap: 0.5rem !important;
+		height: auto !important;
+		min-height: 72px !important;
+	}
+
+	.jrdc-nav {
+		order: 10 !important;
+		flex-basis: 100% !important;
+	}
+
+	/* Mobile-only panel blocks: hidden on desktop (defined below) */
+
+	/* Mobile row 1: only brand + bordered toggle box.
+	   Search and user menu move into the dropdown panel. */
+	.jrdc-header__search {
+		display: none !important;
+	}
+
+	.jrdc-nav__user {
+		display: none !important;
+	}
+
+	.jrdc-mobile-search {
+		display: block !important;
+		margin-bottom: 1rem !important;
+
+		.pkp_search_input {
+			height: 44px !important;
+		}
+	}
+
+	.jrdc-mobile-user {
+		display: block !important;
+		margin-top: 0.75rem !important;
+		padding-top: 0.75rem !important;
+		border-top: 1px solid @slate-200 !important;
+
+		.pkp_navigation_user {
+			display: flex !important;
+			flex-direction: column !important;
+			gap: 0.25rem !important;
+
+			> li > a {
+				display: flex !important;
+				width: 100% !important;
+				min-height: 44px !important;
+				padding: 0.6rem 0.85rem !important;
+				border-radius: 7px !important;
+				font-size: 0.8125rem !important;
+				font-weight: 600 !important;
+			}
+
+			a[href*="/register"],
+			a[href*="/login"] {
+				background-color: @slate-100 !important;
+				color: @slate-800 !important;
+			}
+		}
+	}
+
+	.jrdc-nav-toggle {
+		position: static !important;
+		top: auto !important;
+		left: auto !important;
+		transform: none !important;
+		display: inline-flex !important;
+		align-items: center !important;
+		justify-content: center !important;
+		gap: 0.5rem !important;
+		min-width: 42px !important;
+		min-height: 40px !important;
+		padding: 0.5rem 0.65rem !important;
+		background: transparent !important;
+		border: none !important;
+		border-radius: 6px !important;
+		color: @slate-600 !important;
+		cursor: pointer !important;
+	}
+
+	.jrdc-nav-toggle__icon {
+		display: inline-flex !important;
+		flex-direction: column !important;
+		gap: 4px !important;
+
+		span {
+			display: block !important;
+			width: 18px !important;
+			height: 2px !important;
+			border-radius: 2px !important;
+			background: currentColor !important;
+		}
+	}
+
+	.jrdc-nav-toggle__label {
+		font-family: @font-geist !important;
+		font-size: 0.75rem !important;
+		font-weight: 600 !important;
+
+		@media (max-width: 479px) {
+			display: none !important;
+		}
+	}
+
+	.jrdc-theme-toggle {
+		border: none !important;
+		background: transparent !important;
+		width: 40px !important;
+		height: 40px !important;
+	}
+}
+
+/* Mobile-only panel blocks: hidden on desktop */
+.jrdc-mobile-search,
+.jrdc-mobile-user {
+	display: none !important;
+}
+
+
 
 /* Header Search Pill */
 .jrdc-nav__search {
@@ -1557,6 +1733,121 @@ html.dark {
 }
 
 /* ==========================================================================
+   12. INFORMATION / PUBLICATION PAGES (Tahap 4-5, CSS-only)
+   Tanpa override template: hook, routing, dan variabel OJS utuh.
+   ========================================================================== */
+
+/* About - editorial content */
+.page_about {
+	h1 {
+		font-size: clamp(1.5rem, 3vw, 2rem) !important;
+	}
+	.obj_help, .description {
+		max-width: 68ch !important;
+		p {
+			margin-bottom: 1rem !important;
+		}
+	}
+	.about_section {
+		margin-bottom: 2rem !important;
+		padding: 1.5rem !important;
+		background: @slate-50 !important;
+		border: 1px solid @slate-200 !important;
+		border-radius: @radius-xl !important;
+		h2 { border: none !important; }
+	}
+}
+
+/* Issue detail - cover + TOC */
+.page_issue {
+	.obj_issue_toc .cover {
+		margin-bottom: 1rem !important;
+		img {
+			max-width: 220px !important;
+			border-radius: @radius-xl !important;
+			box-shadow: 0 8px 20px rgba(15, 23, 42, 0.12) !important;
+		}
+	}
+	.obj_issue_toc .section {
+		font-size: 0.8rem !important;
+		font-weight: 700 !important;
+		text-transform: uppercase !important;
+		letter-spacing: 0.06em !important;
+		color: @slate-700 !important;
+		margin: 1.75rem 0 0.75rem !important;
+		padding-bottom: 0.5rem !important;
+		border-bottom: 2px solid @primary-color !important;
+	}
+}
+
+/* Announcement detail */
+.page_announcement {
+	.obj_announcement {
+		max-width: 72ch !important;
+		.date {
+			font-size: 0.75rem !important;
+			color: @slate-500 !important;
+			font-weight: 600 !important;
+			text-transform: uppercase !important;
+			letter-spacing: 0.06em !important;
+			margin-bottom: 1rem !important;
+		}
+		.title {
+			font-size: clamp(1.4rem, 2.5vw, 1.9rem) !important;
+			font-weight: 800 !important;
+			color: @slate-900 !important;
+			margin-bottom: 1rem !important;
+			letter-spacing: -0.02em !important;
+		}
+		.description {
+			font-size: 0.9375rem !important;
+			line-height: 1.75 !important;
+			color: @slate-700 !important;
+		}
+	}
+}
+
+/* Login / Register - minimal forms, OJS workflow intact */
+.page_login, .page_register {
+	.cmp_form {
+		max-width: 36rem !important;
+		margin: 0 auto !important;
+		.fbp legend {
+			font-size: 0.8rem !important;
+			font-weight: 700 !important;
+			margin-bottom: 0.75rem !important;
+		}
+		input[type="text"], input[type="password"], input[type="email"], select {
+			width: 100% !important;
+			min-height: 42px !important;
+			padding: 0.55rem 0.85rem !important;
+			border: 1px solid @slate-300 !important;
+			border-radius: 8px !important;
+			background: @bg-white !important;
+			font-size: 0.875rem !important;
+			&:focus {
+				border-color: @primary-color !important;
+				box-shadow: 0 0 0 3px rgba(194, 65, 12, 0.1) !important;
+				outline: none !important;
+			}
+		}
+		.submit {
+			margin-top: 1.25rem !important;
+			button, input[type="submit"] {
+				background-color: @primary-color !important;
+				color: @bg-white !important;
+				font-weight: 600 !important;
+				padding: 0.65rem 1.5rem !important;
+				border: none !important;
+				border-radius: 8px !important;
+				cursor: pointer !important;
+				&:hover { background-color: @primary-hover !important; }
+			}
+		}
+	}
+}
+
+/* ==========================================================================
    9. FOOTER (DEEP OBSIDIAN SLATE-950, 4-COLUMN)
    ========================================================================== */
 .pkp_structure_footer_wrapper.jrdc-footer,
@@ -1900,6 +2191,45 @@ html.dark {
 				}
 			}
 		}
+	}
+}
+
+/* Announcement slider: list on small screens; no autoplay on reduced motion */
+.sanguline_announcement_slider {
+	@media (max-width: 640px) {
+		.slider_track {
+			flex-direction: column !important;
+			transform: none !important;
+		}
+		.slider_slide {
+			display: block !important;
+		}
+		.slider_controls,
+		.slider_dots {
+			display: none !important;
+		}
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto !important;
+	}
+	.jrdc-reading-progress {
+		display: none !important;
+	}
+}
+
+/* Header mobile user menu hidden (after base rule to win cascade) */
+@media (max-width: 1199px) {
+	.pkp_head_wrapper.jrdc-header__inner .jrdc-nav__user {
+		display: none !important;
+	}
+
+	/* Panel blocks visible on mobile (override base display:none above) */
+	.pkp_site_nav_menu .jrdc-mobile-search,
+	.pkp_site_nav_menu .jrdc-mobile-user {
+		display: block !important;
 	}
 }
 
