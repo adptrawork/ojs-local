@@ -14,7 +14,7 @@ All notable changes to this project will be documented in this file.
 - **Duplicate PDF CTA:** The primary galley block in the article sidebar is hidden because the same download is already shown above the fold in the main column; supplementary galleys remain visible.
 
 ### Changed
-- **Sidebar Blocks Cleaned:** Removed `sinta`, `in-collaboration-with`, and `template` from the Custom Block Manager list (duplicate "Sejarah Jurnal" link, partner placeholders, missing template URL). `journal-profile` now shows only verified data (name, abbreviation, publisher); dummy "Visitor counter" label and mailing-address bracket placeholders removed.
+- **Sidebar Blocks Cleaned:** Removed `sinta`, `in-collaboration-with`, and `template` from the Custom Block Manager list (duplicate "Sejarah Jurnal" link, partner placeholders, missing template URL). `journal-profile` now shows only verified data (name, abbreviation, publisher); dummy "Visitor counter" label and mailing-address bracket placeholders removed. The core Web Feed block (misleadingly titled "Current Issue", showing only Atom/RSS icons) is hidden from the sidebar; feeds remain in `<head>`.
 - **CHANGELOG/Version Sync:** Entries ordered newest-first; `version.xml` release updated to `1.4.0.0`.
 
 ## [1.3.0] - 2026-11-09

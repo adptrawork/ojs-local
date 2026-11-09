@@ -1572,6 +1572,12 @@ html.dark {
 	}
 }
 
+/* Web Feed block is titled "Current Issue" but only renders Atom/RSS icons.
+   Feeds stay available via <head>; hide the misleading sidebar card. */
+.pkp_structure_sidebar .block_web_feed {
+	display: none !important;
+}
+
 /* ==========================================================================
    8. SIDEBAR BLOCKS (CLEAN CARDS WITH ACCENT)
    ========================================================================== */
