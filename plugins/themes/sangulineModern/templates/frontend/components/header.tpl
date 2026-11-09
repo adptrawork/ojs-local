@@ -91,19 +91,6 @@
 					{/if}
 				</div>
 
-				{* Center: Search (flexible, shrinks on small screens) *}
-				{if $currentContext}
-					<div class="pkp_navigation_search_wrapper jrdc-header__search jrdc-nav__search">
-						<form action="{url page="search" op="search"}" method="get" class="pkp_search_form jrdc-search" role="search">
-							<label class="pkp_screen_reader" for="jrdc-search-query">{translate key="common.search"}</label>
-							<input id="jrdc-search-query" type="search" name="query" placeholder="Cari artikel..." class="pkp_search_input jrdc-search__input" aria-label="{translate key="common.search"}" autocomplete="off" />
-							<button type="submit" class="pkp_search_button jrdc-search__button" aria-label="{translate|escape key="common.search"}">
-								<svg class="jrdc-search__icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-4.35-4.35"></path></svg>
-							</button>
-						</form>
-					</div>
-				{/if}
-
 				{capture assign="primaryMenu"}
 					{load_menu name="primary" id="navigationPrimary" ulClass="pkp_navigation_primary"}
 				{/capture}
@@ -142,6 +129,20 @@
 
 				{* Right: User menu + controls (hamburger + dark toggle) *}
 				<div class="jrdc-header__actions">
+
+					{* Right: Search (prototype: search on the right side) *}
+					{if $currentContext}
+						<div class="pkp_navigation_search_wrapper jrdc-header__search jrdc-nav__search">
+							<form action="{url page="search" op="search"}" method="get" class="pkp_search_form jrdc-search" role="search">
+								<label class="pkp_screen_reader" for="jrdc-search-query">{translate key="common.search"}</label>
+								<input id="jrdc-search-query" type="search" name="query" placeholder="Cari artikel..." class="pkp_search_input jrdc-search__input" aria-label="{translate key="common.search"}" autocomplete="off" />
+								<button type="submit" class="pkp_search_button jrdc-search__button" aria-label="{translate|escape key="common.search"}">
+									<svg class="jrdc-search__icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-4.35-4.35"></path></svg>
+								</button>
+							</form>
+						</div>
+					{/if}
+
 					<div class="pkp_navigation_user_wrapper jrdc-nav__user" id="navigationUserWrapper">
 						{load_menu name="user" id="navigationUser" ulClass="pkp_navigation_user" liClass="profile"}
 					</div>

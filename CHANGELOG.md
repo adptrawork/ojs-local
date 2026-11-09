@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.1] - 2026-11-10
+
+### Changed
+- **Header Search Position:** Search box moved from the center to the right-hand action group, matching the prototype (brand → nav → search → user → dark toggle).
+- **Issue Intro Heading:** `.obj_issue_toc .heading` no longer renders the oversized padded box (91px → 31px) when only the "Published" chip is present; padding/background/margins compacted.
+
 ## [1.4.0] - 2026-11-10
 
 ### Fixed
