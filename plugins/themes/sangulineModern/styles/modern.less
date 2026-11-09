@@ -286,7 +286,7 @@ a {
 	@media (max-width: 1199px) {
 		display: none !important;
 		position: absolute !important;
-		top: 80px !important;
+		top: calc(100% + 1px) !important;
 		left: 0 !important;
 		width: 100% !important;
 		height: auto !important;
@@ -675,9 +675,19 @@ ul#navigationPrimary {
 	}
 
 	.jrdc-nav-toggle__icon {
+		position: static !important;
+		left: auto !important;
+		top: auto !important;
+		transform: none !important;
 		display: inline-flex !important;
 		flex-direction: column !important;
 		gap: 4px !important;
+
+		/* Parent rotates its own 100%-wide pseudo bars into a giant X */
+		&::before,
+		&::after {
+			display: none !important;
+		}
 
 		span {
 			display: block !important;
@@ -685,6 +695,20 @@ ul#navigationPrimary {
 			height: 2px !important;
 			border-radius: 2px !important;
 			background: currentColor !important;
+			transition: transform 0.2s ease, opacity 0.2s ease !important;
+		}
+	}
+
+	/* Open state: turn the three bars into a tidy X */
+	.pkp_site_nav_toggle--transform .jrdc-nav-toggle__icon {
+		span:nth-child(1) {
+			transform: translateY(6px) rotate(45deg) !important;
+		}
+		span:nth-child(2) {
+			opacity: 0 !important;
+		}
+		span:nth-child(3) {
+			transform: translateY(-6px) rotate(-45deg) !important;
 		}
 	}
 
@@ -1720,6 +1744,20 @@ html.dark {
 	grid-template-columns: 1fr !important;
 	gap: 2rem !important;
 
+	/* Parent .row clearfix pseudo-elements become grid items, pushing content down */
+	&::before,
+	&::after {
+		display: none !important;
+	}
+
+	/* Parent floats/calc widths fight the grid; reset inside the grid only */
+	> .main_entry,
+	> .entry_details {
+		float: none !important;
+		width: auto !important;
+		min-width: 0 !important;
+	}
+
 	@media (min-width: 1024px) {
 		grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) !important;
 	}
@@ -2066,6 +2104,13 @@ html.dark {
 			gap: 0.5rem !important;
 			transition: background-color 0.15s ease !important;
 
+			/* Parent adds an icon pseudo-element that covers the label */
+			&::before,
+			&::after {
+				content: none !important;
+				display: none !important;
+			}
+
 			&:hover {
 				background-color: #9a3412 !important;
 			}
@@ -2222,8 +2267,14 @@ html.dark {
 
 /* Header mobile user menu hidden (after base rule to win cascade) */
 @media (max-width: 1199px) {
-	.pkp_head_wrapper.jrdc-header__inner .jrdc-nav__user {
+	.pkp_head_wrapper.jrdc-header__inner .jrdc-nav__user,
+	.pkp_head_wrapper.jrdc-header__inner .jrdc-header__search {
 		display: none !important;
+	}
+
+	/* Dark toggle sits inside the bordered controls box on mobile */
+	.jrdc-theme-toggle {
+		border: none !important;
 	}
 
 	/* Panel blocks visible on mobile (override base display:none above) */
