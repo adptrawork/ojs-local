@@ -45,24 +45,31 @@
 						<a href="{$homeUrl}" class="is_img jrdc-brand__link">
 							<img src="{$publicFilesDir}/{$displayPageHeaderLogo.uploadName|escape:"url"}" width="{$displayPageHeaderLogo.width|escape}" height="{$displayPageHeaderLogo.height|escape}" {if $displayPageHeaderLogo.altText != ''}alt="{$displayPageHeaderLogo.altText|escape}"{else}alt="{$displayPageHeaderTitle|escape|default:$siteTitle|escape}"{/if} />
 						</a>
-					{elseif $displayPageHeaderTitle}
-						<a href="{$homeUrl}" class="jrdc-brand__link" style="display:flex; align-items:center; gap:0.75rem; text-decoration:none;">
-							<div style="width:40px; height:40px; border-radius:10px; background:#0b2038; border:1.5px solid #d4af37; display:flex; align-items:center; justify-content:center; color:#d4af37; font-weight:800; font-size:0.85rem; box-shadow:0 1px 3px rgba(0,0,0,0.1); shrink-0;">
-								JRDC
-							</div>
-							<div style="display:flex; flex-direction:column; text-align:left;">
-								<span style="font-size:0.875rem; font-weight:700; color:#0f172a; line-height:1.2;">Jurnal Ratu Dirgantara</span>
-								<span style="font-size:0.7rem; font-weight:500; color:#64748b; line-height:1;">Cendekiawan</span>
-							</div>
-						</a>
 					{else}
-						<a href="{$homeUrl}" class="jrdc-brand__link" style="display:flex; align-items:center; gap:0.75rem; text-decoration:none;">
-							<div style="width:40px; height:40px; border-radius:10px; background:#0b2038; border:1.5px solid #d4af37; display:flex; align-items:center; justify-content:center; color:#d4af37; font-weight:800; font-size:0.85rem; box-shadow:0 1px 3px rgba(0,0,0,0.1); shrink-0;">
-								JRDC
+						<a href="{$homeUrl}" class="jrdc-brand__link">
+							<div class="jrdc-brand__logo-box">
+								<svg class="jrdc-brand__logo-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<defs>
+										<linearGradient id="navHeaderBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+											<stop offset="0%" stop-color="#0F284E"></stop>
+											<stop offset="100%" stop-color="#0A192F"></stop>
+										</linearGradient>
+										<linearGradient id="navHeaderGold" x1="0%" y1="0%" x2="100%" y2="100%">
+											<stop offset="0%" stop-color="#F6D365"></stop>
+											<stop offset="100%" stop-color="#D4AF37"></stop>
+										</linearGradient>
+									</defs>
+									<rect x="4" y="4" width="56" height="56" rx="12" fill="url(#navHeaderBlue)" stroke="url(#navHeaderGold)" stroke-width="2"></rect>
+									<path d="M18 42C23 39.5 28.5 39.8 32 42.5C35.5 39.8 41 39.5 46 42V26C41 23.5 35.5 23.8 32 26.5C28.5 23.8 23 23.5 18 26V42Z" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"></path>
+									<line x1="32" y1="26.5" x2="32" y2="42.5" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" opacity="0.9"></line>
+									<path d="M20 35L27 29L33 32L43 20" fill="none" stroke="url(#navHeaderGold)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path>
+									<path d="M38 20H43V25" fill="none" stroke="url(#navHeaderGold)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path>
+									<circle cx="32" cy="17" r="1.8" fill="url(#navHeaderGold)"></circle>
+								</svg>
 							</div>
-							<div style="display:flex; flex-direction:column; text-align:left;">
-								<span style="font-size:0.875rem; font-weight:700; color:#0f172a; line-height:1.2;">Jurnal Ratu Dirgantara</span>
-								<span style="font-size:0.7rem; font-weight:500; color:#64748b; line-height:1;">Cendekiawan</span>
+							<div class="jrdc-brand__text">
+								<span class="jrdc-brand__name">Jurnal Ratu Dirgantara</span>
+								<span class="jrdc-brand__sub">Cendekiawan</span>
 							</div>
 						</a>
 					{/if}
@@ -91,41 +98,43 @@
 					{load_menu name="primary" id="navigationPrimary" ulClass="pkp_navigation_primary"}
 				{/capture}
 
+				{* Middle Navigation Menu *}
 				<nav class="pkp_site_nav_menu jrdc-nav" aria-label="{translate|escape key="common.navigation.site"}">
 					<a id="siteNav"></a>
-					<div class="pkp_navigation_primary_row jrdc-nav__row">
-						<div class="pkp_navigation_primary_wrapper jrdc-nav__primary">
-							{* Left side: Home + Primary Menu grouped together *}
-							<div class="pkp_nav_left_group jrdc-nav__group">
-								<div class="pkp_navigation_home jrdc-nav__home">
-									<a href="{$homeUrl}" class="pkp_nav_home jrdc-nav__home-link">
-										<span class="fa fa-home" aria-hidden="true"></span>
-										<span class="nav_home_label">{translate key="plugins.themes.sanguline.navigation.home"}</span>
-									</a>
-								</div>
-
-								{* Primary navigation menu *}
-								{$primaryMenu}
-							</div>
-
-							{* Right side: Search form *}
-							{if $currentContext}
-								<div class="pkp_navigation_search_wrapper jrdc-nav__search">
-									<form action="{url page="search" op="search"}" method="get" class="pkp_search_form jrdc-search" role="search">
-										<label class="pkp_screen_reader" for="jrdc-search-query">{translate key="common.search"}</label>
-										<input id="jrdc-search-query" type="search" name="query" placeholder="{translate key="common.search"}…" class="pkp_search_input jrdc-search__input" aria-label="{translate key="common.search"}" autocomplete="off" />
-										<button type="submit" class="pkp_search_button jrdc-search__button" aria-label="{translate|escape key="common.search"}">
-											<span class="fa fa-search" aria-hidden="true"></span>
-										</button>
-									</form>
-								</div>
-							{/if}
+					<div class="jrdc-nav__wrapper">
+						<div class="pkp_navigation_home jrdc-nav__home">
+							<a href="{$homeUrl}" class="pkp_nav_home jrdc-nav__home-link{if !$requestedPage || $requestedPage === 'index'} active{/if}">
+								{if $currentLocale == 'id_ID'}Beranda{else}{translate key="plugins.themes.sanguline.navigation.home"|default:"Home"}{/if}
+							</a>
 						</div>
+						{$primaryMenu}
 					</div>
+				</nav>
+
+				{* Right-side Actions: Search + Masuk + Dark Toggle *}
+				<div class="jrdc-header__actions">
+					{if $currentContext}
+						<div class="pkp_navigation_search_wrapper jrdc-nav__search">
+							<form action="{url page="search" op="search"}" method="get" class="pkp_search_form jrdc-search" role="search">
+								<label class="pkp_screen_reader" for="jrdc-search-query">{translate key="common.search"}</label>
+								<input id="jrdc-search-query" type="search" name="query" placeholder="Cari artikel..." class="pkp_search_input jrdc-search__input" aria-label="{translate key="common.search"}" autocomplete="off" />
+								<button type="submit" class="pkp_search_button jrdc-search__button" aria-label="{translate|escape key="common.search"}">
+									<svg class="jrdc-search__icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-4.35-4.35"></path></svg>
+								</button>
+							</form>
+						</div>
+					{/if}
+
 					<div class="pkp_navigation_user_wrapper jrdc-nav__user" id="navigationUserWrapper">
 						{load_menu name="user" id="navigationUser" ulClass="pkp_navigation_user" liClass="profile"}
 					</div>
-				</nav>
+
+					<button type="button" class="jrdc-theme-toggle" onclick="document.documentElement.classList.toggle('dark')" title="Ganti Mode" aria-label="Ganti Mode">
+						<svg class="jrdc-theme-toggle__icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+						</svg>
+					</button>
+				</div>
 			</div><!-- .pkp_head_wrapper -->
 		</header><!-- .pkp_structure_head -->
 
@@ -133,6 +142,8 @@
 		{if $isFullWidth}
 			{assign var=hasSidebar value=0}
 		{/if}
+		{if !$suppressContentWrapper}
 		<div class="pkp_structure_content{if $hasSidebar} has_sidebar{/if} jrdc-content">
 			<div class="pkp_structure_main jrdc-main" role="main">
 				<a id="pkp_content_main"></a>
+		{/if}

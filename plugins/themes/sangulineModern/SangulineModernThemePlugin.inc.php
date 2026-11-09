@@ -29,7 +29,21 @@ class SangulineModernThemePlugin extends ThemePlugin {
 	 * @return null
 	 */
 	public function init() {
-		$this->setParent('sanguline');
+		$this->setParent('sangulinethemeplugin');
+
+		// Parent JS URLs contain Windows backslashes (ThemePlugin::_getBaseUrl uses
+		// DIRECTORY_SEPARATOR) and return 404 on Apache. Re-register the same scripts
+		// with forward-slash URLs; child registration overwrites the parent entry.
+		$request = Application::get()->getRequest();
+		$base = $request->getBaseUrl();
+		$this->addScript('popper', $base . '/plugins/themes/sanguline/js/lib/popper/popper.js', ['baseUrl' => '']);
+		$this->addScript('bsUtil', $base . '/plugins/themes/sanguline/js/lib/bootstrap/util.js', ['baseUrl' => '']);
+		$this->addScript('bsDropdown', $base . '/plugins/themes/sanguline/js/lib/bootstrap/dropdown.js', ['baseUrl' => '']);
+		$this->addScript('default', $base . '/plugins/themes/sanguline/js/main.js', ['baseUrl' => '']);
+		$this->addScript('announcementSlider', $base . '/plugins/themes/sanguline/js/announcement-slider.js', ['baseUrl' => '']);
+
+		// Explicitly register navigation menu areas
+		$this->addMenuArea(['primary', 'user', 'sidebar']);
 
 		// External fonts from prototype: Geist & Material Symbols
 		$this->addStyle(

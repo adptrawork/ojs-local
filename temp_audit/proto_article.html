@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Trust and behavioral intention toward blockchain-based mudharabah smart contracts in Islamic banking — Jurnal Ekonomi dan Bisnis JRDC</title>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Satoshi:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#c2410c",
+            "primary-hover": "#9a3412",
+            "navy-hero": "#0b2038",
+            "navy-dark": "#071424",
+            "background-light": "#f8fafc",
+            "background-dark": "#090d16",
+          },
+          fontFamily: {
+            sans: ["Geist", "sans-serif"],
+            serif: ["Merriweather", "serif"],
+            display: ["Cinzel", "serif"],
+          },
+          borderRadius: {
+            DEFAULT: "0.5rem",
+          },
+        },
+      },
+    };
+  </script>
+<style>
+    body { font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+  </style>
+</head>
+
+<body
+  class="bg-background-light dark:bg-background-dark font-sans text-slate-800 dark:text-slate-200 antialiased min-h-[100dvh] flex flex-col transition-colors duration-200">
+
+  <header class="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20 gap-4">
+        <div class="flex items-center gap-3 shrink-0">
+          <a href="index.html" class="flex items-center gap-3 group">
+            <div
+              class="p-1.5 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm flex items-center justify-center transition group-hover:border-primary/40">
+              <svg class="h-9 w-auto" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="navHeaderBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#0F284E"></stop>
+                    <stop offset="100%" stop-color="#0A192F"></stop>
+                  </linearGradient>
+                  <linearGradient id="navHeaderGold" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#F6D365"></stop>
+                    <stop offset="100%" stop-color="#D4AF37"></stop>
+                  </linearGradient>
+                </defs>
+                <rect x="4" y="4" width="56" height="56" rx="12" fill="url(#navHeaderBlue)" stroke="url(#navHeaderGold)"
+                  stroke-width="2"></rect>
+                <path
+                  d="M18 42C23 39.5 28.5 39.8 32 42.5C35.5 39.8 41 39.5 46 42V26C41 23.5 35.5 23.8 32 26.5C28.5 23.8 23 23.5 18 26V42Z"
+                  fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+                  opacity="0.9"></path>
+                <line x1="32" y1="26.5" x2="32" y2="42.5" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round"
+                  opacity="0.9"></line>
+                <path d="M20 35L27 29L33 32L43 20" fill="none" stroke="url(#navHeaderGold)" stroke-width="2.4"
+                  stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M38 20H43V25" fill="none" stroke="url(#navHeaderGold)" stroke-width="2.4"
+                  stroke-linecap="round" stroke-linejoin="round"></path>
+                <circle cx="32" cy="17" r="1.8" fill="url(#navHeaderGold)"></circle>
+              </svg>
+            </div>
+            <div class="flex flex-col text-left">
+              <span class="text-xs font-semibold text-slate-700 dark:text-slate-300 leading-snug mt-0.5">Jurnal Ratu Dirgantara</span>
+              <span class="text-[10px] text-slate-500 dark:text-slate-400 font-medium leading-none">Cendekiawan</span>
+            </div>
+          </a>
+        </div>
+        <nav class="hidden lg:flex items-center space-x-1 font-medium text-xs text-slate-600 dark:text-slate-300 h-10">
+          <a class="px-3.5 h-10 inline-flex items-center hover:text-slate-900 dark:hover:text-white transition"
+            href="index.html">Beranda</a>
+          <a class="px-3.5 h-10 inline-flex items-center text-slate-900 dark:text-white font-semibold border-b-2 border-primary transition"
+            href="archive.html">Arsip</a>
+          <div class="relative group flex items-center h-10">
+            <button
+              class="flex items-center gap-1 px-3.5 h-10 hover:text-slate-900 dark:hover:text-white transition">Tentang
+              <svg class="w-3.5 h-3.5 ml-0.5 inline-block shrink-0" fill="none" stroke="currentColor" stroke-width="2"
+                viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
+              </svg></button>
+            <div class="absolute top-full left-0 w-48 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg shadow-xl py-2 hidden group-hover:block z-50">
+              <a href="about.html" class="block px-4 py-2 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300">Tentang Jurnal</a>
+              <a href="editorial-team.html" class="block px-4 py-2 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300">Dewan Redaksi</a>
+              <a href="policies.html" class="block px-4 py-2 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300">Kebijakan Etika</a>
+              <a href="contact.html" class="block px-4 py-2 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300">Kontak</a>
+            </div>
+          </div>
+          
+          <a class="px-3.5 h-10 inline-flex items-center hover:text-slate-900 dark:hover:text-white transition"
+            href="announcements.html">Pengumuman</a>
+        </nav>
+        <div class="flex items-center gap-2.5">
+          <div class="relative hidden sm:flex items-center h-10">
+            <input
+              class="w-48 xl:w-56 h-10 text-xs pl-3 pr-8 rounded-l-md border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-1 focus:ring-slate-900 dark:focus:ring-white"
+              placeholder="Cari artikel..." type="text">
+            <button
+              class="h-10 bg-slate-900 dark:bg-slate-800 hover:bg-slate-800 text-white px-3 rounded-r-md border border-l-0 border-slate-900 dark:border-slate-700 flex items-center justify-center transition"><svg
+                class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <circle cx="11" cy="11" r="8"></circle>
+                <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-4.35-4.35"></path>
+              </svg></button>
+          </div>
+          <a class="h-10 px-4 inline-flex items-center justify-center text-xs font-semibold text-white bg-slate-900 hover:bg-slate-800 dark:bg-slate-800 dark:hover:bg-slate-700 rounded-md shadow-sm transition" href="login.html">
+            Masuk
+          </a>
+          <button
+            class="w-10 h-10 inline-flex items-center justify-center rounded-md border border-slate-300 dark:border-slate-700 text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 transition"
+            onclick="document.documentElement.classList.toggle('dark')" title="Ganti Mode">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+    <!-- Breadcrumbs -->
+    <nav class="flex text-xs font-medium text-slate-500 dark:text-slate-400 mb-6 space-x-2 items-center">
+      <a href="index.html" class="hover:text-primary transition">Beranda</a>
+      <span>/</span>
+      <a href="archive.html" class="hover:text-primary transition">Arsip</a>
+      <span>/</span>
+      <a href="issue.html" class="hover:text-primary transition">Vol. 5 No. 1 (2026)</a>
+      <span>/</span>
+      <span class="text-slate-800 dark:text-slate-200 font-semibold">Detail Artikel</span>
+    </nav>
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- Left Main Column (Article Details, Abstrak, PDF Viewer, References) -->
+      <div class="lg:col-span-8 space-y-8">
+        
+        <!-- Article Header & Metadata Card -->
+        <section class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 sm:p-8 shadow-sm rounded-2xl space-y-6">
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="inline-flex items-center px-2.5 py-1 rounded text-[11px] font-bold uppercase tracking-wider bg-primary/10 text-primary border border-primary/20">
+              Artikel Penelitian
+            </span>
+            <span class="inline-flex items-center px-2.5 py-1 rounded text-[11px] font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+              Akses Terbuka
+            </span>
+            <span class="inline-flex items-center px-2.5 py-1 rounded text-[11px] font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700">
+              Telaah Sejawat Double-Blind
+            </span>
+          </div>
+
+          <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 dark:text-white tracking-tight leading-snug">
+            Trust and behavioral intention toward blockchain-based <i>mudharabah</i> smart contracts in Islamic banking
+          </h1>
+
+          <div class="text-sm text-slate-600 dark:text-slate-300 space-y-2 pb-4 border-b border-slate-100 dark:border-slate-800">
+            <div class="font-semibold text-slate-900 dark:text-slate-100 flex items-center gap-2 flex-wrap">
+              <span>Refky Fielnanda<sup>1</sup></span>, 
+              <span>Irma Novida<sup>2</sup></span>, 
+              <span>Sri Rahma<sup>3</sup></span>, 
+              <span>Dessy Anggraini<sup>4</sup></span>, 
+              <span>Alwahidin Alwahidin<sup>5</sup></span>
+            </div>
+            <div class="text-xs text-slate-500 space-y-1">
+              <p><sup>1,4</sup> Department of Islamic Banking, Faculty of Islamic Economics and Business, UIN Sulthan Thaha Saifuddin Jambi, Jambi, Indonesia</p>
+              <p><sup>2</sup> Department of Finance and Banking, Faculty of Economics and Business, Institut Teknologi dan Bisnis Ahmad Dahlan, Jakarta, Indonesia</p>
+              <p><sup>3</sup> Department of Islamic Economics, Faculty of Islamic Economics and Business, UIN Sulthan Thaha Saifuddin Jambi, Jambi, Indonesia</p>
+              <p><sup>5</sup> Department of Islamic Finance and Economics, School of Business, University of Dundee, Dundee, United Kingdom</p>
+            </div>
+          </div>
+
+          <!-- DOI & Publication Dates Grid -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-2 text-xs bg-slate-50 dark:bg-slate-800/50 p-4 rounded-xl border border-slate-200/80 dark:border-slate-700/80">
+            <div>
+              <span class="block text-slate-400 font-semibold uppercase tracking-wider text-[10px]">DOI</span>
+              <a href="https://doi.org/10.20885/JEKI.vol12.iss2.art1" class="text-primary font-medium hover:underline">10.20885/JEKI.vol12.iss2.art1</a>
+            </div>
+            <div>
+              <span class="block text-slate-400 font-semibold uppercase tracking-wider text-[10px]">DITERIMA</span>
+              <span class="text-slate-700 dark:text-slate-300 font-medium">11 Maret 2026</span>
+            </div>
+            <div>
+              <span class="block text-slate-400 font-semibold uppercase tracking-wider text-[10px]">DISETUJUI</span>
+              <span class="text-slate-700 dark:text-slate-300 font-medium">29 Juli 2026</span>
+            </div>
+            <div>
+              <span class="block text-slate-400 font-semibold uppercase tracking-wider text-[10px]">TERBIT</span>
+              <span class="text-slate-700 dark:text-slate-300 font-medium">10 Agustus 2026</span>
+            </div>
+          </div>
+
+          <!-- Abstrak Section -->
+          <div class="space-y-4 pt-2">
+            <h2 class="text-lg font-bold text-slate-900 dark:text-white tracking-tight">Abstrak</h2>
+            <div class="space-y-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed text-justify">
+              <p><strong>Tujuan</strong> – This study examines how perceived usefulness, perceived ease of use, and Sharia compliance shape trust in blockchain-based <i>mudharabah</i> smart contracts and how trust drives the behavioral intention to adopt them.</p>
+              <p><strong>Metodologi</strong> – An online survey of 300 purposively selected Islamic bank customers in Indonesia, screened for familiarity with digital financial services and blockchain, was analyzed using partial least squares structural equation modelling (PLS-SEM), drawing on the technology acceptance model and the Sharia compliance perspective.</p>
+              <p><strong>Temuan</strong> – Perceived usefulness (&beta; = 0.707) and Sharia compliance (&beta; = 0.234) significantly increased trust, whereas perceived ease of use did not (&beta; = 0.041; p = 0.069). Trust strongly predicted behavioral intention (&beta; = 0.889) and mediated the effects of perceived usefulness (&beta; = 0.629) and Sharia compliance (&beta; = 0.208), but not perceived ease of use. The model explains 91.9% of the variance in trust and 79.1% in the behavioral intention.</p>
+              <p><strong>Implikasi</strong> – Adoption depends more on demonstrable functional benefits and visible Sharia governance than on interface simplicity; therefore, Islamic banks and fintech developers should prioritize transparency and auditable Sharia assurance mechanisms in smart contract design.</p>
+              <p><strong>Keaslian</strong> – Prior Islamic fintech research has treated technology acceptance and Sharia compliance as separate explanations for adoption. This study jointly models them as antecedents of trust in a decentralized contract setting, where automation removes the human intermediary that conventionally guarantees Sharia conformity — a configuration not previously tested on Islamic banking customers.</p>
+            </div>
+            <div class="pt-2">
+              <span class="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider block mb-1.5">Keywords:</span>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-xs text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Blockchain</span>
+                <span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-xs text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Mudharabah Smart Contracts</span>
+                <span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-xs text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Islamic Fintech</span>
+                <span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-xs text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Trust</span>
+                <span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-xs text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Behavioral Intention</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- JEL Classification -->
+          <div class="pt-4 border-t border-slate-100 dark:border-slate-800 text-xs text-slate-500">
+            <strong class="text-slate-700 dark:text-slate-300">JEL Classification:</strong> G21, G23, O33, Z12
+          </div>
+        </section>
+
+        <!-- PDF Fulltext / Galley Preview Section -->
+        <section class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 sm:p-8 shadow-sm rounded-2xl space-y-6">
+          <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-100 dark:border-slate-800 pb-4">
+            <div>
+              <h2 class="text-xl font-bold text-slate-900 dark:text-white tracking-tight">Unduh Naskah Lengkap</h2>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Tersedia dalam format dokumen PDF resmi jurnal</p>
+            </div>
+            <a href="View of Trust and behavioral intention toward blockchain-based mudharabah smart contracts in Islamic banking.pdf" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary hover:bg-primary-hover text-white text-xs font-semibold shadow transition">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+              </svg>
+              <span>Unduh PDF Resmi (750 KB)</span>
+            </a>
+          </div>
+
+          <!-- Direct PDF Embedded Viewer -->
+          <div class="w-full h-[700px] rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 shadow-sm">
+            <iframe src="View of Trust and behavioral intention toward blockchain-based mudharabah smart contracts in Islamic banking.pdf" class="w-full h-full border-0" title="PDF Document Viewer"></iframe>
+          </div>
+        </section>
+
+        <!-- References Section with Expand/Collapse -->
+        <section class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 sm:p-8 shadow-sm rounded-2xl space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-4">
+            <h2 class="text-xl font-bold text-slate-900 dark:text-white tracking-tight">Daftar Pustaka</h2>
+          </div>
+
+          <ol class="list-decimal list-inside space-y-3 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+            <li>Anselin, L. (2010). <i>Spatial Econometrics: Methods and Models</i>. Springer Science & Business Media.</li>
+            <li>Nakamoto, S. (2008). Bitcoin: A peer-to-peer electronic cash system. <i>Whitepaper</i>.</li>
+            <li>Szabo, N. (1994). Smart contracts. <i>Nick Szabo's Papers and Concise Tutorials</i>.</li>
+            <li>Tapscott, D., & Tapscott, A. (2016). <i>Blockchain Revolution: How the Technology Behind Bitcoin Is Changing Money, Business, and the World</i>. Penguin.</li>
+            <li>Butt, I., & Awan, H. M. (2024). Fintech adoption in Islamic banking: A systematic literature review. <i>Journal of Islamic Accounting and Business Research</i>, 15(2), 245–268.</li>
+          </ol>
+
+          <!-- Hidden Extra References (items 6 to 10) -->
+          <div id="extra-references" class="hidden">
+            <ol start="6" class="list-decimal list-inside space-y-3 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              <li>Asutay, M., & Hidayat, S. (2020). Smart contracts and Islamic finance: Opportunities and regulatory challenges. <i>Islamic Economic Studies</i>, 28(1), 45–62.</li>
+              <li>Oseni, U. A., & Ali, S. N. (2019). <i>Fintech in Islamic Finance: Theory and Practice</i>. Routledge.</li>
+              <li>Davis, F. D. (1989). Perceived usefulness, perceived ease of use, and user acceptance of information technology. <i>MIS Quarterly</i>, 13(3), 319–340.</li>
+              <li>Venkatesh, V., & Davis, F. D. (2000). A theoretical extension of the technology acceptance model: Four longitudinal field studies. <i>Management Science</i>, 46(2), 186–204.</li>
+              <li>Hair, J. F., Hult, G. T. M., Ringle, C. M., & Sarstedt, M. (2021). <i>A Primer on Partial Least Squares Structural Equation Modeling (PLS-SEM)</i> (3rd ed.). SAGE.</li>
+            </ol>
+          </div>
+
+          <div class="pt-2 text-center">
+            <button id="toggle-references-btn" onclick="
+              var extra = document.getElementById('extra-references');
+              var btn = document.getElementById('toggle-references-btn');
+              if (extra.classList.contains('hidden')) {
+                extra.classList.remove('hidden');
+                btn.textContent = 'Sembunyikan Referensi Lainnya';
+              } else {
+                extra.classList.add('hidden');
+                btn.textContent = 'Lihat Daftar Pustaka Lainnya';
+              }
+            " class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 text-xs font-semibold text-slate-700 dark:text-slate-300 transition shadow-sm">
+              Lihat Daftar Pustaka Lainnya
+            </button>
+        </section>
+
+      </div>
+
+      <!-- Right Sidebar Column (Issue Info, Download, Metrics, License) -->
+      <div class="lg:col-span-4 space-y-6">
+        
+        <!-- Issue Thumbnail & Info Card -->
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-5 rounded-2xl shadow-sm space-y-4">
+          <div class="flex items-center gap-3 border-b border-slate-100 dark:border-slate-800 pb-4">
+            <div class="w-16 aspect-[3/4] shrink-0">
+              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFMay48mjmjTncXC-bpVeYvaA9-3QaFA7gRS3O8ktgaNmny7Ym0Wwl0K5tuei3OcNza-4dsSpCoLNcqPPy2U9svpSTq5m-pV0ltMQjh2T3dNgBeGOjFull7XtIaptG_To3Hc9H-m3iK2-V649cnG1nJEctIhjqZkMRPJl7hPrh13EH5syVlKEYOsrOHQwtdrYA7_7YhCoGNeCBLr5z05KWHlLwKErJHXGTBjpUBuX9i1BDv2eQ2CcS" alt="Cover Jurnal JRDC" class="w-full h-full object-contain rounded shadow">
+            </div>
+            <div>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-primary">EDISI TERBITAN</span>
+              <h3 class="font-bold text-slate-900 dark:text-white text-sm">Vol. 12 No. 2 (2026)</h3>
+              <p class="text-[11px] text-slate-500">Jurnal Ekonomi & Keuangan Islam</p>
+            </div>
+          </div>
+          <div class="space-y-2 text-xs">
+            <a href="index.html" class="flex items-center justify-between p-2.5 rounded-lg bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium transition">
+              <span>Lihat Semua Artikel Edisi Ini</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Article Metrics Card -->
+        <!-- Letter of Acceptance (LoA) Card -->
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-5 rounded-2xl shadow-sm space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
+            <h3 class="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">
+              Surat Penerimaan (LoA)
+            </h3>
+            <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+              Verified
+            </span>
+          </div>
+          <div class="space-y-2 text-xs text-slate-600 dark:text-slate-300">
+            <div class="flex justify-between">
+              <span class="text-slate-500">No. Verifikasi:</span>
+              <span class="font-mono font-medium text-slate-800 dark:text-slate-200">LOA/2026/JEKI/1245</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-slate-500">Tanggal Terbit:</span>
+              <span class="font-medium">29 Juli 2026</span>
+            </div>
+            <div class="pt-2">
+              <a href="#" class="w-full inline-flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-slate-900 dark:bg-slate-800 hover:bg-slate-800 dark:hover:bg-slate-700 text-white text-xs font-semibold transition shadow-sm">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                <span>Unduh Dokumen LoA (PDF)</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-5 rounded-2xl shadow-sm space-y-4">
+          <h3 class="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider border-b border-slate-100 dark:border-slate-800 pb-3">
+            Statistik Naskah
+          </h3>
+          <div class="grid grid-cols-2 gap-3 text-center">
+            <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700">
+              <span class="block text-2xl font-bold text-slate-900 dark:text-white">2,145</span>
+              <span class="text-[10px] uppercase font-semibold text-slate-500 mt-0.5 block">Total Dilihat</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700">
+              <span class="block text-2xl font-bold text-primary">1,420</span>
+              <span class="text-[10px] uppercase font-semibold text-slate-500 mt-0.5 block">Unduh PDF</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Share Article Card -->
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-5 rounded-2xl shadow-sm space-y-4">
+          <h3 class="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider border-b border-slate-100 dark:border-slate-800 pb-3">
+            Bagikan Artikel
+          </h3>
+          <div class="grid grid-cols-4 gap-2">
+            <a href="#" title="Bagikan ke WhatsApp" class="p-2.5 rounded-lg bg-emerald-500/10 text-emerald-600 hover:bg-emerald-500 hover:text-white transition flex flex-col items-center justify-center gap-1 text-[10px] font-semibold">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></path></svg>
+              <span>WA</span>
+            </a>
+            <a href="#" title="Bagikan ke X / Twitter" class="p-2.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 hover:bg-slate-900 hover:text-white transition flex flex-col items-center justify-center gap-1 text-[10px] font-semibold">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></path></svg>
+              <span>X</span>
+            </a>
+            <a href="#" title="Bagikan ke Facebook" class="p-2.5 rounded-lg bg-blue-500/10 text-blue-600 hover:bg-blue-600 hover:text-white transition flex flex-col items-center justify-center gap-1 text-[10px] font-semibold">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M9 8H6v4h3v12h5V12h3.642L18 8h-4V6.333C14 5.37 14.5 5 15.5 5H18V0h-3.808C10.59 0 9 1.581 9 4.75V8z"/></path></svg>
+              <span>FB</span>
+            </a>
+            <a href="#" title="Bagikan ke LinkedIn" class="p-2.5 rounded-lg bg-sky-500/10 text-sky-600 hover:bg-sky-600 hover:text-white transition flex flex-col items-center justify-center gap-1 text-[10px] font-semibold">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></path></svg>
+              <span>In</span>
+            </a>
+          </div>
+          <div class="pt-1">
+            <button onclick="navigator.clipboard.writeText(window.location.href); alert('Tautan artikel berhasil disalin!');" class="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 text-xs font-medium text-slate-700 dark:text-slate-300 transition shadow-sm">
+              <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
+              <span>Salin Tautan Artikel</span>
+            </button>
+          </div>
+        </div>
+        <!-- License & Copyright Card -->
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-5 rounded-2xl shadow-sm space-y-3">
+          <h3 class="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider border-b border-slate-100 dark:border-slate-800 pb-3">
+            Lisensi & Hak Cipta
+          </h3>
+          <div class="flex items-start gap-3 text-xs text-slate-600 dark:text-slate-400">
+            <div class="shrink-0 pt-0.5">
+              <span class="inline-block px-2 py-1 bg-amber-500/10 text-amber-600 font-bold rounded border border-amber-500/20 text-[10px]">CC BY-SA 4.0</span>
+            </div>
+            <p class="leading-relaxed">
+              Ciptaan dilindungi di bawah Lisensi Internasional Creative Commons Attribution-ShareAlike 4.0. Penulis memegang hak cipta tanpa batasan.
+            </p>
+          </div>
+        </div>
+
+        <!-- Similar Articles -->
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-5 rounded-2xl shadow-sm space-y-4">
+          <h3 class="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider border-b border-slate-100 dark:border-slate-800 pb-3">
+            Artikel Terkait
+          </h3>
+          <div class="space-y-3 text-xs">
+            <div>
+              <a href="#" class="font-semibold text-slate-900 dark:text-white hover:text-primary transition line-clamp-2">
+                Peran Literasi Keuangan Digital terhadap Keberlanjutan Usaha Mikro, Kecil, dan Menengah (UMKM)
+              </a>
+              <span class="text-[10px] text-slate-500 mt-1 block">Penulis C (2026)</span>
+            </div>
+            <div class="pt-2 border-t border-slate-100 dark:border-slate-800">
+              <a href="#" class="font-semibold text-slate-900 dark:text-white hover:text-primary transition line-clamp-2">
+                Efisiensi Bank Perkreditan Rakyat dalam Menjaga Stabilitas Keuangan Daerah
+              </a>
+              <span class="text-[10px] text-slate-500 mt-1 block">Penulis D, Penulis E (2026)</span>
+            </div>
+            <div class="pt-2 border-t border-slate-100 dark:border-slate-800">
+              <a href="#" class="font-semibold text-slate-900 dark:text-white hover:text-primary transition line-clamp-2">
+                Implementasi Keuangan Berkelanjutan pada Perbankan Syariah di Era Disrupsi Digital
+              </a>
+              <span class="text-[10px] text-slate-500 mt-1 block">Penulis F, Penulis G (2026)</span>
+            </div>
+            <div class="pt-2 border-t border-slate-100 dark:border-slate-800">
+              <a href="#" class="font-semibold text-slate-900 dark:text-white hover:text-primary transition line-clamp-2">
+                Analisis Risiko Pembiayaan Mudharabah dan Mitigasinya pada Lembaga Keuangan Mikro Syariah
+              </a>
+              <span class="text-[10px] text-slate-500 mt-1 block">Penulis H (2025)</span>
+            </div>
+            <div class="pt-2 border-t border-slate-100 dark:border-slate-800">
+              <a href="#" class="font-semibold text-slate-900 dark:text-white hover:text-primary transition line-clamp-2">
+                Adopsi Teknologi Finansial dan Dampaknya terhadap Profitabilitas Bank Umum Syariah di Indonesia
+              </a>
+              <span class="text-[10px] text-slate-500 mt-1 block">Penulis I, Penulis J (2025)</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="bg-slate-950 text-white mt-auto border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="space-y-4">
+          <div
+            class="inline-flex items-center gap-3 bg-white dark:bg-slate-900 rounded-xl p-3 shadow-md border border-slate-200 dark:border-slate-800 mb-2">
+            <svg class="h-9 w-auto shrink-0" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="footerBrandBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#0F284E"></stop>
+                  <stop offset="100%" stop-color="#0A192F"></stop>
+                </linearGradient>
+                <linearGradient id="footerBrandGold" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#F6D365"></stop>
+                  <stop offset="100%" stop-color="#D4AF37"></stop>
+                </linearGradient>
+              </defs>
+              <rect x="4" y="4" width="56" height="56" rx="12" fill="url(#footerBrandBlue)"
+                stroke="url(#footerBrandGold)" stroke-width="2"></rect>
+              <path
+                d="M18 42C23 39.5 28.5 39.8 32 42.5C35.5 39.8 41 39.5 46 42V26C41 23.5 35.5 23.8 32 26.5C28.5 23.8 23 23.5 18 26V42Z"
+                fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+                opacity="0.9"></path>
+              <line x1="32" y1="26.5" x2="32" y2="42.5" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round"
+                opacity="0.9"></line>
+              <path d="M20 35L27 29L33 32L43 20" fill="none" stroke="url(#footerBrandGold)" stroke-width="2.4"
+                stroke-linecap="round" stroke-linejoin="round"></path>
+              <path d="M38 20H43V25" fill="none" stroke="url(#footerBrandGold)" stroke-width="2.4"
+                stroke-linecap="round" stroke-linejoin="round"></path>
+              <circle cx="32" cy="17" r="1.8" fill="url(#footerBrandGold)"></circle>
+            </svg>
+            <div class="flex flex-col text-left">
+              <span class="text-xs font-semibold text-slate-800 dark:text-slate-200 leading-snug mt-0.5">Jurnal Ratu Dirgantara</span>
+              <span class="text-[10px] text-slate-500 dark:text-slate-400 font-medium leading-none">Cendekiawan</span>
+            </div>
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Diterbitkan oleh <span class="text-slate-300 font-medium">Yayasan Ratu Dirgantara Cendekiawan (JRDC)</span>
+            sebagai wadah diseminasi riset ilmiah dan publikasi kajian bidang ekonomi &amp; bisnis.
+          </p>
+          <div class="pt-2 border-t border-slate-800/80 text-[11px] text-slate-400 leading-relaxed">
+            <p class="text-[11px] text-slate-500">Terbit berkala 2 kali setahun (April &amp; Oktober) • Akses Terbuka
+              Peer-Reviewed.</p>
+          </div>
+        </div>
+        <div>
+          <h4 class="font-bold text-xs uppercase tracking-wider text-amber-400 mb-4 flex items-center gap-2">
+            Untuk Penulis
+          </h4>
+          <ul class="space-y-2 text-xs text-slate-400">
+            <li class=""><a class="hover:text-white transition flex items-center gap-1.5 py-0.5" href="#"><span
+                  class="text-slate-600">›</span> Pedoman Penulis</a></li>
+            <li class=""><a class="hover:text-white transition flex items-center gap-1.5 py-0.5" href="#"><span
+                  class="text-slate-600">›</span> Fokus &amp; Ruang Lingkup</a></li>
+            <li class=""><a class="hover:text-white transition flex items-center gap-1.5 py-0.5" href="#"><span
+                  class="text-slate-600">›</span> Etika Publikasi</a></li>
+            <li class=""><a class="hover:text-white transition flex items-center gap-1.5 py-0.5" href="#"><span
+                  class="text-slate-600">›</span> Proses Peer Review</a></li>
+            <li class=""><a class="hover:text-white transition flex items-center gap-1.5 py-0.5" href="#"><span
+                  class="text-slate-600">›</span> Templat Naskah (.docx)</a></li>
+            <li class=""><a class="hover:text-white transition flex items-center gap-1.5 py-0.5" href="#"><span
+                  class="text-slate-600">›</span> Kirim Naskah Online</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold text-xs uppercase tracking-wider text-amber-400 mb-4 flex items-center gap-2">
+            Navigasi &amp; Arsip
+          </h4>
+          <ul class="space-y-2 text-xs text-slate-400">
+            <li class=""><a class="hover:text-white transition flex items-center gap-1.5 py-0.5" href="#"><span
+                  class="text-slate-600">›</span> Beranda</a></li>
+            <li class=""><a class="hover:text-white transition flex items-center gap-1.5 py-0.5" href="#"><span
+                  class="text-slate-600">›</span> Edisi Terbaru</a></li>
+            <li class=""><a class="hover:text-white transition flex items-center gap-1.5 py-0.5" href="#"><span
+                  class="text-slate-600">›</span> Arsip Terbitan</a></li>
+            <li class=""><a class="hover:text-white transition flex items-center gap-1.5 py-0.5" href="#"><span
+                  class="text-slate-600">›</span> Dewan Redaksi</a></li>
+            <li class=""><a class="hover:text-white transition flex items-center gap-1.5 py-0.5" href="#"><span
+                  class="text-slate-600">›</span> Pengumuman</a></li>
+            <li class=""><a class="hover:text-white transition flex items-center gap-1.5 py-0.5" href="#"><span
+                  class="text-slate-600">›</span> Indeksasi &amp; Abstrak</a></li>
+          </ul>
+        </div>
+        <div class="space-y-4">
+          <h4 class="font-bold text-xs uppercase tracking-wider text-amber-400 mb-4 flex items-center gap-2">
+            Kontak &amp; Sekretariat
+          </h4>
+          <div class="text-xs text-slate-400 space-y-2.5 leading-relaxed">
+            <div class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-slate-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2"
+                viewBox="0 0 24 24">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+              <div>
+                <span class="block text-slate-500 text-[10px] uppercase font-semibold">Surel Redaksi</span>
+                <a class="text-slate-300 hover:text-white transition font-medium"
+                  href="mailto:jurnal@jrdc.ac.id">jurnal@jrdc.ac.id</a>
+              </div>
+            </div>
+            <div class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-slate-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2"
+                viewBox="0 0 24 24">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              <div>
+                <span class="block text-slate-500 text-[10px] uppercase font-semibold">Alamat Kantor</span>
+                <span class="text-slate-300">Gedung Ratu Dirgantara Cendekiawan, Jakarta, Indonesia</span>
+              </div>
+            </div>
+            <div class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-slate-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2"
+                viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+              <div>
+                <span class="block text-slate-500 text-[10px] uppercase font-semibold">Jam Layanan</span>
+                <span class="text-slate-300">Senin – Jumat: 08.00 – 16.00 WIB</span>
+              </div>
+            </div>
+          </div>
+          <div class="pt-3 border-t border-slate-800/80">
+            <span class="block text-slate-400 text-[10px] uppercase font-semibold tracking-wider mb-2.5">Media Sosial
+              &amp; Kanal Redaksi</span>
+            <div class="flex flex-wrap items-center gap-2">
+              <a href="#" title="Instagram: @jurnal.jrdc"
+                class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:bg-primary hover:border-primary transition flex items-center justify-center shrink-0"><svg
+                  class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z">
+                  </path>
+                </svg></a>
+              <a href="#" title="LinkedIn: Jurnal JRDC"
+                class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:bg-primary hover:border-primary transition flex items-center justify-center shrink-0"><svg
+                  class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z">
+                  </path>
+                </svg></a>
+              <a href="#" title="X / Twitter: @jurnal_jrdc"
+                class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:bg-primary hover:border-primary transition flex items-center justify-center shrink-0"><svg
+                  class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z">
+                  </path>
+                </svg></a>
+              <a href="#" title="YouTube: JRDC Journal Official"
+                class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:bg-primary hover:border-primary transition flex items-center justify-center shrink-0"><svg
+                  class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z">
+                  </path>
+                </svg></a>
+              <a href="mailto:jurnal@jrdc.ac.id" title="Email / Korespondensi"
+                class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:bg-primary hover:border-primary transition flex items-center justify-center shrink-0"><svg
+                  class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-slate-900 bg-black/40 py-4">
+      <div
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left text-xs text-slate-500">
+        <div class="">© 2026 Yayasan Ratu Dirgantara Cendekiawan (JRDC) — Powered by Open Journal Systems</div>
+        <div class="flex items-center gap-4">
+          <a href="policies.html" class="hover:text-slate-300 transition">Kebijakan Privasi</a>
+          <span class="text-slate-700">•</span>
+          <a href="policies.html" class="hover:text-slate-300 transition">Pemberitahuan Hak Cipta</a>
+          <span class="text-slate-700">•</span>
+          <a href="about.html" class="hover:text-slate-300 transition">Pernyataan Akses Terbuka</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>
