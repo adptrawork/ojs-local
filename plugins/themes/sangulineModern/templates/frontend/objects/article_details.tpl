@@ -68,7 +68,7 @@
  {if !$heading}
  	{assign var="heading" value="h3"}
  {/if}
-<article class="obj_article_details">
+<article class="obj_article_details jrdc-article">
 
 	{* Indicate if this is only a preview *}
 	{if $publication->getData('status') !== $smarty.const.STATUS_PUBLISHED}
@@ -87,18 +87,33 @@
 		</div>
 	{/if}
 
-	<h1 class="page_title">
+	<h1 class="page_title jrdc-article__title">
 		{$publication->getLocalizedTitle()|strip_unsafe_html}
 	</h1>
 
 	{if $publication->getLocalizedData('subtitle')}
-		<h2 class="subtitle">
+		<h2 class="subtitle jrdc-article__subtitle">
 			{$publication->getLocalizedData('subtitle')|strip_unsafe_html}
 		</h2>
 	{/if}
 
-	<div class="row">
-		<div class="main_entry">
+	{if $primaryGalleys}
+		<div class="item galleys jrdc-article__download">
+			<h2 class="pkp_screen_reader">
+				{translate key="submission.downloads"}
+			</h2>
+			<ul class="value galleys_links jrdc-article__download-list">
+				{foreach from=$primaryGalleys item=galley}
+					<li>
+						{include file="frontend/objects/galley_link.tpl" parent=$article publication=$publication galley=$galley purchaseFee=$currentJournal->getData('purchaseArticleFee') purchaseCurrency=$currentJournal->getData('currency')}
+					</li>
+				{/foreach}
+			</ul>
+		</div>
+	{/if}
+
+	<div class="row jrdc-article__row">
+		<div class="main_entry jrdc-article__main">
 
 			{if $publication->getData('authors')}
 				<section class="item authors">
@@ -272,7 +287,7 @@
 
 		</div><!-- .main_entry -->
 
-		<div class="entry_details">
+		<div class="entry_details jrdc-article__sidebar">
 
 			{* Article/Issue cover image *}
 			{if $publication->getLocalizedData('coverImage') || ($issue && $issue->getLocalizedCoverImage())}

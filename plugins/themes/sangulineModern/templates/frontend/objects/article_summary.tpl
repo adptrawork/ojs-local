@@ -35,16 +35,21 @@
 	{/if}
 
 	<div class="jrdc-article-card__body">
-		<div class="jrdc-article-card__badges" style="display:flex; flex-wrap:wrap; align-items:center; gap:0.4rem; margin-bottom:0.6rem;">
-			<span style="font-size:0.65rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; background:rgba(194,65,12,0.1); color:#c2410c; border:1px solid rgba(194,65,12,0.2); padding:0.15rem 0.5rem; border-radius:4px;">
+		<div class="jrdc-article-card__badges">
+			<span class="jrdc-badge jrdc-badge--category">
 				{if $section.title}{$section.title|escape}{else}Artikel Penelitian{/if}
 			</span>
-			<span style="font-size:0.65rem; font-weight:600; background:rgba(16,185,129,0.1); color:#059669; border:1px solid rgba(16,185,129,0.2); padding:0.15rem 0.5rem; border-radius:4px;">
-				Akses Terbuka
-			</span>
-			<span style="font-size:0.65rem; font-weight:500; background:#f1f5f9; color:#475569; border:1px solid #e2e8f0; padding:0.15rem 0.5rem; border-radius:4px;">
-				Peer-Reviewed
-			</span>
+			{assign var="jrdcOpenAccess" value=0}
+			{if $currentContext && $currentContext->getSetting('publishingMode') == $smarty.const.PUBLISHING_MODE_OPEN}
+				{assign var="jrdcOpenAccess" value=1}
+			{elseif $publication->getData('accessStatus') == $smarty.const.ARTICLE_ACCESS_OPEN}
+				{assign var="jrdcOpenAccess" value=1}
+			{/if}
+			{if $jrdcOpenAccess}
+				<span class="jrdc-badge jrdc-badge--open">
+					Akses Terbuka
+				</span>
+			{/if}
 		</div>
 		<{$heading} class="title jrdc-article-card__title">
 			<a id="article-{$article->getId()}" {if $journal}href="{url journal=$journal->getPath() page="article" op="view" path=$articlePath}"{else}href="{url page="article" op="view" path=$articlePath}"{/if}>
@@ -137,8 +142,8 @@
 				{/if}
 
 				<div class="article_details_link_wrapper">
-					<a {if $journal}href="{url journal=$journal->getPath() page="article" op="view" path=$articlePath}"{else}href="{url page="article" op="view" path=$articlePath}"{/if} class="jrdc-button jrdc-button--secondary" style="font-size:0.75rem; font-weight:600; padding:0.45rem 0.85rem; border-radius:8px; display:inline-flex; align-items:center; gap:0.35rem;">
-						Detail Naskah &rarr;
+					<a {if $journal}href="{url journal=$journal->getPath() page="article" op="view" path=$articlePath}"{else}href="{url page="article" op="view" path=$articlePath}"{/if} class="jrdc-button jrdc-button--secondary">
+						Detail Naskah
 					</a>
 				</div>
 			</div>
@@ -183,6 +188,7 @@
 					<div class="doi jrdc-meta-item">
 						<span class="label">DOI:</span>
 						<a href="{$doiUrl}" target="_blank" rel="noopener noreferrer" class="value">{$doiUrl}</a>
+						<button type="button" class="jrdc-doi-copy" data-doi="{$doiUrl}" aria-label="Salin DOI">Salin DOI</button>
 					</div>
 				{/if}
 			</div>

@@ -63,22 +63,31 @@
 				{elseif $issue && $issue->getLocalizedCoverImageUrl()}
 					<img src="{$issue->getLocalizedCoverImageUrl()|escape}" alt="{$issue->getIssueIdentification()|escape}" loading="eager">
 				{else}
-					<div style="width:210px; aspect-ratio:3/4; border-radius:14px; background:rgba(255,255,255,0.06); border:1.5px solid rgba(255,255,255,0.18); display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:1.5rem; box-shadow:0 15px 30px rgba(0,0,0,0.3);">
-						<span style="font-size:0.65rem; font-weight:700; color:#fbbf24; letter-spacing:0.12em; text-transform:uppercase;">COVER JURNAL</span>
-						<span style="font-size:0.95rem; font-weight:700; color:#fff; margin-top:0.5rem; line-height:1.2;">JRDC</span>
-						<span style="width:40px; height:2px; background:#c2410c; margin-top:0.75rem; border-radius:2px;"></span>
+					<div class="jrdc-hero__cover-placeholder">
+						<span class="jrdc-hero__cover-kicker">COVER JURNAL</span>
+						<span class="jrdc-hero__cover-title">JRDC</span>
+						<span class="jrdc-hero__cover-bar"></span>
 					</div>
 				{/if}
+			</div>
+
+			<div class="jrdc-hero__actions">
+				{if $issue}
+					<a href="{url router=$smarty.const.ROUTE_PAGE page="issue" op="view" path=$issue->getBestIssueId()}" class="jrdc-button jrdc-button--primary jrdc-hero__cta">Lihat Edisi Terbaru</a>
+				{/if}
+				<a href="{url page="about" op="submissions"}" class="jrdc-button jrdc-button--outline jrdc-hero__cta">Panduan Penulis</a>
 			</div>
 		</section>
 	</div>
 
-	{* =========================================================================
-	   2. 2-COLUMN STRUCTURE (MAIN 8 COLS + SIDEBAR 4 COLS)
-	   ========================================================================= *}
-	{capture assign="sidebarCode"}{call_hook name="Templates::Common::Sidebar"}{/capture}
-	{assign var="hasSidebar" value=0}
-	{if $sidebarCode && empty($isFullWidth)}
+	{* Sidebar column is rendered by footer.tpl from its single
+	   Templates::Common::Sidebar hook call (Block Manager plugin).
+	   Do not call the hook here: it would run plugins twice.
+	   The grid keeps has_sidebar; if the sidebar is empty the footer
+	   outputs no <aside> and CSS collapses to one column. *}
+	{if $isFullWidth}
+		{assign var="hasSidebar" value=0}
+	{else}
 		{assign var="hasSidebar" value=1}
 	{/if}
 
@@ -91,7 +100,7 @@
 					<h2 id="homepageAboutTitle" class="jrdc-card-title">Tentang Jurnal</h2>
 				</div>
 				<div class="jrdc-card-body">
-					<div class="jrdc-prose" style="font-size:0.875rem; color:#475569; line-height:1.7; margin-bottom:1.5rem;">
+					<div class="jrdc-prose jrdc-prose--lead">
 						{if $currentContext->getLocalizedData('description')}
 							{$currentContext->getLocalizedData('description')}
 						{else}
@@ -123,38 +132,38 @@
 
 			{* Card B: Terbitan Jurnal Terbaru *}
 			{if $issue}
-				<section class="jrdc-card-section" aria-labelledby="homepageIssueTitle" style="margin-top:2rem;">
+				<section class="jrdc-card-section jrdc-issue" aria-labelledby="homepageIssueTitle">
 					<a id="homepageIssue"></a>
-					<div class="jrdc-card-header" style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:0.75rem;">
+					<div class="jrdc-card-header jrdc-issue__header">
 						<div>
-							<div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.25rem;">
-								<span style="font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:#c2410c;">
+							<div class="jrdc-issue__eyebrow">
+								<span class="jrdc-issue__eyebrow-label">
 									Terbitan Jurnal Terbaru
 								</span>
-								<span style="display:inline-flex; align-items:center; padding:0.1rem 0.5rem; border-radius:4px; font-size:0.65rem; font-weight:600; background:rgba(16,185,129,0.1); color:#059669; border:1px solid rgba(16,185,129,0.2);">
+								<span class="jrdc-issue__status">
 									Aktif
 								</span>
 							</div>
-							<h2 id="homepageIssueTitle" class="jrdc-card-title" style="margin:0;">
+							<h2 id="homepageIssueTitle" class="jrdc-card-title">
 								{$issue->getIssueIdentification()|strip_unsafe_html}
 							</h2>
 						</div>
 						{if $issue->getDatePublished()}
-							<div style="font-size:0.8125rem; font-weight:500; color:#64748b;">
+							<div class="jrdc-issue__date">
 								{$issue->getDatePublished()|date_format:$dateFormatLong}
 							</div>
 						{/if}
 					</div>
 
-					<div class="jrdc-card-body" style="padding-top:1.25rem;">
+					<div class="jrdc-card-body">
 						<div class="jrdc-issue__toc">
 							{include file="frontend/objects/issue_toc.tpl" heading="h3"}
 						</div>
 
-						<div style="margin-top:1.5rem; padding-top:1rem; border-top:1px solid #f1f5f9; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.75rem;">
-							<span style="font-size:0.8125rem; color:#64748b;">Mencari publikasi edisi lampau atau tematik?</span>
-							<a href="{url router=$smarty.const.ROUTE_PAGE page="issue" op="archive"}" class="jrdc-button jrdc-button--secondary" style="font-size:0.75rem; font-weight:600; padding:0.45rem 1rem; border-radius:8px;">
-								Lihat Semua Edisi &amp; Arsip Lengkap &rarr;
+						<div class="jrdc-issue__footer">
+							<span class="jrdc-issue__footer-text">Mencari publikasi edisi lampau atau tematik?</span>
+							<a href="{url router=$smarty.const.ROUTE_PAGE page="issue" op="archive"}" class="jrdc-button jrdc-button--secondary">
+								Lihat Semua Edisi &amp; Arsip Lengkap
 							</a>
 						</div>
 					</div>
@@ -163,11 +172,11 @@
 
 			{* Card C: Announcements (if enabled) *}
 			{if $announcements && $numAnnouncementsHomepage}
-				<section class="jrdc-card-section jrdc-announcements" aria-label="{translate|escape key="announcement.announcements"}" style="margin-top:2rem;">
+				<section class="jrdc-card-section jrdc-announcements" aria-label="{translate|escape key="announcement.announcements"}">
 					<div class="jrdc-card-header">
 						<h2 class="jrdc-card-title">{translate key="announcement.announcements"}</h2>
 					</div>
-					<div class="jrdc-card-body" style="padding-top:1.25rem;">
+					<div class="jrdc-card-body">
 						{include file="frontend/objects/announcements_list.tpl" numAnnouncements=$numAnnouncementsHomepage}
 					</div>
 				</section>
@@ -175,7 +184,7 @@
 
 			{* Additional Content (if any) *}
 			{if $additionalHomeContent}
-				<section class="jrdc-card-section jrdc-additional" style="margin-top:2rem;">
+				<section class="jrdc-card-section jrdc-additional">
 					<div class="jrdc-card-body">
 						<div class="jrdc-prose">
 							{$additionalHomeContent}

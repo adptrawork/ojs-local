@@ -41,6 +41,7 @@ class SangulineModernThemePlugin extends ThemePlugin {
 		$this->addScript('bsDropdown', $base . '/plugins/themes/sanguline/js/lib/bootstrap/dropdown.js', ['baseUrl' => '']);
 		$this->addScript('default', $base . '/plugins/themes/sanguline/js/main.js', ['baseUrl' => '']);
 		$this->addScript('announcementSlider', $base . '/plugins/themes/sanguline/js/announcement-slider.js', ['baseUrl' => '']);
+		$this->addScript('jrdc', $base . '/plugins/themes/sangulineModern/js/jrdc.js', ['baseUrl' => '']);
 
 		// Explicitly register navigation menu areas
 		$this->addMenuArea(['primary', 'user', 'sidebar']);

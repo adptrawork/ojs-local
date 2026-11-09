@@ -34,13 +34,13 @@
 		<div class="jrdc-footer-grid">
 			{* Column 1: Brand & Publisher Blurb *}
 			<div class="footer-col footer-col--brand">
-				<div style="font-size:1.1rem; font-weight:800; color:#ffffff; margin-bottom:0.75rem;">
+				<div class="footer-brand__title">
 					{$currentJournal->getLocalizedName()|escape|default:"Jurnal Ekonomi dan Bisnis JRDC"}
 				</div>
-				<p style="font-size:0.8125rem; line-height:1.65; color:#94a3b8; margin-bottom:1rem;">
-					Diterbitkan oleh <strong style="color:#e2e8f0;">Yayasan Ratu Dirgantara Cendekiawan (JRDC)</strong> sebagai wadah diseminasi riset ilmiah dan publikasi kajian bidang ekonomi &amp; bisnis.
+				<p class="footer-brand__desc">
+					Diterbitkan oleh <strong>Yayasan Ratu Dirgantara Cendekiawan (JRDC)</strong> sebagai wadah diseminasi riset ilmiah dan publikasi kajian bidang ekonomi &amp; bisnis.
 				</p>
-				<p style="font-size:0.75rem; color:#64748b; line-height:1.5;">
+				<p class="footer-brand__note">
 					Terbit berkala 2 kali setahun (April &amp; Oktober) &bull; Akses Terbuka Peer-Reviewed.
 				</p>
 			</div>
@@ -74,18 +74,18 @@
 			{* Column 4: Kontak & Sekretariat *}
 			<div class="footer-col">
 				<h3 class="footer-col__title">Kontak &amp; Sekretariat</h3>
-				<div style="font-size:0.8125rem; line-height:1.6; color:#94a3b8; display:flex; flex-direction:column; gap:0.5rem;">
+				<div class="footer-contact">
 					<div>
-						<span style="display:block; font-size:0.65rem; font-weight:700; text-transform:uppercase; color:#64748b;">SUREL REDAKSI</span>
+						<span class="footer-contact__label">Surel Redaksi</span>
 						{if $currentContext && $currentContext->getData('contactEmail')}
-							<a href="mailto:{$currentContext->getData('contactEmail')|escape}" style="color:#cbd5e1; font-weight:500;">{$currentContext->getData('contactEmail')|escape}</a>
+							<a href="mailto:{$currentContext->getData('contactEmail')|escape}" class="footer-contact__value">{$currentContext->getData('contactEmail')|escape}</a>
 						{else}
-							<a href="mailto:jurnal@jrdc.ac.id" style="color:#cbd5e1; font-weight:500;">jurnal@jrdc.ac.id</a>
+							<a href="mailto:jurnal@jrdc.ac.id" class="footer-contact__value">jurnal@jrdc.ac.id</a>
 						{/if}
 					</div>
 					<div>
-						<span style="display:block; font-size:0.65rem; font-weight:700; text-transform:uppercase; color:#64748b;">ALAMAT KANTOR</span>
-						<span style="color:#cbd5e1;">
+						<span class="footer-contact__label">Alamat Kantor</span>
+						<span class="footer-contact__value">
 							{if $currentContext && $currentContext->getData('mailingAddress')}
 								{$currentContext->getData('mailingAddress')|escape}
 							{else}
@@ -94,15 +94,15 @@
 						</span>
 					</div>
 					<div>
-						<span style="display:block; font-size:0.65rem; font-weight:700; text-transform:uppercase; color:#64748b;">JAM LAYANAN</span>
-						<span style="color:#cbd5e1;">Senin &ndash; Jumat: 08.00 &ndash; 16.00 WIB</span>
+						<span class="footer-contact__label">Jam Layanan</span>
+						<span class="footer-contact__value">Senin &ndash; Jumat: 08.00 &ndash; 16.00 WIB</span>
 					</div>
 				</div>
 			</div>
 		</div>
 
 		{if $pageFooter}
-			<div class="pkp_footer_content jrdc-footer__content" style="border-top:1px solid #1e293b; padding-top:1.5rem; margin-bottom:1.5rem;">
+			<div class="pkp_footer_content jrdc-footer__content">
 				{$pageFooter}
 			</div>
 		{/if}
@@ -112,7 +112,7 @@
 			<div>
 				&copy; 2026 Yayasan Ratu Dirgantara Cendekiawan (JRDC) &mdash; Powered by Open Journal Systems
 			</div>
-			<div style="display:flex; gap:1rem;">
+			<div class="jrdc-footer__legal">
 				<a href="{url page="about" op="submissions" anchor="privacyStatement"}">Kebijakan Privasi</a>
 				<span>&bull;</span>
 				<a href="{url page="about" op="submissions" anchor="copyrightNotice"}">Pemberitahuan Hak Cipta</a>

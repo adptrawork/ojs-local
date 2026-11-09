@@ -25,8 +25,13 @@
 			<div class="pkp_head_wrapper jrdc-header__inner">
 
 				<div class="pkp_site_name_wrapper jrdc-brand">
-					<button class="pkp_site_nav_toggle jrdc-nav-toggle" type="button" aria-expanded="false" aria-controls="navigationPrimary" aria-label="{translate|escape key="common.navigation"}">
-						<span class="jrdc-nav-toggle__label">Open Menu</span>
+					<button class="pkp_site_nav_toggle jrdc-nav-toggle" type="button" aria-expanded="false" aria-controls="jrdcSiteNav" aria-label="{translate|escape key="common.navigation"}">
+						<span class="jrdc-nav-toggle__icon" aria-hidden="true">
+							<span></span>
+							<span></span>
+							<span></span>
+						</span>
+						<span class="jrdc-nav-toggle__label">Menu</span>
 					</button>
 					{if !$requestedPage || $requestedPage === 'index'}
 						<h1 class="pkp_screen_reader">
@@ -99,7 +104,7 @@
 				{/capture}
 
 				{* Middle Navigation Menu *}
-				<nav class="pkp_site_nav_menu jrdc-nav" aria-label="{translate|escape key="common.navigation.site"}">
+				<nav id="jrdcSiteNav" class="pkp_site_nav_menu jrdc-nav" aria-label="{translate|escape key="common.navigation.site"}">
 					<a id="siteNav"></a>
 					<div class="jrdc-nav__wrapper">
 						<div class="pkp_navigation_home jrdc-nav__home">
