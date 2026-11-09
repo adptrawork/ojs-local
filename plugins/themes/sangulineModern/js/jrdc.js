@@ -38,6 +38,16 @@
 		});
 		mutator.observe(nav, { attributes: true, attributeFilter: ['class'] });
 
+		// Parent handler toggles classes synchronously but never sets aria-expanded;
+		// mirror the state on the next tick so screen readers stay in sync.
+		toggle.addEventListener('click', function () {
+			setTimeout(function () {
+				var open = nav.classList.contains('pkp_site_nav_menu--isOpen') || nav.classList.contains('is-open');
+				toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+				toggle.setAttribute('aria-label', open ? 'Tutup navigasi' : 'Buka navigasi');
+			}, 0);
+		});
+
 		document.addEventListener('keydown', function (event) {
 			if (event.key === 'Escape') closeMenu();
 		});

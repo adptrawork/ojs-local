@@ -801,6 +801,12 @@ ul#navigationPrimary {
 		cursor: pointer !important;
 		transition: background-color 0.15s ease !important;
 
+		&::before,
+		&::after {
+			content: none !important;
+			display: none !important;
+		}
+
 		&:hover {
 			background-color: @slate-800 !important;
 		}

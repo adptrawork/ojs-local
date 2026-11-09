@@ -11,6 +11,8 @@ All notable changes to this project will be documented in this file.
 - **Mobile Panel 7px Gap:** `#jrdcSiteNav` used hardcoded `top:80px` while the mobile header is 73px. Changed to `top:calc(100% + 1px)`; measured gap is now 0.
 - **Search Page Button:** Parent `button.submit::before/::after` icon overlay covered the "Search" label. Both pseudo-elements are now disabled.
 - **Dark Toggle Double Border:** Global `.jrdc-theme-toggle` border overrode the mobile rule. Border is now `none` inside the bordered controls box ≤1199px.
+- **Toggle aria-expanded:** Parent handler toggles classes but never sets `aria-expanded`; child now mirrors the state on the next tick so screen readers stay in sync.
+- **Header Search Button Pseudo:** `.jrdc-search__button::before/::after` (parent default icon) are now disabled for consistency, matching the search-page fix.
 - **Duplicate PDF CTA:** The primary galley block in the article sidebar is hidden because the same download is already shown above the fold in the main column; supplementary galleys remain visible.
 
 ### Changed
