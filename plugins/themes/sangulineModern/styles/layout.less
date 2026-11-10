@@ -55,6 +55,9 @@
 }
 
 .jrdc-header {
+	position: sticky;
+	inset-block-start: 0;
+	z-index: 1030;
 	background: rgba(255, 255, 255, .96);
 	border-block-end: 1px solid var(--jrdc-border);
 	backdrop-filter: blur(12px);
@@ -190,6 +193,7 @@ html.dark .jrdc-header {
 	--bs-dropdown-link-active-bg: var(--jrdc-primary);
 	--bs-dropdown-border-color: var(--jrdc-border);
 	--bs-dropdown-border-radius: var(--jrdc-radius-md);
+	z-index: 1040;
 	min-inline-size: 230px;
 	margin-block-start: .25rem;
 	padding: .5rem;
