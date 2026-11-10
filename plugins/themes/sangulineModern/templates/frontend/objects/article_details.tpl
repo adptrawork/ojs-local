@@ -135,8 +135,9 @@
 				</div>
 			{/if}
 
-			{if $publication->getData('authors')}
-				<section class="card jrdc-article__card jrdc-article__authors">
+			{* Article header: authors + abstract + keywords in ONE card *}
+			<div class="card jrdc-article__card jrdc-article__main-card">
+				{if $publication->getData('authors')}
 					<div class="card-header jrdc-article__card-header">
 						<h2 class="jrdc-article__card-title">{translate key="article.authors"}</h2>
 					</div>
@@ -183,38 +184,34 @@
 						</li>
 					{/foreach}
 					</ul>
-				</section>
-			{/if}
+				{/if}
 
-		{* Abstract *}
-			{if $publication->getLocalizedData('abstract')}
-				<section class="card jrdc-article__card jrdc-article__abstract">
-					<div class="card-header jrdc-article__card-header">
+				{* Abstract *}
+				{if $publication->getLocalizedData('abstract')}
+					<div class="card-header jrdc-article__card-header border-top">
 						<h2 class="jrdc-article__card-title">{translate key="article.abstract"}</h2>
 					</div>
 					<div class="card-body jrdc-article__abstract-body">
 						{$publication->getLocalizedData('abstract')|strip_unsafe_html}
 					</div>
-				</section>
-			{/if}
+				{/if}
 
-			{* Keywords - Sanguline: moved below abstract *}
-			{if !empty($publication->getLocalizedData('keywords'))}
-			<section class="card jrdc-article__card jrdc-article__keywords">
-				<div class="card-header jrdc-article__card-header">
-					<h2 class="jrdc-article__card-title">
-						{translate key="article.subject"}
-					</h2>
-				</div>
-				<div class="card-body">
-					<span class="value jrdc-article__keyword-list">
-						{foreach name="keywords" from=$publication->getLocalizedData('keywords') item="keyword"}
-							<span class="badge jrdc-article__keyword">{$keyword|escape}</span>
-						{/foreach}
-					</span>
-				</div>
-			</section>
-			{/if}
+				{* Keywords *}
+				{if !empty($publication->getLocalizedData('keywords'))}
+					<div class="card-header jrdc-article__card-header border-top">
+						<h2 class="jrdc-article__card-title">
+							{translate key="article.subject"}
+						</h2>
+					</div>
+					<div class="card-body">
+						<span class="value jrdc-article__keyword-list">
+							{foreach name="keywords" from=$publication->getLocalizedData('keywords') item="keyword"}
+								<span class="badge jrdc-article__keyword">{$keyword|escape}</span>
+							{/foreach}
+						</span>
+					</div>
+				{/if}
+			</div>
 
 			{call_hook name="Templates::Article::Main"}
 
@@ -305,29 +302,26 @@
 		{* ===================== Sidebar ===================== *}
 		<div class="entry_details col-12 col-lg-4 jrdc-article__sidebar">
 
-			{* Article/Issue cover image *}
-			{if $publication->getLocalizedData('coverImage') || ($issue && $issue->getLocalizedCoverImage())}
-				<div class="card jrdc-article__card jrdc-article__cover">
-					<div class="card-body jrdc-article__cover-body">
-						<div class="sub_item">
+			{* Publication metadata (cover + dates + issue + DOI merged into one card) *}
+			<div class="card jrdc-article__card jrdc-article__meta">
+				{if $publication->getLocalizedData('coverImage') || ($issue && $issue->getLocalizedCoverImage())}
+					<div class="card-body jrdc-article__cover-body border-bottom pb-3">
+						<div class="sub_item text-center">
 							{if $publication->getLocalizedData('coverImage')}
 								{assign var="coverImage" value=$publication->getLocalizedData('coverImage')}
 								<img
 									src="{$publication->getLocalizedCoverImageUrl($article->getData('contextId'))|escape}"
 									alt="{$coverImage.altText|escape|default:''}"
+									class="img-fluid rounded"
 								>
 							{else}
 								<a href="{url page="issue" op="view" path=$issue->getBestIssueId()}">
-									<img src="{$issue->getLocalizedCoverImageUrl()|escape}" alt="{$issue->getLocalizedCoverImageAltText()|escape|default:''}">
+									<img src="{$issue->getLocalizedCoverImageUrl()|escape}" alt="{$issue->getLocalizedCoverImageAltText()|escape|default:''}" class="img-fluid rounded">
 								</a>
 							{/if}
 						</div>
 					</div>
-				</div>
-			{/if}
-
-			{* Publication metadata *}
-			<div class="card jrdc-article__card jrdc-article__meta">
+				{/if}
 				<div class="card-header jrdc-article__card-header">
 					<h2 class="jrdc-article__card-title">Informasi Artikel</h2>
 				</div>
@@ -425,20 +419,14 @@
 					{assign var=pubId value=$article->getStoredPubId($pubIdPlugin->getPubIdType())}
 					{if $pubId}
 						{assign var="doiUrl" value=$pubIdPlugin->getResolvingURL($currentJournal->getId(), $pubId)|escape}
-						<div class="card jrdc-article__card jrdc-article__doi">
-							<div class="card-header jrdc-article__card-header">
-								<h2 class="jrdc-article__card-title">
-									{translate key="plugins.pubIds.doi.readerDisplayName"}
-								</h2>
-							</div>
-							<div class="card-body">
-								<span class="value jrdc-article__doi-value">
-									<a href="{$doiUrl}">
-										{$doiUrl}
-									</a>
-								</span>
-								<button type="button" class="jrdc-doi-copy" data-doi="{$doiUrl}" aria-label="Salin DOI">Salin DOI</button>
-							</div>
+						<div class="jrdc-article__doi mt-3 pt-3 border-top">
+							<h3 class="label">{translate key="plugins.pubIds.doi.readerDisplayName"}</h3>
+							<span class="value jrdc-article__doi-value">
+								<a href="{$doiUrl}">
+									{$doiUrl}
+								</a>
+							</span>
+							<button type="button" class="jrdc-doi-copy" data-doi="{$doiUrl}" aria-label="Salin DOI">Salin DOI</button>
 						</div>
 					{/if}
 				{/foreach}
