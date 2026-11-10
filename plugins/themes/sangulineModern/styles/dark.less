@@ -1,0 +1,84 @@
+/**
+ * Dark-mode corrections that are not covered by the token swap.
+ * Bootstrap handles most components through data-bs-theme="dark".
+ */
+
+html.dark {
+	color-scheme: dark;
+}
+
+html.dark body {
+	background: var(--jrdc-bg);
+	color: var(--jrdc-text);
+}
+
+html.dark .jrdc-theme input,
+html.dark .jrdc-theme select,
+html.dark .jrdc-theme textarea {
+	color: var(--jrdc-text);
+	background-color: var(--jrdc-surface);
+	border-color: var(--jrdc-border);
+}
+
+html.dark .jrdc-theme input::placeholder,
+html.dark .jrdc-theme textarea::placeholder {
+	color: var(--jrdc-text-muted);
+}
+
+html.dark .jrdc-theme select option {
+	color: var(--jrdc-text);
+	background: var(--jrdc-surface);
+}
+
+html.dark .jrdc-theme .cmp_notification {
+	background: var(--jrdc-surface);
+	border-color: var(--jrdc-border);
+}
+
+html.dark .jrdc-theme .cmp_pagination a,
+html.dark .jrdc-theme .cmp_pagination span {
+	background: var(--jrdc-surface);
+	border-color: var(--jrdc-border);
+}
+
+html.dark .jrdc-theme .jrdc-search__input {
+	background: var(--jrdc-surface);
+	border-color: var(--jrdc-border);
+}
+
+html.dark .jrdc-theme .jrdc-doi-copy.copied {
+	color: #86efac;
+	background: #052e16;
+	border-color: #166534;
+}
+
+html.dark .jrdc-theme .obj_galley_link:hover {
+	color: #fff;
+}
+
+html.dark .jrdc-theme .jrdc-button--outline {
+	color: #fff;
+	border-color: rgba(255, 255, 255, .5);
+}
+
+html.dark .jrdc-theme .jrdc-button--outline:hover {
+	color: var(--jrdc-navy);
+	background: #fff;
+}
+
+html.dark .jrdc-theme .table {
+	--bs-table-color: var(--jrdc-text);
+	--bs-table-bg: transparent;
+	--bs-table-border-color: var(--jrdc-border);
+	--bs-table-striped-bg: var(--jrdc-surface-muted);
+	--bs-table-striped-color: var(--jrdc-text);
+}
+
+html.dark .jrdc-theme .dropdown-menu {
+	--bs-dropdown-bg: var(--jrdc-surface);
+	--bs-dropdown-color: var(--jrdc-text);
+	--bs-dropdown-link-color: var(--jrdc-text);
+	--bs-dropdown-link-hover-bg: var(--jrdc-surface-muted);
+	--bs-dropdown-link-hover-color: var(--jrdc-primary);
+	--bs-dropdown-border-color: var(--jrdc-border);
+}

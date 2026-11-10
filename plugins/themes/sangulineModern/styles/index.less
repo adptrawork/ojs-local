@@ -1,7 +1,22 @@
 /**
  * Sanguline Modern (OJS 3.3 child of Sanguline)
- * Entry point loaded by SangulineModernThemePlugin. Parent Sanguline styles
- * load first via setParent('sanguline'); this file adds modern overrides.
+ * Entry point loaded by SangulineModernThemePlugin.
+ *
+ * Load order: Bootstrap 5.3.3 (separate <link>) -> core OJS CSS ->
+ * FontAwesome (core) -> this file.
  */
-@import "modern.less";
 
+@import "tokens.less";
+@import "base.less";
+@import "layout.less";
+@import "components.less";
+@import "pages/home.less";
+@import "pages/announcements.less";
+@import "pages/article.less";
+@import "pages/issue.less";
+@import "pages/search.less";
+@import "pages/static.less";
+@import "pages/auth.less";
+@import "plugins.less";
+@import "dark.less";
+@import "print.less";

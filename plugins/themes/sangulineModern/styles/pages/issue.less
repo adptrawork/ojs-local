@@ -1,0 +1,127 @@
+/**
+ * Issue page, issue TOC and issue archive.
+ * Starter styles for Phase 1; Phase 3 agent owns the final layout.
+ */
+
+.obj_issue_toc {
+	min-inline-size: 0;
+}
+
+.obj_issue_toc .heading {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	gap: 1.5rem;
+	margin-block-end: 2rem;
+	padding-block-end: 1.5rem;
+	border-block-end: 1px solid var(--jrdc-border);
+}
+
+@media (min-width: 768px) {
+	.obj_issue_toc .heading {
+		grid-template-columns: minmax(0, 2fr) minmax(160px, 1fr);
+		align-items: start;
+	}
+
+	.obj_issue_toc .heading .cover {
+		grid-column: 2;
+		grid-row: 1;
+	}
+}
+
+.obj_issue_toc .heading .title {
+	margin: 0 0 .5rem;
+	font-size: ~"clamp(1.5rem, 2.5vw, 2rem)";
+	font-weight: 700;
+}
+
+.obj_issue_toc .heading .cover img {
+	inline-size: 100%;
+	max-inline-size: 220px;
+	border-radius: var(--jrdc-radius-sm);
+	box-shadow: var(--jrdc-shadow-card);
+}
+
+.obj_issue_toc .description {
+	color: var(--jrdc-text-muted);
+	font-size: .9375rem;
+	line-height: 1.7;
+}
+
+.obj_issue_toc .published {
+	color: var(--jrdc-text-muted);
+	font-size: .8125rem;
+}
+
+.obj_issue_toc .sections .section {
+	margin-block-end: 2rem;
+}
+
+.obj_issue_toc .sections .section > .title {
+	margin: 0 0 .75rem;
+	padding-block-end: .5rem;
+	border-block-end: 1px solid var(--jrdc-border);
+	font-size: 1.125rem;
+	font-weight: 600;
+}
+
+.obj_issue_toc .articles {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.obj_issue_toc .articles > li {
+	padding-block: 1rem;
+	border-block-end: 1px solid var(--jrdc-border);
+}
+
+.obj_issue_toc .articles > li:last-child {
+	border-block-end: 0;
+}
+
+.obj_issue_toc .galleys {
+	margin-block-end: 1.5rem;
+}
+
+.obj_issue_toc .galleys h2 {
+	margin: 0 0 .75rem;
+	font-size: 1rem;
+	font-weight: 600;
+}
+
+/* Issue archive */
+.issues_archive {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	gap: 1rem;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+@media (min-width: 640px) {
+	.issues_archive {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+@media (min-width: 1200px) {
+	.issues_archive {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+}
+
+.issues_archive > li {
+	min-inline-size: 0;
+}
+
+.issues_archive .obj_issue_summary {
+	block-size: 100%;
+}
+
+@media (min-width: 480px) {
+	.obj_issue_summary {
+		grid-template-columns: 120px minmax(0, 1fr);
+		align-items: start;
+	}
+}

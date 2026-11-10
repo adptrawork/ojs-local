@@ -82,17 +82,10 @@
 
 	{* Sidebar column is rendered by footer.tpl from its single
 	   Templates::Common::Sidebar hook call (Block Manager plugin).
-	   Do not call the hook here: it would run plugins twice.
-	   The grid keeps has_sidebar; if the sidebar is empty the footer
-	   outputs no <aside> and CSS collapses to one column. *}
-	{if $isFullWidth}
-		{assign var="hasSidebar" value=0}
-	{else}
-		{assign var="hasSidebar" value=1}
-	{/if}
-
-	<div class="pkp_structure_content{if $hasSidebar} has_sidebar{/if} jrdc-content">
-		<div id="pkp_content_main" class="pkp_structure_main jrdc-main" role="main">
+	   Do not call the hook here: it would run plugins twice. *}
+	<div class="container-fluid jrdc-content">
+		<div class="row g-4">
+			<div id="pkp_content_main" class="col-12 col-xl-8 pkp_structure_main jrdc-main" role="main">
 
 			{* Card A: Tentang Jurnal *}
 			<section class="jrdc-card-section" aria-labelledby="homepageAboutTitle">

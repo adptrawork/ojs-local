@@ -1,0 +1,63 @@
+/**
+ * Plugin-specific styling. Content stays owned by the plugins; this file
+ * only adapts presentation. Do not restyle PDF.js viewer internals.
+ */
+
+/* Web Feed block is titled "Current Issue" but only renders feed icons.
+   Feeds stay available via <head>; hide the misleading sidebar card. */
+.jrdc-sidebar .block_web_feed,
+.pkp_structure_sidebar .block_web_feed {
+	display: none;
+}
+
+/* Custom Block Manager */
+.block_custom .content > :last-child {
+	margin-block-end: 0;
+}
+
+.block_custom .content img {
+	max-inline-size: 100%;
+	block-size: auto;
+}
+
+.block_custom .content iframe {
+	max-inline-size: 100%;
+}
+
+/* Sidebar navigation block (theme menu, not a plugin) */
+.jrdc-sidebar .block_sidebar_nav .pkp_nav_list {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.jrdc-sidebar .block_sidebar_nav .pkp_nav_list li + li {
+	margin-block-start: .5rem;
+}
+
+/* Static Pages */
+.page .jrdc-prose table,
+.page table {
+	display: block;
+	max-inline-size: 100%;
+	overflow-x: auto;
+}
+
+/* HTML / Lens galley iframes */
+.obj_galley_link + iframe,
+.galley_iframe {
+	max-inline-size: 100%;
+	border: 0;
+}
+
+/* Usage Stats: theme reports no support; hide leftovers safely. */
+.usageStatsGraph,
+.usageStatsUnavailable {
+	max-inline-size: 100%;
+}
+
+/* PDF.js viewer uses its own full-screen layout; do not touch it. */
+.pkp_page_viewPdf .jrdc-header__actions,
+.pkp_page_viewPdf .jrdc-sidebar {
+	display: none;
+}

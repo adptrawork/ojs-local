@@ -1,0 +1,209 @@
+/**
+ * Reset, typography, links, focus and prose.
+ */
+
+html {
+	-webkit-text-size-adjust: 100%;
+	scroll-behavior: smooth;
+}
+
+body {
+	margin: 0;
+	font-family: var(--jrdc-font);
+	font-size: 1rem;
+	line-height: 1.7;
+	color: var(--jrdc-text);
+	background: var(--jrdc-bg);
+	-webkit-font-smoothing: antialiased;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+
+	*,
+	*::before,
+	*::after {
+		animation-duration: .01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: .01ms !important;
+	}
+}
+
+h1, h2, h3, h4, h5, h6 {
+	margin: 0 0 .75em;
+	color: var(--jrdc-text);
+	font-weight: 600;
+	line-height: 1.25;
+	letter-spacing: -.01em;
+}
+
+h1 {
+	font-size: ~"clamp(1.75rem, 3vw, 2.5rem)";
+	font-weight: 700;
+	line-height: 1.15;
+}
+
+h2 {
+	font-size: ~"clamp(1.25rem, 2vw, 1.5rem)";
+}
+
+h3 {
+	font-size: 1.0625rem;
+}
+
+p {
+	margin: 0 0 1rem;
+}
+
+a {
+	color: var(--jrdc-primary);
+	text-decoration: none;
+}
+
+a:hover {
+	color: var(--jrdc-primary-hover);
+	text-decoration: underline;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+hr {
+	margin: 1.5rem 0;
+	border: 0;
+	border-top: 1px solid var(--jrdc-border);
+}
+
+code,
+pre,
+kbd,
+samp {
+	font-family: var(--jrdc-font-mono);
+	font-size: .875em;
+}
+
+pre {
+	padding: 1rem;
+	overflow: auto;
+	background: var(--jrdc-surface-muted);
+	border: 1px solid var(--jrdc-border);
+	border-radius: var(--jrdc-radius-sm);
+}
+
+blockquote {
+	margin: 1.5rem 0;
+	padding: .75rem 1.25rem;
+	color: var(--jrdc-text-muted);
+	border-left: 4px solid var(--jrdc-primary);
+	background: var(--jrdc-primary-soft);
+	border-radius: 0 var(--jrdc-radius-sm) var(--jrdc-radius-sm) 0;
+}
+
+:focus-visible {
+	outline: 3px solid var(--jrdc-primary);
+	outline-offset: 2px;
+}
+
+::selection {
+	color: #fff;
+	background: var(--jrdc-primary);
+}
+
+/* OJS screen-reader helper (core ships one, keep a local fallback). */
+.jrdc-theme .pkp_screen_reader {
+	position: absolute;
+	inset-block-start: -1000px;
+	inset-inline-start: -1000px;
+	inline-size: 1px;
+	block-size: 1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+}
+
+/* Container */
+.jrdc-container {
+	inline-size: 100%;
+	max-inline-size: var(--jrdc-container);
+	margin-inline: auto;
+	padding-inline: var(--jrdc-gutter);
+}
+
+/* Prose for editor content, static pages and abstracts. */
+.jrdc-prose {
+	color: var(--jrdc-text);
+	font-size: 1rem;
+	line-height: 1.75;
+	overflow-wrap: break-word;
+}
+
+.jrdc-prose > :first-child {
+	margin-block-start: 0;
+}
+
+.jrdc-prose > :last-child {
+	margin-block-end: 0;
+}
+
+.jrdc-prose h2,
+.jrdc-prose h3,
+.jrdc-prose h4 {
+	margin-block: 1.75rem .75rem;
+}
+
+.jrdc-prose ul,
+.jrdc-prose ol {
+	margin: 0 0 1rem;
+	padding-inline-start: 1.5rem;
+}
+
+.jrdc-prose li + li {
+	margin-block-start: .35rem;
+}
+
+.jrdc-prose table {
+	inline-size: 100%;
+	margin-block: 1rem;
+	border-collapse: collapse;
+	font-size: .9375rem;
+}
+
+.jrdc-prose th,
+.jrdc-prose td {
+	padding: .625rem .75rem;
+	border: 1px solid var(--jrdc-border);
+	text-align: start;
+	vertical-align: top;
+}
+
+.jrdc-prose th {
+	background: var(--jrdc-surface-muted);
+	font-weight: 600;
+}
+
+.jrdc-prose iframe,
+.jrdc-prose video {
+	max-inline-size: 100%;
+	border: 0;
+}
+
+.jrdc-prose img {
+	border-radius: var(--jrdc-radius-sm);
+}
+
+/* Print utility */
+.visually-hidden {
+	position: absolute !important;
+	inline-size: 1px !important;
+	block-size: 1px !important;
+	padding: 0 !important;
+	margin: -1px !important;
+	overflow: hidden !important;
+	clip: rect(0, 0, 0, 0) !important;
+	white-space: nowrap !important;
+	border: 0 !important;
+}

@@ -31,30 +31,34 @@ class SangulineModernThemePlugin extends ThemePlugin {
 	public function init() {
 		$this->setParent('sangulinethemeplugin');
 
+		// Drop the parent visual layer. The parent JS stays because it powers
+		// dropdowns, the abstract toggle, registration toggles and the slider.
+		$this->removeStyle('stylesheet');
+		$this->removeStyle('font');
+
+		// Parent Bootstrap 4 scripts and main.js are replaced by Bootstrap 5
+		// bundle + jrdc.js. jQuery stays because OJS core/plugins use it.
+		$this->removeScript('popper');
+		$this->removeScript('bsUtil');
+		$this->removeScript('bsDropdown');
+		$this->removeScript('default');
+
 		// Parent JS URLs contain Windows backslashes (ThemePlugin::_getBaseUrl uses
-		// DIRECTORY_SEPARATOR) and return 404 on Apache. Re-register the same scripts
-		// with forward-slash URLs; child registration overwrites the parent entry.
+		// DIRECTORY_SEPARATOR) and return 404 on Apache. Re-register the remaining
+		// parent script with a forward-slash URL.
 		$request = Application::get()->getRequest();
 		$base = $request->getBaseUrl();
-		$this->addScript('popper', $base . '/plugins/themes/sanguline/js/lib/popper/popper.js', ['baseUrl' => '']);
-		$this->addScript('bsUtil', $base . '/plugins/themes/sanguline/js/lib/bootstrap/util.js', ['baseUrl' => '']);
-		$this->addScript('bsDropdown', $base . '/plugins/themes/sanguline/js/lib/bootstrap/dropdown.js', ['baseUrl' => '']);
-		$this->addScript('default', $base . '/plugins/themes/sanguline/js/main.js', ['baseUrl' => '']);
 		$this->addScript('announcementSlider', $base . '/plugins/themes/sanguline/js/announcement-slider.js', ['baseUrl' => '']);
+		$this->addScript('bootstrap', $base . '/plugins/themes/sangulineModern/vendor/bootstrap/bootstrap.bundle.min.js', ['baseUrl' => '']);
 		$this->addScript('jrdc', $base . '/plugins/themes/sangulineModern/js/jrdc.js', ['baseUrl' => '']);
 
 		// Explicitly register navigation menu areas
 		$this->addMenuArea(['primary', 'user', 'sidebar']);
 
-		// External fonts from prototype: Geist & Material Symbols
+		// Geist only. Material Symbols was loaded but never used.
 		$this->addStyle(
 			'fontGeist',
-			'https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Satoshi:wght@400;500;700&display=swap',
-			['baseUrl' => '']
-		);
-		$this->addStyle(
-			'fontMaterialSymbols',
-			'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200',
+			'https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap',
 			['baseUrl' => '']
 		);
 
@@ -64,6 +68,14 @@ class SangulineModernThemePlugin extends ThemePlugin {
 			'default' => '#c2410c',
 		]);
 
+		// Bootstrap 5.3.3, vendored locally. Absolute URL avoids Windows backslashes.
+		$this->addStyle(
+			'bootstrap',
+			$base . '/plugins/themes/sangulineModern/vendor/bootstrap/bootstrap.min.css',
+			['baseUrl' => '']
+		);
+
+		// Font Awesome is already loaded by core frontend CSS.
 		$this->addStyle('stylesheetModern', 'styles/index.less');
 
 		$accent = $this->getOption('modernAccent');

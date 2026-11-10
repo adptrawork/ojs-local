@@ -1,0 +1,73 @@
+/**
+ * Search page and search results.
+ * Starter styles for Phase 1; Phase 4 agent owns the final layout.
+ */
+
+.page_search .search_form {
+	margin-block-end: 1.5rem;
+	padding: 1.25rem;
+	background: var(--jrdc-surface);
+	border: 1px solid var(--jrdc-border);
+	border-radius: var(--jrdc-radius-md);
+}
+
+.page_search .search_form .query {
+	display: flex;
+	flex-wrap: wrap;
+	gap: .5rem;
+	align-items: stretch;
+	margin-block-end: 1rem;
+}
+
+.page_search .search_form input[type="text"],
+.page_search .search_form input[type="search"] {
+	flex: 1 1 240px;
+}
+
+.page_search .search_form .submit {
+	flex: 0 0 auto;
+}
+
+.page_search .search_form fieldset {
+	margin-block: 1rem 0;
+	padding-block-start: 1rem;
+	border-block-start: 1px solid var(--jrdc-border);
+	border-inline: 0;
+	border-block-end: 0;
+}
+
+.page_search .search_results {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.page_search .search_results > li {
+	padding-block: 1.25rem;
+	border-block-end: 1px solid var(--jrdc-border);
+}
+
+.page_search .search_results > li:last-child {
+	border-block-end: 0;
+}
+
+.page_search .search_results .title {
+	margin: 0 0 .375rem;
+	font-size: 1.0625rem;
+	font-weight: 600;
+}
+
+.page_search .search_results .title a {
+	color: var(--jrdc-text);
+	text-decoration: none;
+}
+
+.page_search .search_results .title a:hover {
+	color: var(--jrdc-primary);
+	text-decoration: none;
+}
+
+.page_search .search_results .meta {
+	color: var(--jrdc-text-muted);
+	font-size: .8125rem;
+}

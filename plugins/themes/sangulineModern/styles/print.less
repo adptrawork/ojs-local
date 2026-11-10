@@ -1,0 +1,57 @@
+/**
+ * Print: drop navigation chrome, keep article/issue content readable.
+ */
+
+@media print {
+	.jrdc-header,
+	.jrdc-footer,
+	.jrdc-sidebar,
+	.cmp_skip_to_content,
+	.jrdc-header__controls,
+	.jrdc-reading-progress,
+	.cmp_breadcrumbs,
+	.cmp_pagination {
+		display: none !important;
+	}
+
+	body {
+		color: #000;
+		background: #fff;
+		font-size: 11pt;
+	}
+
+	a {
+		color: #000;
+		text-decoration: underline;
+	}
+
+	.jrdc-content {
+		display: block;
+		max-inline-size: none;
+		padding: 0;
+	}
+
+	.jrdc-card,
+	.obj_article_details .abstract,
+	.obj_article_details .jrdc-article__sidebar,
+	.obj_issue_summary {
+		border: 1px solid #ccc;
+		box-shadow: none;
+	}
+
+	.obj_article_details .jrdc-article__row {
+		display: block;
+	}
+
+	.obj_article_details .jrdc-article__sidebar {
+		margin-block-start: 1rem;
+	}
+
+	h1, h2, h3 {
+		break-after: avoid;
+	}
+
+	img {
+		max-inline-size: 100% !important;
+	}
+}

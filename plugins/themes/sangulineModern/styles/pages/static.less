@@ -1,0 +1,90 @@
+/**
+ * About, editorial team, contact, submissions and Static Pages content.
+ * Starter styles for Phase 1; Phase 4 agent owns the final layout.
+ */
+
+.page {
+	min-inline-size: 0;
+}
+
+.page > h1,
+.page > h2:first-child {
+	margin: 0 0 1.25rem;
+	font-size: ~"clamp(1.75rem, 3vw, 2.5rem)";
+	font-weight: 700;
+	line-height: 1.2;
+}
+
+.page .cmp_breadcrumbs + h1 {
+	margin-block-start: 0;
+}
+
+/* Static Pages plugin content */
+.page > h2 {
+	margin: 0 0 1rem;
+	font-size: ~"clamp(1.5rem, 2.5vw, 2rem)";
+	font-weight: 700;
+}
+
+.page > p,
+.page > ul,
+.page > ol,
+.page > blockquote,
+.page > table {
+	color: var(--jrdc-text);
+}
+
+/* About page blocks */
+.page_about .about_section,
+.page_about .section {
+	margin-block-end: 2rem;
+}
+
+.page_about h2 {
+	padding-block-end: .5rem;
+	border-block-end: 1px solid var(--jrdc-border);
+	font-size: 1.375rem;
+}
+
+/* Editorial team */
+.page_editorialTeam .editorial_team {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.page_editorialTeam .editorial_team > li {
+	padding-block: .875rem;
+	border-block-end: 1px solid var(--jrdc-border);
+}
+
+.page_editorialTeam .editorial_team > li:last-child {
+	border-block-end: 0;
+}
+
+.page_editorialTeam .editorial_team .name {
+	font-weight: 600;
+}
+
+.page_editorialTeam .editorial_team .affiliation {
+	color: var(--jrdc-text-muted);
+	font-size: .875rem;
+}
+
+/* Contact */
+.page_contact .contact_section {
+	margin-block-end: 1.5rem;
+}
+
+.page_contact .contact_section h2 {
+	font-size: 1.25rem;
+}
+
+/* Submissions checklist */
+.page_submissions .submission_checklist {
+	padding-inline-start: 1.25rem;
+}
+
+.page_submissions .submission_checklist li {
+	margin-block-end: .5rem;
+}

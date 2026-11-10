@@ -1,0 +1,76 @@
+/**
+ * Login, register, lost password, profile and submission wizard forms.
+ * Starter styles for Phase 1; Phase 4 agent owns the final layout.
+ */
+
+.page_login,
+.page_register,
+.page_lostPassword,
+.page_user,
+.page_submission {
+	min-inline-size: 0;
+}
+
+.page_login .cmp_form,
+.page_register .cmp_form,
+.page_lostPassword .cmp_form {
+	max-inline-size: 640px;
+	padding: 1.5rem;
+	background: var(--jrdc-surface);
+	border: 1px solid var(--jrdc-border);
+	border-radius: var(--jrdc-radius-md);
+	box-shadow: var(--jrdc-shadow-card);
+}
+
+.page_register .cmp_form {
+	max-inline-size: 760px;
+}
+
+.page_login .cmp_form .fields > div,
+.page_register .cmp_form .fields > div,
+.page_lostPassword .cmp_form .fields > div {
+	margin-block-end: 1rem;
+}
+
+.page_login .cmp_form .buttons,
+.page_register .cmp_form .buttons {
+	margin-block-start: 1.5rem;
+}
+
+/* Consent / opt-in groups */
+.context_optin,
+.context_privacy {
+	margin-block: .75rem;
+	padding: .875rem 1rem;
+	background: var(--jrdc-surface-muted);
+	border: 1px solid var(--jrdc-border);
+	border-radius: var(--jrdc-radius-sm);
+}
+
+.context_privacy {
+	display: none;
+}
+
+.context_privacy.context_privacy_visible {
+	display: block;
+}
+
+#reviewerInterests {
+	display: none;
+}
+
+#reviewerInterests.is_visible {
+	display: block;
+}
+
+/* Submission wizard step list */
+.submission_wizard .steps {
+	margin: 0 0 1.5rem;
+	padding: 0;
+	list-style: none;
+}
+
+.submission_wizard .steps li {
+	padding-block: .5rem;
+	border-block-end: 1px solid var(--jrdc-border);
+}
