@@ -19,10 +19,10 @@
 		</h2>
 		{if $announcements|@count > 1}
 		<div class="slider_controls">
-			<button type="button" class="slider_prev" aria-label="{translate key="common.previous"}" data-jrdc-slide-prev>
+			<button type="button" class="btn btn-outline-secondary slider_prev" aria-label="{translate key="common.previous"}" data-jrdc-slide-prev>
 				<span class="fa fa-chevron-left" aria-hidden="true"></span>
 			</button>
-			<button type="button" class="slider_next" aria-label="{translate key="common.next"}" data-jrdc-slide-next>
+			<button type="button" class="btn btn-outline-secondary slider_next" aria-label="{translate key="common.next"}" data-jrdc-slide-next>
 				<span class="fa fa-chevron-right" aria-hidden="true"></span>
 			</button>
 		</div>
@@ -37,7 +37,7 @@
 					{break}
 				{/if}
 				<div class="slider_slide{if $slideIndex == 0} active{/if}" data-slide="{$slideIndex}">
-					<article class="announcement_card">
+					<article class="card announcement_card">
 						{assign var="datePosted" value=$announcement->getDatePosted()}
 						<div class="announcement_date">
 							<span class="date_day">{$datePosted|strtotime|date_format:"d"}</span>
