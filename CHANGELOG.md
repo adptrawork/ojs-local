@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.5.0] - 2026-11-10
+
+### Added
+- **Full Bootstrap 5.3.3 Rebuild:**
+  - Vendored local Bootstrap 5.3.3 CSS and JS bundle in child theme.
+  - Responsive Bootstrap `navbar` with `offcanvas` menu for mobile views.
+  - Dedicated `navigationMenuBootstrap.tpl` rendering nested Bootstrap dropdowns.
+  - Rebuilt Homepage (`indexJournal.tpl`) with Bootstrap cards, badges, and responsive action groups.
+  - Rebuilt Article Details & Summary (`article_details.tpl`, `article_summary.tpl`) with 2-column Bootstrap grid (`col-lg-8` / `col-lg-4`), metadata cards, and list groups.
+  - Rebuilt Issue Table of Contents (`issue_toc.tpl`) with Bootstrap cards, badges, and galley CTA buttons.
+  - Rebuilt Issue Archive (`issueArchive.tpl`, `issue_summary.tpl`) with responsive multi-column grid (`row-cols-1 row-cols-md-2 row-cols-lg-3`).
+  - Styled Search, Static Pages, Submissions, and Auth/Login pages to harmonize with Bootstrap styling.
+  - Enhanced Custom Block Manager sidebar widgets, UsageStats graphs, and PDF/HTML galley viewers in `plugins.less`.
+
+### Fixed
+- Fixed skip-to-content target anchor (`#siteNav`) in header offcanvas.
+- Synchronized `aria-expanded` on mobile hamburger toggle with Bootstrap offcanvas events.
+- Added full viewport dimensions and styling for HTML article galley iframes.
+- Fixed LESS variable evaluation for `calc()` expressions across sub-pages.
+- Removed dead `modern.less` legacy stylesheet.
+- Preserved full OJS 3.3 Smarty hooks, localized URLs, and Custom Block Manager architecture.
+
 ## [1.4.1] - 2026-11-10
 
 ### Changed

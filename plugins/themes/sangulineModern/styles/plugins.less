@@ -148,8 +148,24 @@
 
 /* HTML / Lens galley iframes */
 .obj_galley_link + iframe,
-.galley_iframe {
+.galley_iframe,
+#htmlContainer,
+#htmlContainer iframe {
+	inline-size: 100%;
 	max-inline-size: 100%;
+	block-size: 100%;
+	min-block-size: calc(100vh - 4rem);
+	border: 0;
+}
+
+.galley_view {
+	position: relative;
+	min-block-size: 100vh;
+}
+
+.galley_view iframe {
+	inline-size: 100%;
+	block-size: calc(100vh - 3.5rem);
 	border: 0;
 }
 

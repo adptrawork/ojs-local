@@ -81,6 +81,7 @@
 
 					{* One responsive offcanvas: slide-in panel below xl, static navbar at xl+. *}
 					<div class="offcanvas offcanvas-end jrdc-nav" tabindex="-1" id="jrdcSiteNav" aria-labelledby="jrdcNavLabel">
+						<a id="siteNav"></a>
 						<div class="offcanvas-header">
 							<h2 class="offcanvas-title h5" id="jrdcNavLabel">{translate key="common.navigation.site"}</h2>
 							<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="{translate|escape key="common.close"}"></button>

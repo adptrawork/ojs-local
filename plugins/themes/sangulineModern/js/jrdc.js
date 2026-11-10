@@ -127,5 +127,17 @@
 		initAbstractToggle();
 		initDoiCopy();
 		initReadingProgress();
+
+		// Keep nav toggle aria-expanded synchronized with Bootstrap offcanvas
+		var offcanvasEl = document.getElementById('jrdcSiteNav');
+		var toggleBtn = document.querySelector('.jrdc-nav-toggle');
+		if (offcanvasEl && toggleBtn) {
+			offcanvasEl.addEventListener('show.bs.offcanvas', function () {
+				toggleBtn.setAttribute('aria-expanded', 'true');
+			});
+			offcanvasEl.addEventListener('hide.bs.offcanvas', function () {
+				toggleBtn.setAttribute('aria-expanded', 'false');
+			});
+		}
 	});
 })();
