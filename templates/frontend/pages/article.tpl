@@ -20,23 +20,20 @@
 {assign var="isFullWidth" value=true}
 {include file="frontend/components/header.tpl" pageTitleTranslated=$article->getLocalizedFullTitle()|escape suppressContentWrapper=true}
 
-<div class="page page_article">
+<div class="container-fluid jrdc-content">
+		<div class="row g-4">
+			<div class="col-12 pkp_structure_main jrdc-main" role="main">
+				<a id="pkp_content_main"></a>
+
 	{if $section}
 		{include file="frontend/components/breadcrumbs_article.tpl" currentTitle=$section->getLocalizedTitle()}
 	{else}
 		{include file="frontend/components/breadcrumbs_article.tpl" currentTitleKey="common.publication"}
 	{/if}
 
-	<div class="container-fluid jrdc-content">
-		<div class="row g-4">
-			<div class="col-12 pkp_structure_main jrdc-main" role="main">
-				<a id="pkp_content_main"></a>
-
 	{* Show article overview *}
 	{include file="frontend/objects/article_details.tpl"}
 
 	{call_hook name="Templates::Article::Footer::PageFooter"}
-
-	</div><!-- .page -->
 
 {include file="frontend/components/footer.tpl"}
