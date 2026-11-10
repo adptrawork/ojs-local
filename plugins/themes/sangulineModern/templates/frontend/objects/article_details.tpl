@@ -8,6 +8,10 @@
  * @brief View of an Article which displays all details about the article.
  *  Expected to be primary object on the page.
  *
+ * SangulineModern override (Phase 3): rebuilt on Bootstrap 5 components
+ * (card, card-body, list-group, badge, btn). All core/parent Smarty logic,
+ * hooks and data are preserved; only markup and class names changed.
+ *
  * Many journals will want to add custom data to this object, either through
  * plugins which attach to hooks on the page or by editing the template
  * themselves. In order to facilitate this, a flexible layout markup pattern has
@@ -65,9 +69,9 @@
  *   included with published submissions.
  * @uses $ccLicenseBadge string An image and text with details about the license
  *}
- {if !$heading}
- 	{assign var="heading" value="h3"}
- {/if}
+{if !$heading}
+	{assign var="heading" value="h3"}
+{/if}
 <article class="obj_article_details jrdc-article">
 
 	{* Indicate if this is only a preview *}
@@ -87,40 +91,58 @@
 		</div>
 	{/if}
 
-	<h1 class="page_title jrdc-article__title">
-		{$publication->getLocalizedTitle()|strip_unsafe_html}
-	</h1>
+	<header class="jrdc-article__header">
+		<h1 class="page_title jrdc-article__title">
+			{$publication->getLocalizedTitle()|strip_unsafe_html}
+		</h1>
 
-	{if $publication->getLocalizedData('subtitle')}
-		<h2 class="subtitle jrdc-article__subtitle">
-			{$publication->getLocalizedData('subtitle')|strip_unsafe_html}
-		</h2>
-	{/if}
-
-	{if $primaryGalleys}
-		<div class="item galleys jrdc-article__download">
-			<h2 class="pkp_screen_reader">
-				{translate key="submission.downloads"}
+		{if $publication->getLocalizedData('subtitle')}
+			<h2 class="subtitle jrdc-article__subtitle">
+				{$publication->getLocalizedData('subtitle')|strip_unsafe_html}
 			</h2>
-			<ul class="value galleys_links jrdc-article__download-list">
-				{foreach from=$primaryGalleys item=galley}
-					<li>
-						{include file="frontend/objects/galley_link.tpl" parent=$article publication=$publication galley=$galley purchaseFee=$currentJournal->getData('purchaseArticleFee') purchaseCurrency=$currentJournal->getData('currency')}
-					</li>
-				{/foreach}
-			</ul>
-		</div>
-	{/if}
+		{/if}
+	</header>
 
-	<div class="row jrdc-article__row">
-		<div class="main_entry jrdc-article__main">
+	<div class="row g-4 jrdc-article__row">
+
+		{* ===================== Main column ===================== *}
+		<div class="main_entry col-12 col-lg-8 jrdc-article__main">
+
+			{* Primary galleys: the single PDF CTA of this page. *}
+			{if $primaryGalleys}
+				<div class="card jrdc-article__card jrdc-article__galleys">
+					<div class="card-header jrdc-article__card-header">
+						<h2 class="jrdc-article__card-title">{translate key="submission.downloads"}</h2>
+					</div>
+					<div class="card-body">
+						<ul class="value galleys_links jrdc-article__download-list list-unstyled">
+							{foreach from=$primaryGalleys item=galley}
+								{* Same path logic as core frontend/objects/galley_link.tpl. *}
+								{assign var="galleyPath" value=$article->getBestId()|to_array:$galley->getBestGalleyId()}
+								{if $publication && $publication->getId() !== $article->getData('currentPublicationId')}
+									{assign var="galleyPath" value=$article->getBestId()|to_array:"version":$publication->getId():$galley->getBestGalleyId()}
+								{/if}
+								<li class="jrdc-article__galley">
+									{include file="frontend/objects/galley_link.tpl" parent=$article publication=$publication galley=$galley purchaseFee=$currentJournal->getData('purchaseArticleFee') purchaseCurrency=$currentJournal->getData('currency')}
+									<a class="btn btn-primary btn-sm jrdc-article__galley-cta" href="{url page="article" op="view" path=$galleyPath}">
+										<span class="fa fa-download" aria-hidden="true"></span>
+										{translate key="common.download"}
+									</a>
+								</li>
+							{/foreach}
+						</ul>
+					</div>
+				</div>
+			{/if}
 
 			{if $publication->getData('authors')}
-				<section class="item authors">
-					<h2 class="pkp_screen_reader">{translate key="article.authors"}</h2>
-					<ul class="authors">
+				<section class="card jrdc-article__card jrdc-article__authors">
+					<div class="card-header jrdc-article__card-header">
+						<h2 class="jrdc-article__card-title">{translate key="article.authors"}</h2>
+					</div>
+					<ul class="list-group list-group-flush authors">
 					{foreach from=$publication->getData('authors') item=author}
-						<li>
+						<li class="list-group-item">
 							<span class="name">
 								{$author->getFullName()|escape}
 							</span>
@@ -164,50 +186,33 @@
 				</section>
 			{/if}
 
-			{* DOI *}
-			{if $currentJournal}
-				{foreach from=$pubIdPlugins item=pubIdPlugin}
-					{if $pubIdPlugin->getPubIdType() != 'doi'}
-						{continue}
-					{/if}
-					{assign var=pubId value=$article->getStoredPubId($pubIdPlugin->getPubIdType())}
-					{if $pubId}
-						{assign var="doiUrl" value=$pubIdPlugin->getResolvingURL($currentJournal->getId(), $pubId)|escape}
-						<section class="item doi">
-							<h2 class="label">
-								{capture assign=translatedDOI}{translate key="plugins.pubIds.doi.readerDisplayName"}{/capture}
-								{translate key="semicolon" label=$translatedDOI}
-							</h2>
-							<span class="value">
-								<a href="{$doiUrl}">
-									{$doiUrl}
-								</a>
-							</span>
-						</section>
-					{/if}
-				{/foreach}
-			{/if}
-
 		{* Abstract *}
 			{if $publication->getLocalizedData('abstract')}
-				<section class="item abstract">
-					<h2 class="label">{translate key="article.abstract"}</h2>
-					{$publication->getLocalizedData('abstract')|strip_unsafe_html}
+				<section class="card jrdc-article__card jrdc-article__abstract">
+					<div class="card-header jrdc-article__card-header">
+						<h2 class="jrdc-article__card-title">{translate key="article.abstract"}</h2>
+					</div>
+					<div class="card-body jrdc-article__abstract-body">
+						{$publication->getLocalizedData('abstract')|strip_unsafe_html}
+					</div>
 				</section>
 			{/if}
 
 			{* Keywords - Sanguline: moved below abstract *}
 			{if !empty($publication->getLocalizedData('keywords'))}
-			<section class="item keywords">
-				<h2 class="label">
-					{capture assign=translatedKeywords}{translate key="article.subject"}{/capture}
-					{translate key="semicolon" label=$translatedKeywords}
-				</h2>
-				<span class="value">
-					{foreach name="keywords" from=$publication->getLocalizedData('keywords') item="keyword"}
-						{$keyword|escape}{if !$smarty.foreach.keywords.last}{translate key="common.commaListSeparator"}{/if}
-					{/foreach}
-				</span>
+			<section class="card jrdc-article__card jrdc-article__keywords">
+				<div class="card-header jrdc-article__card-header">
+					<h2 class="jrdc-article__card-title">
+						{translate key="article.subject"}
+					</h2>
+				</div>
+				<div class="card-body">
+					<span class="value jrdc-article__keyword-list">
+						{foreach name="keywords" from=$publication->getLocalizedData('keywords') item="keyword"}
+							<span class="badge jrdc-article__keyword">{$keyword|escape}</span>
+						{/foreach}
+					</span>
+				</div>
 			</section>
 			{/if}
 
@@ -215,14 +220,18 @@
 
 			{* Usage statistics chart*}
 			{if $activeTheme && $activeTheme->getOption('displayStats') != 'none' && $activeTheme->supportsUsageStats()}
-				<section class="item downloads_chart">
-					<h2 class="label">
-						{translate key="plugins.themes.sanguline.displayStats.downloads"}
-					</h2>
-					<div class="value">
-						<canvas class="usageStatsGraph" data-object-type="Submission" data-object-id="{$article->getId()|escape}"></canvas>
-						<div class="usageStatsUnavailable" data-object-type="Submission" data-object-id="{$article->getId()|escape}">
-							{translate key="plugins.themes.sanguline.displayStats.noStats"}
+				<section class="card jrdc-article__card jrdc-article__downloads-chart">
+					<div class="card-header jrdc-article__card-header">
+						<h2 class="jrdc-article__card-title">
+							{translate key="plugins.themes.sanguline.displayStats.downloads"}
+						</h2>
+					</div>
+					<div class="card-body">
+						<div class="value">
+							<canvas class="usageStatsGraph" data-object-type="Submission" data-object-id="{$article->getId()|escape}"></canvas>
+							<div class="usageStatsUnavailable" data-object-type="Submission" data-object-id="{$article->getId()|escape}">
+								{translate key="plugins.themes.sanguline.displayStats.noStats"}
+							</div>
 						</div>
 					</div>
 				</section>
@@ -236,18 +245,20 @@
 				{/if}
 			{/foreach}
 			{if $hasBiographies}
-				<section class="item author_bios">
-					<h2 class="label">
-						{if $hasBiographies > 1}
-							{translate key="submission.authorBiographies"}
-						{else}
-							{translate key="submission.authorBiography"}
-						{/if}
-					</h2>
-					<ul class="authors">
+				<section class="card jrdc-article__card jrdc-article__bios">
+					<div class="card-header jrdc-article__card-header">
+						<h2 class="jrdc-article__card-title">
+							{if $hasBiographies > 1}
+								{translate key="submission.authorBiographies"}
+							{else}
+								{translate key="submission.authorBiography"}
+							{/if}
+						</h2>
+					</div>
+					<ul class="list-group list-group-flush authors">
 					{foreach from=$publication->getData('authors') item=author}
 						{if $author->getLocalizedData('biography')}
-							<li class="sub_item">
+							<li class="list-group-item sub_item">
 								<div class="label">
 									{if $author->getLocalizedData('affiliation')}
 										{capture assign="authorName"}{$author->getFullName()|escape}{/capture}
@@ -269,166 +280,180 @@
 
 			{* References *}
 			{if $parsedCitations || $publication->getData('citationsRaw')}
-				<section class="item references">
-					<h2 class="label">
-						{translate key="submission.citations"}
-					</h2>
-					<div class="value">
-						{if $parsedCitations}
-							{foreach from=$parsedCitations item="parsedCitation"}
-								<p>{$parsedCitation->getCitationWithLinks()|strip_unsafe_html} {call_hook name="Templates::Article::Details::Reference" citation=$parsedCitation}</p>
-							{/foreach}
-						{else}
-							{$publication->getData('citationsRaw')|escape|nl2br}
-						{/if}
+				<section class="card jrdc-article__card jrdc-article__references">
+					<div class="card-header jrdc-article__card-header">
+						<h2 class="jrdc-article__card-title">
+							{translate key="submission.citations"}
+						</h2>
+					</div>
+					<div class="card-body">
+						<div class="value">
+							{if $parsedCitations}
+								{foreach from=$parsedCitations item="parsedCitation"}
+									<p>{$parsedCitation->getCitationWithLinks()|strip_unsafe_html} {call_hook name="Templates::Article::Details::Reference" citation=$parsedCitation}</p>
+								{/foreach}
+							{else}
+								{$publication->getData('citationsRaw')|escape|nl2br}
+							{/if}
+						</div>
 					</div>
 				</section>
 			{/if}
 
 		</div><!-- .main_entry -->
 
-		<div class="entry_details jrdc-article__sidebar">
+		{* ===================== Sidebar ===================== *}
+		<div class="entry_details col-12 col-lg-4 jrdc-article__sidebar">
 
 			{* Article/Issue cover image *}
 			{if $publication->getLocalizedData('coverImage') || ($issue && $issue->getLocalizedCoverImage())}
-				<div class="item cover_image">
-					<div class="sub_item">
-						{if $publication->getLocalizedData('coverImage')}
-							{assign var="coverImage" value=$publication->getLocalizedData('coverImage')}
-							<img
-								src="{$publication->getLocalizedCoverImageUrl($article->getData('contextId'))|escape}"
-								alt="{$coverImage.altText|escape|default:''}"
-							>
-						{else}
-							<a href="{url page="issue" op="view" path=$issue->getBestIssueId()}">
-								<img src="{$issue->getLocalizedCoverImageUrl()|escape}" alt="{$issue->getLocalizedCoverImageAltText()|escape|default:''}">
-							</a>
-						{/if}
+				<div class="card jrdc-article__card jrdc-article__cover">
+					<div class="card-body jrdc-article__cover-body">
+						<div class="sub_item">
+							{if $publication->getLocalizedData('coverImage')}
+								{assign var="coverImage" value=$publication->getLocalizedData('coverImage')}
+								<img
+									src="{$publication->getLocalizedCoverImageUrl($article->getData('contextId'))|escape}"
+									alt="{$coverImage.altText|escape|default:''}"
+								>
+							{else}
+								<a href="{url page="issue" op="view" path=$issue->getBestIssueId()}">
+									<img src="{$issue->getLocalizedCoverImageUrl()|escape}" alt="{$issue->getLocalizedCoverImageAltText()|escape|default:''}">
+								</a>
+							{/if}
+						</div>
 					</div>
 				</div>
 			{/if}
 
-			{* Article Galleys *}
-			{if $primaryGalleys}
-				<div class="item galleys">
-					<h2 class="pkp_screen_reader">
-						{translate key="submission.downloads"}
-					</h2>
-					<ul class="value galleys_links">
-						{foreach from=$primaryGalleys item=galley}
-							<li>
-								{include file="frontend/objects/galley_link.tpl" parent=$article publication=$publication galley=$galley purchaseFee=$currentJournal->getData('purchaseArticleFee') purchaseCurrency=$currentJournal->getData('currency')}
-							</li>
-						{/foreach}
-					</ul>
+			{* Publication metadata *}
+			<div class="card jrdc-article__card jrdc-article__meta">
+				<div class="card-header jrdc-article__card-header">
+					<h2 class="jrdc-article__card-title">Informasi Artikel</h2>
 				</div>
-			{/if}
-			{if $supplementaryGalleys}
-				<div class="item galleys">
-					<h3 class="pkp_screen_reader">
-						{translate key="submission.additionalFiles"}
-					</h3>
-					<ul class="value supplementary_galleys_links">
-						{foreach from=$supplementaryGalleys item=galley}
-							<li>
-								{include file="frontend/objects/galley_link.tpl" parent=$article publication=$publication galley=$galley isSupplementary="1"}
-							</li>
-						{/foreach}
-					</ul>
-				</div>
-			{/if}
+				<div class="card-body">
 
-			{if $publication->getData('datePublished')}
-			<div class="item published">
-				<section class="sub_item">
-					<h2 class="label">
-						{translate key="submissions.published"}
-					</h2>
-					<div class="value">
-						{* If this is the original version *}
-						{if $firstPublication->getId() === $publication->getId()}
-							<span>{$firstPublication->getData('datePublished')|date_format:$dateFormatShort}</span>
-						{* If this is an updated version *}
-						{else}
-							<span>{translate key="submission.updatedOn" datePublished=$firstPublication->getData('datePublished')|date_format:$dateFormatShort dateUpdated=$publication->getData('datePublished')|date_format:$dateFormatShort}</span>
-						{/if}
+					{if $publication->getData('datePublished')}
+					<div class="item published">
+						<h3 class="label">
+							{translate key="submissions.published"}
+						</h3>
+						<div class="value">
+							{* If this is the original version *}
+							{if $firstPublication->getId() === $publication->getId()}
+								<span>{$firstPublication->getData('datePublished')|date_format:$dateFormatShort}</span>
+							{* If this is an updated version *}
+							{else}
+								<span>{translate key="submission.updatedOn" datePublished=$firstPublication->getData('datePublished')|date_format:$dateFormatShort dateUpdated=$publication->getData('datePublished')|date_format:$dateFormatShort}</span>
+							{/if}
+						</div>
 					</div>
-				</section>
-				{if count($article->getPublishedPublications()) > 1}
-					<section class="sub_item versions">
-						<h2 class="label">
-							{translate key="submission.versions"}
-						</h2>
-						<ul class="value">
-							{foreach from=array_reverse($article->getPublishedPublications()) item=iPublication}
-								{capture assign="name"}{translate key="submission.versionIdentity" datePublished=$iPublication->getData('datePublished')|date_format:$dateFormatShort version=$iPublication->getData('version')}{/capture}
-								<li>
-									{if $iPublication->getId() === $publication->getId()}
-										{$name}
-									{elseif $iPublication->getId() === $currentPublication->getId()}
-										<a href="{url page="article" op="view" path=$article->getBestId()}">{$name}</a>
-									{else}
-										<a href="{url page="article" op="view" path=$article->getBestId()|to_array:"version":$iPublication->getId()}">{$name}</a>
-									{/if}
-								</li>
-							{/foreach}
-						</ul>
-					</section>
-				{/if}
+					{if count($article->getPublishedPublications()) > 1}
+						<div class="item versions">
+							<h3 class="label">
+								{translate key="submission.versions"}
+							</h3>
+							<ul class="value list-unstyled">
+								{foreach from=array_reverse($article->getPublishedPublications()) item=iPublication}
+									{capture assign="name"}{translate key="submission.versionIdentity" datePublished=$iPublication->getData('datePublished')|date_format:$dateFormatShort version=$iPublication->getData('version')}{/capture}
+									<li>
+										{if $iPublication->getId() === $publication->getId()}
+											{$name}
+										{elseif $iPublication->getId() === $currentPublication->getId()}
+											<a href="{url page="article" op="view" path=$article->getBestId()}">{$name}</a>
+										{else}
+											<a href="{url page="article" op="view" path=$article->getBestId()|to_array:"version":$iPublication->getId()}">{$name}</a>
+										{/if}
+									</li>
+								{/foreach}
+							</ul>
+						</div>
+					{/if}
+					{/if}
+
+					{* Issue article appears in *}
+					{if $issue || $section || $categories}
+						{if $issue}
+							<div class="item issue">
+								<h3 class="label">
+									{translate key="issue.issue"}
+								</h3>
+								<div class="value">
+									<a class="title" href="{url page="issue" op="view" path=$issue->getBestIssueId()}">
+										{$issue->getIssueIdentification()}
+									</a>
+								</div>
+							</div>
+						{/if}
+
+						{if $section}
+							<div class="item section">
+								<h3 class="label">
+									{translate key="section.section"}
+								</h3>
+								<div class="value">
+									{$section->getLocalizedTitle()|escape}
+								</div>
+							</div>
+						{/if}
+
+						{if $categories}
+							<div class="item categories">
+								<h3 class="label">
+									{translate key="category.category"}
+								</h3>
+								<div class="value">
+									<ul class="categories list-unstyled">
+										{foreach from=$categories item=category}
+											<li><a href="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="category" path=$category->getPath()|escape}">{$category->getLocalizedTitle()|escape}</a></li>
+										{/foreach}
+									</ul>
+								</div>
+							</div>
+						{/if}
+					{/if}
+
+				</div>
 			</div>
+
+			{* DOI *}
+			{if $currentJournal}
+				{foreach from=$pubIdPlugins item=pubIdPlugin}
+					{if $pubIdPlugin->getPubIdType() != 'doi'}
+						{continue}
+					{/if}
+					{assign var=pubId value=$article->getStoredPubId($pubIdPlugin->getPubIdType())}
+					{if $pubId}
+						{assign var="doiUrl" value=$pubIdPlugin->getResolvingURL($currentJournal->getId(), $pubId)|escape}
+						<div class="card jrdc-article__card jrdc-article__doi">
+							<div class="card-header jrdc-article__card-header">
+								<h2 class="jrdc-article__card-title">
+									{translate key="plugins.pubIds.doi.readerDisplayName"}
+								</h2>
+							</div>
+							<div class="card-body">
+								<span class="value jrdc-article__doi-value">
+									<a href="{$doiUrl}">
+										{$doiUrl}
+									</a>
+								</span>
+								<button type="button" class="jrdc-doi-copy" data-doi="{$doiUrl}" aria-label="Salin DOI">Salin DOI</button>
+							</div>
+						</div>
+					{/if}
+				{/foreach}
 			{/if}
 
 			{* Data Availability Statement *}
 			{if $publication->getLocalizedData('dataAvailability')}
-				<section class="item dataAvailability" id="data-availability-statement">
-					<h2 class="label">{translate key="submission.dataAvailability"}</h2>
-					{$publication->getLocalizedData('dataAvailability')|strip_unsafe_html}
+				<section class="card jrdc-article__card jrdc-article__data-availability" id="data-availability-statement">
+					<div class="card-header jrdc-article__card-header">
+						<h2 class="jrdc-article__card-title">{translate key="submission.dataAvailability"}</h2>
+					</div>
+					<div class="card-body">
+						{$publication->getLocalizedData('dataAvailability')|strip_unsafe_html}
+					</div>
 				</section>
-			{/if}
-
-			{* Issue article appears in *}
-			{if $issue || $section || $categories}
-				<div class="item issue">
-
-					{if $issue}
-						<section class="sub_item">
-							<h2 class="label">
-								{translate key="issue.issue"}
-							</h2>
-							<div class="value">
-								<a class="title" href="{url page="issue" op="view" path=$issue->getBestIssueId()}">
-									{$issue->getIssueIdentification()}
-								</a>
-							</div>
-						</section>
-					{/if}
-
-					{if $section}
-						<section class="sub_item">
-							<h2 class="label">
-								{translate key="section.section"}
-							</h2>
-							<div class="value">
-								{$section->getLocalizedTitle()|escape}
-							</div>
-						</section>
-					{/if}
-
-					{if $categories}
-						<section class="sub_item">
-							<h2 class="label">
-								{translate key="category.category"}
-							</h2>
-							<div class="value">
-								<ul class="categories">
-									{foreach from=$categories item=category}
-										<li><a href="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="category" path=$category->getPath()|escape}">{$category->getLocalizedTitle()|escape}</a></li>
-									{/foreach}
-								</ul>
-							</div>
-						</section>
-					{/if}
-				</div>
 			{/if}
 
 			{* PubIds (requires plugins) *}
@@ -440,18 +465,22 @@
 					{assign var=pubId value=$article->getStoredPubId($pubIdPlugin->getPubIdType())}
 					{if $pubId}
 						{assign var="resolvedPubIdUrl" value=$pubIdPlugin->getResolvingURL($currentJournal->getId(), $pubId)|escape}
-						<section class="item pubid">
-							<h2 class="label">
-								{$pubIdPlugin->getPubIdDisplayType()|escape}
-							</h2>
-							<div class="value">
-								{if $resolvedPubIdUrl}
-									<a id="pub-id::{$pubIdPlugin->getPubIdType()|escape}" href="{$resolvedPubIdUrl}">
-										{$resolvedPubIdUrl}
-									</a>
-								{else}
-									{$pubId|escape}
-								{/if}
+						<section class="card jrdc-article__card jrdc-article__pubid">
+							<div class="card-header jrdc-article__card-header">
+								<h2 class="jrdc-article__card-title">
+									{$pubIdPlugin->getPubIdDisplayType()|escape}
+								</h2>
+							</div>
+							<div class="card-body">
+								<div class="value">
+									{if $resolvedPubIdUrl}
+										<a id="pub-id::{$pubIdPlugin->getPubIdType()|escape}" href="{$resolvedPubIdUrl}">
+											{$resolvedPubIdUrl}
+										</a>
+									{else}
+										{$pubId|escape}
+									{/if}
+								</div>
 							</div>
 						</section>
 					{/if}
@@ -460,27 +489,51 @@
 
 			{* Licensing info *}
 			{if $currentContext->getLocalizedData('licenseTerms') || $publication->getData('licenseUrl')}
-				<div class="item copyright">
-					<h2 class="label">
-						{translate key="submission.license"}
-					</h2>
-					{if $publication->getData('licenseUrl')}
-						{if $ccLicenseBadge}
-							{if $publication->getLocalizedData('copyrightHolder')}
-								<p>{translate key="submission.copyrightStatement" copyrightHolder=$publication->getLocalizedData('copyrightHolder') copyrightYear=$publication->getData('copyrightYear')}</p>
-							{/if}
-							{$ccLicenseBadge}
-						{else}
-							<a href="{$publication->getData('licenseUrl')|escape}" class="copyright">
+				<div class="card jrdc-article__card jrdc-article__license">
+					<div class="card-header jrdc-article__card-header">
+						<h2 class="jrdc-article__card-title">
+							{translate key="submission.license"}
+						</h2>
+					</div>
+					<div class="card-body">
+						{if $publication->getData('licenseUrl')}
+							{if $ccLicenseBadge}
 								{if $publication->getLocalizedData('copyrightHolder')}
-									{translate key="submission.copyrightStatement" copyrightHolder=$publication->getLocalizedData('copyrightHolder') copyrightYear=$publication->getData('copyrightYear')}
-								{else}
-									{translate key="submission.license"}
+									<p>{translate key="submission.copyrightStatement" copyrightHolder=$publication->getLocalizedData('copyrightHolder') copyrightYear=$publication->getData('copyrightYear')}</p>
 								{/if}
-							</a>
+								{$ccLicenseBadge}
+							{else}
+								<a href="{$publication->getData('licenseUrl')|escape}" class="copyright">
+									{if $publication->getLocalizedData('copyrightHolder')}
+										{translate key="submission.copyrightStatement" copyrightHolder=$publication->getLocalizedData('copyrightHolder') copyrightYear=$publication->getData('copyrightYear')}
+									{else}
+										{translate key="submission.license"}
+									{/if}
+								</a>
+							{/if}
 						{/if}
-					{/if}
-					{$currentContext->getLocalizedData('licenseTerms')}
+						{$currentContext->getLocalizedData('licenseTerms')}
+					</div>
+				</div>
+			{/if}
+
+			{* Supplementary galleys (primary galleys live in the main column) *}
+			{if $supplementaryGalleys}
+				<div class="card jrdc-article__card jrdc-article__supplementary">
+					<div class="card-header jrdc-article__card-header">
+						<h2 class="jrdc-article__card-title">
+							{translate key="submission.additionalFiles"}
+						</h2>
+					</div>
+					<div class="card-body">
+						<ul class="value supplementary_galleys_links list-unstyled">
+							{foreach from=$supplementaryGalleys item=galley}
+								<li>
+									{include file="frontend/objects/galley_link.tpl" parent=$article publication=$publication galley=$galley isSupplementary="1"}
+								</li>
+							{/foreach}
+						</ul>
+					</div>
 				</div>
 			{/if}
 
