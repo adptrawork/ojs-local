@@ -74,3 +74,172 @@
 	padding-block: .5rem;
 	border-block-end: 1px solid var(--jrdc-border);
 }
+
+/* ------------------------------------------------------------------------- */
+/* Bootstrap alignment: forms, errors, checkboxes, consent, reviewer interests */
+/* ------------------------------------------------------------------------- */
+
+.page_login h1,
+.page_register h1,
+.page_lostPassword h1,
+.page_user h1 {
+	margin-block-end: 1.25rem;
+}
+
+/* Form card spacing on narrow screens */
+@media (max-width: 767.98px) {
+	.page_login .cmp_form,
+	.page_register .cmp_form,
+	.page_lostPassword .cmp_form {
+		padding: 1.125rem;
+	}
+}
+
+/* Field groups */
+.page_login .cmp_form .fields,
+.page_register .cmp_form .fields,
+.page_lostPassword .cmp_form .fields {
+	display: grid;
+	gap: .25rem;
+}
+
+.page_login .cmp_form .fields > div,
+.page_register .cmp_form .fields > div,
+.page_lostPassword .cmp_form .fields > div {
+	margin-block-end: 1rem;
+}
+
+/* Labels and inputs already styled in components; reinforce focus ring. */
+.page_login .cmp_form input:focus,
+.page_register .cmp_form input:focus,
+.page_lostPassword .cmp_form input:focus,
+.page_user .cmp_form input:focus,
+.page_user .cmp_form select:focus,
+.page_user .cmp_form textarea:focus {
+	outline: 2px solid var(--jrdc-primary);
+	outline-offset: 0;
+	border-color: var(--jrdc-primary);
+}
+
+/* Error messages */
+.page_login .pkp_form_error,
+.page_register .pkp_form_error,
+.page_lostPassword .pkp_form_error,
+.page_user .pkp_form_error {
+	margin-block-end: 1rem;
+}
+
+/* Checkbox rows */
+.page_login .remember,
+.page_register .optin,
+.page_register .consent .optin {
+	display: flex;
+	align-items: flex-start;
+	gap: .375rem;
+	margin-block: .5rem 0;
+}
+
+.page_login .remember input[type="checkbox"],
+.page_register .optin input[type="checkbox"] {
+	inline-size: 1.1rem;
+	block-size: 1.1rem;
+	margin-block-start: .2rem;
+	accent-color: var(--jrdc-primary);
+	flex: 0 0 auto;
+}
+
+.page_register .optin label {
+	display: flex;
+	align-items: flex-start;
+	gap: .5rem;
+	color: var(--jrdc-text);
+	font-size: .9375rem;
+	line-height: 1.6;
+	cursor: pointer;
+}
+
+/* Consent panels */
+.page_register .consent {
+	margin-block: 1rem 0;
+	padding: 1rem;
+	background: var(--jrdc-surface-muted);
+	border: 1px solid var(--jrdc-border);
+	border-radius: var(--jrdc-radius-sm);
+}
+
+.page_register .consent legend {
+	margin-block-end: .5rem;
+	font-size: 1rem;
+	font-weight: 600;
+}
+
+.page_register .context_optin,
+.page_register .context_privacy {
+	margin-block: .75rem 0;
+}
+
+/* Reviewer interests */
+#reviewerInterests {
+	margin-block-start: .75rem;
+	padding: 1rem;
+	background: var(--jrdc-surface-muted);
+	border: 1px solid var(--jrdc-border);
+	border-radius: var(--jrdc-radius-sm);
+}
+
+#reviewerInterests.is_visible {
+	display: block;
+}
+
+#reviewerInterests label {
+	font-size: .9375rem;
+}
+
+/* Submission wizard */
+.page_submission .submission_wizard .steps {
+	margin: 0 0 1.5rem;
+	padding: 0;
+	list-style: none;
+}
+
+.page_submission .submission_wizard .steps li {
+	padding-block: .5rem;
+	border-block-end: 1px solid var(--jrdc-border);
+}
+
+.page_submission .submission_wizard .steps li:last-child {
+	border-block-end: 0;
+}
+
+/* Profile form (user pages) */
+.page_user .cmp_form {
+	max-inline-size: 880px;
+	padding: 1.5rem;
+	background: var(--jrdc-surface);
+	border: 1px solid var(--jrdc-border);
+	border-radius: var(--jrdc-radius-md);
+	box-shadow: var(--jrdc-shadow-card);
+}
+
+@media (max-width: 767.98px) {
+	.page_user .cmp_form {
+		padding: 1.125rem;
+	}
+}
+
+.page_user .cmp_form fieldset {
+	margin-block-end: 1.25rem;
+}
+
+.page_user .cmp_form legend {
+	font-size: 1.0625rem;
+	font-weight: 600;
+	margin-block-end: .75rem;
+}
+
+/* Submit buttons already styled by components; reinforce tap target. */
+.page_login .cmp_form .buttons .submit,
+.page_register .buttons .submit,
+.page_lostPassword .cmp_form .buttons .submit {
+	min-block-size: 44px;
+}
