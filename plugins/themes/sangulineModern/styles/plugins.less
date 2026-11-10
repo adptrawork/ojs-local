@@ -1,41 +1,144 @@
 /**
- * Plugin-specific styling. Content stays owned by the plugins; this file
- * only adapts presentation. Do not restyle PDF.js viewer internals.
+ * Plugin and sidebar-block presentation. Content stays plugin-owned; this
+ * file only aligns display with the JRDC / Bootstrap 5.3.3 token system.
  */
 
-/* Web Feed block is titled "Current Issue" but only renders feed icons.
-   Feeds stay available via <head>; hide the misleading sidebar card. */
+/* Web Feed block renders only feed icons and is misleading in the sidebar;
+   feeds remain available via <head>. */
 .jrdc-sidebar .block_web_feed,
 .pkp_structure_sidebar .block_web_feed {
 	display: none;
 }
 
-/* Custom Block Manager */
+/* -------------------------------------------------------------------------
+ * Sidebar blocks (including Custom Block Manager)
+ * ---------------------------------------------------------------------- */
+.jrdc-sidebar .pkp_block,
+.pkp_structure_sidebar .pkp_block {
+	padding: 1.25rem;
+	background: var(--jrdc-surface);
+	border: 1px solid var(--jrdc-border);
+	border-radius: var(--jrdc-radius-md);
+	box-shadow: var(--jrdc-shadow-sm);
+	color: var(--jrdc-text);
+}
+
+.jrdc-sidebar .pkp_block > .title,
+.jrdc-sidebar .pkp_block > h2,
+.jrdc-sidebar .pkp_block > h3,
+.pkp_structure_sidebar .pkp_block > .title,
+.pkp_structure_sidebar .pkp_block > h2,
+.pkp_structure_sidebar .pkp_block > h3 {
+	margin: 0 0 .875rem;
+	padding: 0 0 .625rem;
+	border-block-end: 1px solid var(--jrdc-border);
+	color: var(--jrdc-text);
+	font-size: 1rem;
+	font-weight: 600;
+	line-height: 1.3;
+}
+
+.jrdc-sidebar .pkp_block .content > :first-child {
+	margin-block-start: 0;
+}
+
+.jrdc-sidebar .pkp_block .content > :last-child,
 .block_custom .content > :last-child {
 	margin-block-end: 0;
 }
 
+/* Custom Block Manager content: logos/badges, iframes, tables */
+.block_custom .content {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-start;
+	gap: .75rem;
+	color: var(--jrdc-text);
+}
+
+.block_custom .content > p,
+.block_custom .content > div,
+.block_custom .content > ul,
+.block_custom .content > ol,
+.block_custom .content > table {
+	flex: 1 1 100%;
+	margin: 0;
+}
+
 .block_custom .content img {
+	display: block;
 	max-inline-size: 100%;
 	block-size: auto;
 }
 
+.block_custom .content p > img,
+.block_custom .content a > img {
+	display: inline-block;
+	vertical-align: middle;
+}
+
 .block_custom .content iframe {
 	max-inline-size: 100%;
+	border: 0;
+}
+
+.block_custom .content table {
+	inline-size: 100%;
+	max-inline-size: 100%;
+	border-collapse: collapse;
+	border-spacing: 0;
+	font-size: .875rem;
+}
+
+.block_custom .content th,
+.block_custom .content td {
+	padding: .375rem .5rem;
+	border: 1px solid var(--jrdc-border);
+	text-align: start;
+	vertical-align: top;
+}
+
+.block_custom .content th {
+	background: var(--jrdc-surface-muted);
+	color: var(--jrdc-text);
+	font-weight: 600;
+}
+
+.block_custom .content tbody tr:nth-child(even) {
+	background: var(--jrdc-surface-muted);
 }
 
 /* Sidebar navigation block (theme menu, not a plugin) */
-.jrdc-sidebar .block_sidebar_nav .pkp_nav_list {
+.jrdc-sidebar .block_sidebar_nav .pkp_nav_list,
+.pkp_structure_sidebar .block_sidebar_nav .pkp_nav_list {
 	margin: 0;
 	padding: 0;
 	list-style: none;
 }
 
-.jrdc-sidebar .block_sidebar_nav .pkp_nav_list li + li {
+.jrdc-sidebar .block_sidebar_nav .pkp_nav_list li + li,
+.pkp_structure_sidebar .block_sidebar_nav .pkp_nav_list li + li {
 	margin-block-start: .5rem;
 }
 
-/* Static Pages */
+/* -------------------------------------------------------------------------
+ * Usage Stats
+ * ---------------------------------------------------------------------- */
+.usageStatsGraph,
+.usageStatsUnavailable {
+	display: block;
+	inline-size: 100%;
+	max-inline-size: 100%;
+}
+
+.pkp_block .usageStatsGraph,
+.block_custom .usageStatsGraph {
+	block-size: auto;
+}
+
+/* -------------------------------------------------------------------------
+ * Static Pages / embedded content
+ * ---------------------------------------------------------------------- */
 .page .jrdc-prose table,
 .page table {
 	display: block;
@@ -50,14 +153,159 @@
 	border: 0;
 }
 
-/* Usage Stats: theme reports no support; hide leftovers safely. */
-.usageStatsGraph,
-.usageStatsUnavailable {
-	max-inline-size: 100%;
-}
-
-/* PDF.js viewer uses its own full-screen layout; do not touch it. */
+/* -------------------------------------------------------------------------
+ * PDF.js Viewer (article galley view)
+ * ---------------------------------------------------------------------- */
 .pkp_page_viewPdf .jrdc-header__actions,
 .pkp_page_viewPdf .jrdc-sidebar {
 	display: none;
 }
+
+body.pkp_op_view {
+	min-block-size: 100vh;
+}
+
+body.pkp_op_view .header_view {
+	display: flex;
+	align-items: center;
+	gap: .75rem;
+	min-block-size: 3rem;
+	padding: .5rem 1rem;
+	background: var(--jrdc-surface);
+	border-block-end: 1px solid var(--jrdc-border);
+	color: var(--jrdc-text);
+	box-shadow: var(--jrdc-shadow-sm);
+}
+
+body.pkp_op_view .header_view .return,
+body.pkp_op_view .header_view .title,
+body.pkp_op_view .header_view .download {
+	color: var(--jrdc-text);
+	text-decoration: none;
+}
+
+body.pkp_op_view .header_view .title {
+	flex: 1 1 auto;
+	min-inline-size: 0;
+	overflow: hidden;
+	font-size: .9375rem;
+	font-weight: 600;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+body.pkp_op_view .header_view .download {
+	display: inline-flex;
+	align-items: center;
+	gap: .375rem;
+	padding: .375rem .75rem;
+	border: 1px solid var(--jrdc-border);
+	border-radius: var(--jrdc-radius-sm);
+	background: var(--jrdc-surface-muted);
+	font-size: .875rem;
+	font-weight: 500;
+}
+
+body.pkp_op_view .header_view .download:hover {
+	border-color: var(--jrdc-primary-border);
+	color: var(--jrdc-primary);
+}
+
+body.pkp_op_view #pdfCanvasContainer {
+	display: flex;
+	flex-direction: column;
+	inline-size: 100%;
+	block-size: calc(100vh - 3.5rem);
+	min-block-size: 0;
+	overflow: hidden;
+	background: var(--jrdc-surface-muted);
+}
+
+body.pkp_op_view #pdfCanvasContainer iframe {
+	flex: 1 1 auto;
+	display: block;
+	inline-size: 100%;
+	block-size: 100%;
+	min-block-size: 0;
+	border: 0;
+}
+
+body.pkp_op_view .galley_view_notice {
+	flex: 0 0 auto;
+	padding: .5rem 1rem;
+	background: var(--jrdc-primary-soft);
+	border-block-end: 1px solid var(--jrdc-primary-border);
+	color: var(--jrdc-text);
+	font-size: .875rem;
+}
+
+/* -------------------------------------------------------------------------
+ * Dark mode harmonization
+ * ---------------------------------------------------------------------- */
+html.dark .jrdc-sidebar .pkp_block,
+[data-bs-theme="dark"] .jrdc-sidebar .pkp_block,
+html.dark .pkp_structure_sidebar .pkp_block,
+[data-bs-theme="dark"] .pkp_structure_sidebar .pkp_block {
+	background: var(--jrdc-surface);
+	border-color: var(--jrdc-border);
+	color: var(--jrdc-text);
+	box-shadow: none;
+}
+
+html.dark .jrdc-sidebar .pkp_block > .title,
+html.dark .jrdc-sidebar .pkp_block > h2,
+html.dark .jrdc-sidebar .pkp_block > h3,
+[data-bs-theme="dark"] .jrdc-sidebar .pkp_block > .title,
+[data-bs-theme="dark"] .jrdc-sidebar .pkp_block > h2,
+[data-bs-theme="dark"] .jrdc-sidebar .pkp_block > h3,
+html.dark .pkp_structure_sidebar .pkp_block > .title,
+[data-bs-theme="dark"] .pkp_structure_sidebar .pkp_block > .title {
+	border-block-end-color: var(--jrdc-border);
+	color: var(--jrdc-text);
+}
+
+html.dark .block_custom .content th,
+[data-bs-theme="dark"] .block_custom .content th,
+html.dark .block_custom .content tbody tr:nth-child(even),
+[data-bs-theme="dark"] .block_custom .content tbody tr:nth-child(even) {
+	background: var(--jrdc-surface-muted);
+}
+
+html.dark .block_custom .content th,
+html.dark .block_custom .content td,
+[data-bs-theme="dark"] .block_custom .content th,
+[data-bs-theme="dark"] .block_custom .content td {
+	border-color: var(--jrdc-border);
+	color: var(--jrdc-text);
+}
+
+html.dark body.pkp_op_view .header_view,
+[data-bs-theme="dark"] body.pkp_op_view .header_view {
+	background: var(--jrdc-surface);
+	border-block-end-color: var(--jrdc-border);
+	color: var(--jrdc-text);
+}
+
+html.dark body.pkp_op_view .header_view .download,
+[data-bs-theme="dark"] body.pkp_op_view .header_view .download {
+	background: var(--jrdc-surface-muted);
+	border-color: var(--jrdc-border);
+	color: var(--jrdc-text);
+}
+
+html.dark body.pkp_op_view #pdfCanvasContainer,
+[data-bs-theme="dark"] body.pkp_op_view #pdfCanvasContainer {
+	background: var(--jrdc-navy-deep);
+}
+
+html.dark body.pkp_op_view #pdfCanvasContainer iframe,
+[data-bs-theme="dark"] body.pkp_op_view #pdfCanvasContainer iframe {
+	background: var(--jrdc-navy-deep);
+}
+
+html.dark body.pkp_op_view .galley_view_notice,
+[data-bs-theme="dark"] body.pkp_op_view .galley_view_notice {
+	background: var(--jrdc-primary-soft);
+	border-block-end-color: var(--jrdc-primary-border);
+	color: var(--jrdc-text);
+}
