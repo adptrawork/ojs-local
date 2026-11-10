@@ -64,8 +64,8 @@ class SangulineModernThemePlugin extends ThemePlugin {
 
 		$this->addOption('modernAccent', 'FieldColor', [
 			'label' => 'Modern accent color',
-			'description' => 'Optional accent color for Sanguline Modern highlights (hex, e.g. #c2410c). Default is prototype burnt orange.',
-			'default' => '#c2410c',
+			'description' => 'Optional accent color for Sanguline Modern highlights (hex, e.g. #0b2038). Default is institutional navy.',
+			'default' => '#0b2038',
 		]);
 
 		// Bootstrap 5.3.3, vendored locally. Absolute URL avoids Windows backslashes.
@@ -80,7 +80,7 @@ class SangulineModernThemePlugin extends ThemePlugin {
 
 		$accent = $this->getOption('modernAccent');
 		if (!$accent || !preg_match('/^#[0-9a-fA-F]{3,6}$/', $accent)) {
-			$accent = '#c2410c';
+			$accent = '#0b2038';
 		}
 		$this->modifyStyle('stylesheetModern', [
 			'addLessVariables' => "@modern-primary: {$accent};\n@modern-navy: #0b2038;\n",
