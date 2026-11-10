@@ -71,3 +71,124 @@
 	color: var(--jrdc-text-muted);
 	font-size: .8125rem;
 }
+
+/* ------------------------------------------------------------------------- */
+/* Bootstrap alignment for the actual OJS core search markup                 */
+/* ------------------------------------------------------------------------- */
+.page_search .cmp_form {
+	margin-block-end: 1.5rem;
+	padding: 1.25rem;
+	background: var(--jrdc-surface);
+	border: 1px solid var(--jrdc-border);
+	border-radius: var(--jrdc-radius-md);
+	box-shadow: var(--jrdc-shadow-card);
+}
+
+.page_search .cmp_form .search_input {
+	display: flex;
+	flex-wrap: wrap;
+	gap: .5rem;
+	align-items: stretch;
+	margin-block-end: 1rem;
+}
+
+.page_search .cmp_form .search_input input.query,
+.page_search .cmp_form .search_input input[type="text"],
+.page_search .cmp_form .search_input input[type="search"] {
+	flex: 1 1 240px;
+	min-inline-size: 0;
+}
+
+.page_search .cmp_form .search_advanced {
+	margin-block: 1rem 0;
+	padding-block-start: 1rem;
+	border-block-start: 1px solid var(--jrdc-border);
+	border-inline: 0;
+	border-block-end: 0;
+}
+
+.page_search .cmp_form .search_advanced legend {
+	margin-block-end: .75rem;
+	font-size: 1.0625rem;
+	font-weight: 600;
+}
+
+.page_search .cmp_form .search_advanced .date_range {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	gap: 1rem;
+	margin-block-end: 1rem;
+}
+
+.page_search .cmp_form .search_advanced .date_range .from,
+.page_search .cmp_form .search_advanced .date_range .to {
+	min-inline-size: 0;
+}
+
+.page_search .cmp_form .search_advanced .author {
+	margin-block-start: 1rem;
+}
+
+.page_search .cmp_form .submit {
+	margin-block-start: 1rem;
+}
+
+.page_search .cmp_form .submit button.submit,
+.page_search .cmp_form .submit input[type="submit"] {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: .4rem;
+	min-block-size: 44px;
+	padding: .625rem 1.25rem;
+	color: #fff;
+	background: var(--jrdc-primary);
+	border: 1px solid var(--jrdc-primary);
+	border-radius: var(--jrdc-radius-sm);
+	font: inherit;
+	font-size: .9375rem;
+	font-weight: 600;
+	cursor: pointer;
+	transition: background-color .15s ease, border-color .15s ease;
+}
+
+.page_search .cmp_form .submit button.submit:hover,
+.page_search .cmp_form .submit input[type="submit"]:hover {
+	background: var(--jrdc-primary-hover);
+	border-color: var(--jrdc-primary-hover);
+}
+
+.page_search .cmp_form .submit button.submit:focus-visible,
+.page_search .cmp_form .submit input[type="submit"]:focus-visible {
+	outline: 3px solid var(--jrdc-primary);
+	outline-offset: 2px;
+}
+
+/* Results list spacing and result cards */
+.page_search .search_results {
+	margin-block-start: 1.5rem;
+}
+
+.page_search .search_results > li + li {
+	margin-block-start: .25rem;
+}
+
+.page_search .search_results .meta {
+	display: flex;
+	flex-wrap: wrap;
+	gap: .375rem 1rem;
+	margin-block-start: .25rem;
+}
+
+/* No-results notice spacing */
+.page_search .cmp_notification {
+	margin-block-start: 1rem;
+}
+
+/* Search syntax instructions (if provided by plugins) */
+.page_search .search_syntax,
+.page_search .search-instructions {
+	margin-block-start: 1.5rem;
+	color: var(--jrdc-text-muted);
+	font-size: .875rem;
+}

@@ -88,3 +88,271 @@
 .page_submissions .submission_checklist li {
 	margin-block-end: .5rem;
 }
+
+/* ------------------------------------------------------------------------- */
+/* Bootstrap alignment: card surface, prose, headings, tables, images, lists  */
+/* ------------------------------------------------------------------------- */
+
+/* Card surface for content pages (excluding interactive/galley pages). */
+.page:not(.page_article):not(.page_search):not(.page_login):not(.page_register):not(.page_lost_password):not(.page_user):not(.page_submission) {
+	padding: 1.5rem;
+	background: var(--jrdc-surface);
+	border: 1px solid var(--jrdc-border);
+	border-radius: var(--jrdc-radius-lg);
+	box-shadow: var(--jrdc-shadow-card);
+}
+
+@media (max-width: 767.98px) {
+	.page:not(.page_article):not(.page_search):not(.page_login):not(.page_register):not(.page_lost_password):not(.page_user):not(.page_submission) {
+		padding: 1.125rem;
+	}
+}
+
+/* Prose-like rhythm for plugin/editor content rendered inside .page. */
+.page {
+	color: var(--jrdc-text);
+	font-size: 1rem;
+	line-height: 1.75;
+	overflow-wrap: break-word;
+}
+
+.page > :first-child {
+	margin-block-start: 0;
+}
+
+.page > :last-child {
+	margin-block-end: 0;
+}
+
+.page h2,
+.page h3,
+.page h4 {
+	margin-block: 1.75rem .75rem;
+}
+
+.page h2 {
+	font-size: ~"clamp(1.5rem, 2.5vw, 2rem)";
+	font-weight: 700;
+}
+
+.page h3 {
+	font-size: 1.25rem;
+	font-weight: 600;
+}
+
+.page p {
+	margin: 0 0 1rem;
+}
+
+.page ul,
+.page ol {
+	margin: 0 0 1rem;
+	padding-inline-start: 1.5rem;
+}
+
+.page li + li {
+	margin-block-start: .35rem;
+}
+
+.page table {
+	display: block;
+	overflow-x: auto;
+	inline-size: 100%;
+	margin-block: 1rem;
+	border-collapse: collapse;
+	font-size: .9375rem;
+	border-radius: var(--jrdc-radius-sm);
+}
+
+.page th,
+.page td {
+	padding: .625rem .75rem;
+	border: 1px solid var(--jrdc-border);
+	text-align: start;
+	vertical-align: top;
+}
+
+.page th {
+	background: var(--jrdc-surface-muted);
+	font-weight: 600;
+}
+
+.page img {
+	max-inline-size: 100%;
+	block-size: auto;
+	border-radius: var(--jrdc-radius-sm);
+}
+
+.page blockquote {
+	margin: 1.5rem 0;
+	padding: .75rem 1.25rem;
+	color: var(--jrdc-text-muted);
+	border-left: 4px solid var(--jrdc-primary);
+	background: var(--jrdc-primary-soft);
+	border-radius: 0 var(--jrdc-radius-sm) var(--jrdc-radius-sm) 0;
+}
+
+/* About */
+.page_about h1 {
+	margin-block-end: 1.25rem;
+}
+
+.page_about .about_section,
+.page_about .section {
+	margin-block-end: 2rem;
+	padding-block-end: 1.5rem;
+	border-block-end: 1px solid var(--jrdc-border);
+}
+
+.page_about .about_section:last-child,
+.page_about .section:last-child {
+	border-block-end: 0;
+	padding-block-end: 0;
+}
+
+.page_about h2 {
+	padding-block-end: .5rem;
+	border-block-end: 1px solid var(--jrdc-border);
+	font-size: 1.375rem;
+	font-weight: 600;
+}
+
+/* Editorial team */
+.page_editorialTeam .editorial_team {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.page_editorialTeam .editorial_team > li {
+	display: grid;
+	gap: .125rem;
+	padding-block: .875rem;
+	border-block-end: 1px solid var(--jrdc-border);
+}
+
+.page_editorialTeam .editorial_team > li:last-child {
+	border-block-end: 0;
+}
+
+.page_editorialTeam .editorial_team .name {
+	font-weight: 600;
+	color: var(--jrdc-text);
+}
+
+.page_editorialTeam .editorial_team .affiliation {
+	color: var(--jrdc-text-muted);
+	font-size: .875rem;
+	line-height: 1.6;
+}
+
+/* Contact */
+.page_contact .contact_section {
+	margin-block-end: 1.5rem;
+}
+
+.page_contact .contact_section h2 {
+	font-size: 1.25rem;
+	font-weight: 600;
+	margin-block-end: .75rem;
+}
+
+.page_contact .contact {
+	padding: 1rem 0;
+	border-block-end: 1px solid var(--jrdc-border);
+}
+
+.page_contact .contact:last-child {
+	border-block-end: 0;
+}
+
+.page_contact .contact h3 {
+	font-size: 1.0625rem;
+	font-weight: 600;
+	margin-block-end: .5rem;
+	color: var(--jrdc-primary);
+}
+
+.page_contact .contact .name {
+	font-weight: 600;
+}
+
+.page_contact .contact .title,
+.page_contact .contact .affiliation {
+	color: var(--jrdc-text-muted);
+	font-size: .875rem;
+}
+
+.page_contact .contact .phone,
+.page_contact .contact .email {
+	margin-block-start: .375rem;
+	font-size: .9375rem;
+}
+
+.page_contact .contact .label {
+	color: var(--jrdc-text-muted);
+	font-weight: 500;
+	margin-inline-end: .375rem;
+}
+
+.page_contact .address {
+	margin-block-end: 1rem;
+	padding: 1rem;
+	background: var(--jrdc-surface-muted);
+	border: 1px solid var(--jrdc-border);
+	border-radius: var(--jrdc-radius-sm);
+}
+
+/* Submissions */
+.page_submissions .cmp_notification {
+	margin-block-end: 1.5rem;
+}
+
+.page_submissions .submission_checklist {
+	padding-inline-start: 1.25rem;
+	margin-block-end: 1.5rem;
+}
+
+.page_submissions .submission_checklist li {
+	margin-block-end: .5rem;
+	padding-inline-start: .25rem;
+}
+
+.page_submissions .submission_checklist .fa {
+	color: var(--jrdc-success);
+	margin-inline-end: .5rem;
+}
+
+.page_submissions .author_guidelines,
+.page_submissions .section_policy,
+.page_submissions .copyright_notice,
+.page_submissions .privacy_statement {
+	margin-block-end: 1.75rem;
+	padding-block-end: 1.5rem;
+	border-block-end: 1px solid var(--jrdc-border);
+}
+
+.page_submissions .author_guidelines:last-child,
+.page_submissions .section_policy:last-child,
+.page_submissions .copyright_notice:last-child,
+.page_submissions .privacy_statement:last-child {
+	border-block-end: 0;
+	padding-block-end: 0;
+}
+
+.page_submissions h2 {
+	font-size: 1.25rem;
+	font-weight: 600;
+	margin-block-end: .75rem;
+	color: var(--jrdc-text);
+}
+
+/* Protect galley/plugin viewers from card styling. */
+.pkp_page_articleGalley .page,
+.pkp_page_issueGalley .page {
+	padding: 0;
+	background: transparent;
+	border: 0;
+	border-radius: 0;
+	box-shadow: none;
+}
