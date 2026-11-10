@@ -184,6 +184,8 @@
 	justify-content: space-between;
 	gap: 1rem;
 	padding: 1.25rem 1.5rem;
+	/* Bootstrap .card-header cap background would tint the header. */
+	background: var(--jrdc-surface);
 	border-block-end: 1px solid var(--jrdc-border);
 }
 
@@ -205,19 +207,11 @@
 	}
 }
 
+/* Columns come from Bootstrap (.row.row-cols-*); theme rules only add rhythm
+   and card skin. Grid-based sizing was removed so .row keeps the layout. */
 .jrdc-overview-grid,
 .jrdc-info-grid {
-	display: grid;
-	grid-template-columns: minmax(0, 1fr);
-	gap: .75rem;
 	margin-block-start: 1.25rem;
-}
-
-@media (min-width: 768px) {
-	.jrdc-overview-grid,
-	.jrdc-info-grid {
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-	}
 }
 
 .jrdc-info-card {

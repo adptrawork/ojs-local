@@ -73,9 +73,9 @@
 
 			<div class="jrdc-hero__actions">
 				{if $issue}
-					<a href="{url router=$smarty.const.ROUTE_PAGE page="issue" op="view" path=$issue->getBestIssueId()}" class="jrdc-button jrdc-button--primary jrdc-hero__cta">Lihat Edisi Terbaru</a>
+					<a href="{url router=$smarty.const.ROUTE_PAGE page="issue" op="view" path=$issue->getBestIssueId()}" class="btn btn-primary jrdc-button jrdc-button--primary jrdc-hero__cta">Lihat Edisi Terbaru</a>
 				{/if}
-				<a href="{url page="about" op="submissions"}" class="jrdc-button jrdc-button--outline jrdc-hero__cta">Panduan Penulis</a>
+				<a href="{url page="about" op="submissions"}" class="btn btn-outline-light jrdc-button jrdc-button--outline jrdc-hero__cta">Panduan Penulis</a>
 			</div>
 		</section>
 	</div>
@@ -88,11 +88,11 @@
 			<div id="pkp_content_main" class="col-12 col-xl-8 pkp_structure_main jrdc-main" role="main">
 
 			{* Card A: Tentang Jurnal *}
-			<section class="jrdc-card-section" aria-labelledby="homepageAboutTitle">
-				<div class="jrdc-card-header">
+			<section class="card jrdc-card-section" aria-labelledby="homepageAboutTitle">
+				<div class="card-header jrdc-card-header">
 					<h2 id="homepageAboutTitle" class="jrdc-card-title">Tentang Jurnal</h2>
 				</div>
-				<div class="jrdc-card-body">
+				<div class="card-body jrdc-card-body">
 					<div class="jrdc-prose jrdc-prose--lead">
 						{if $currentContext->getLocalizedData('description')}
 							{$currentContext->getLocalizedData('description')}
@@ -101,39 +101,47 @@
 						{/if}
 					</div>
 
-					{* 4 Info Cards (2x2 Grid) *}
-					<div class="jrdc-overview-grid">
-						<a href="{url page="about"}" class="jrdc-info-card">
-							<h3 class="jrdc-info-card__title">Fokus dan Ruang Lingkup</h3>
-							<p class="jrdc-info-card__desc">Manajemen, akuntansi, keuangan, pemasaran, kewirausahaan, dan ekonomi pembangunan.</p>
-						</a>
-						<a href="{url page="about" op="editorialTeam"}" class="jrdc-info-card">
-							<h3 class="jrdc-info-card__title">Dewan Redaksi</h3>
-							<p class="jrdc-info-card__desc">Editor dan mitra bestari yang memandu proses telaah sejawat.</p>
-						</a>
-						<a href="{url page="about" op="submissions"}" class="jrdc-info-card">
-							<h3 class="jrdc-info-card__title">Pedoman Penulis</h3>
-							<p class="jrdc-info-card__desc">Persyaratan naskah dan cara menyiapkan berkas pengiriman.</p>
-						</a>
-						<a href="{url page="about" op="submissions" anchor="copyrightNotice"}" class="jrdc-info-card">
-							<h3 class="jrdc-info-card__title">Etika Publikasi</h3>
-							<p class="jrdc-info-card__desc">Standar etika publikasi yang berlaku bagi penulis, editor, dan penelaah.</p>
-						</a>
+					{* 4 Info Cards (2x2 Grid, Bootstrap) *}
+					<div class="jrdc-overview-grid row row-cols-1 row-cols-md-2 g-3">
+						<div class="col">
+							<a href="{url page="about"}" class="card h-100 jrdc-info-card">
+								<h3 class="jrdc-info-card__title">Fokus dan Ruang Lingkup</h3>
+								<p class="jrdc-info-card__desc">Manajemen, akuntansi, keuangan, pemasaran, kewirausahaan, dan ekonomi pembangunan.</p>
+							</a>
+						</div>
+						<div class="col">
+							<a href="{url page="about" op="editorialTeam"}" class="card h-100 jrdc-info-card">
+								<h3 class="jrdc-info-card__title">Dewan Redaksi</h3>
+								<p class="jrdc-info-card__desc">Editor dan mitra bestari yang memandu proses telaah sejawat.</p>
+							</a>
+						</div>
+						<div class="col">
+							<a href="{url page="about" op="submissions"}" class="card h-100 jrdc-info-card">
+								<h3 class="jrdc-info-card__title">Pedoman Penulis</h3>
+								<p class="jrdc-info-card__desc">Persyaratan naskah dan cara menyiapkan berkas pengiriman.</p>
+							</a>
+						</div>
+						<div class="col">
+							<a href="{url page="about" op="submissions" anchor="copyrightNotice"}" class="card h-100 jrdc-info-card">
+								<h3 class="jrdc-info-card__title">Etika Publikasi</h3>
+								<p class="jrdc-info-card__desc">Standar etika publikasi yang berlaku bagi penulis, editor, dan penelaah.</p>
+							</a>
+						</div>
 					</div>
 				</div>
 			</section>
 
 			{* Card B: Terbitan Jurnal Terbaru *}
 			{if $issue}
-				<section class="jrdc-card-section jrdc-issue" aria-labelledby="homepageIssueTitle">
+				<section class="card jrdc-card-section jrdc-issue" aria-labelledby="homepageIssueTitle">
 					<a id="homepageIssue"></a>
-					<div class="jrdc-card-header jrdc-issue__header">
+					<div class="card-header jrdc-card-header jrdc-issue__header">
 						<div>
 							<div class="jrdc-issue__eyebrow">
 								<span class="jrdc-issue__eyebrow-label">
 									Terbitan Jurnal Terbaru
 								</span>
-								<span class="jrdc-issue__status">
+								<span class="badge jrdc-issue__status">
 									Aktif
 								</span>
 							</div>
@@ -148,14 +156,14 @@
 						{/if}
 					</div>
 
-					<div class="jrdc-card-body">
+					<div class="card-body jrdc-card-body">
 						<div class="jrdc-issue__toc">
 							{include file="frontend/objects/issue_toc.tpl" heading="h3"}
 						</div>
 
 						<div class="jrdc-issue__footer">
 							<span class="jrdc-issue__footer-text">Mencari publikasi edisi lampau atau tematik?</span>
-							<a href="{url router=$smarty.const.ROUTE_PAGE page="issue" op="archive"}" class="jrdc-button jrdc-button--secondary">
+							<a href="{url router=$smarty.const.ROUTE_PAGE page="issue" op="archive"}" class="btn btn-secondary jrdc-button jrdc-button--secondary">
 								Lihat Semua Edisi &amp; Arsip Lengkap
 							</a>
 						</div>
@@ -165,11 +173,11 @@
 
 			{* Card C: Announcements (if enabled) *}
 			{if $announcements && $numAnnouncementsHomepage}
-				<section class="jrdc-card-section jrdc-announcements" aria-label="{translate|escape key="announcement.announcements"}">
-					<div class="jrdc-card-header">
+				<section class="card jrdc-card-section jrdc-announcements" aria-label="{translate|escape key="announcement.announcements"}">
+					<div class="card-header jrdc-card-header">
 						<h2 class="jrdc-card-title">{translate key="announcement.announcements"}</h2>
 					</div>
-					<div class="jrdc-card-body">
+					<div class="card-body jrdc-card-body">
 						{include file="frontend/objects/announcements_list.tpl" numAnnouncements=$numAnnouncementsHomepage}
 					</div>
 				</section>
@@ -177,8 +185,8 @@
 
 			{* Additional Content (if any) *}
 			{if $additionalHomeContent}
-				<section class="jrdc-card-section jrdc-additional">
-					<div class="jrdc-card-body">
+				<section class="card jrdc-card-section jrdc-additional">
+					<div class="card-body jrdc-card-body">
 						<div class="jrdc-prose">
 							{$additionalHomeContent}
 						</div>
